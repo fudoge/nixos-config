@@ -16,10 +16,10 @@
 
         modules = [
 				  ./configuration.nix
+				  nvf.homeManagerModules.default
 					home-manager.nixosModules.home-manager {
 				    home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
-				    nvf.homeManagerModules.default;
 						home-manager.users.chaewoon = import ./home/home.nix;
 					}
 				];
