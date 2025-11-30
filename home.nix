@@ -117,6 +117,10 @@
     enableCompletion = true;
     autosuggestion.enable = true;
 
+    shellAliases = {
+				ls = "eza --icons";
+		};
+
 		history.size = 10000;
 		history.path = "$HOME/.zsh_history";
     history.ignoreAllDups = true;
