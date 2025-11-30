@@ -91,6 +91,14 @@
 		extraConfig.init.defaultBranch = "main";
 	};
 
+	# gh-cli configuration
+	programs.gh = {
+				enable = true;
+				gitCredentialHelper = {
+								enable = true;
+				};
+  };
+
 	# starship prompt
 	programs.starship = {
 		enable = true;
