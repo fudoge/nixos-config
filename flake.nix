@@ -15,14 +15,11 @@
       spaceship = nixpkgs.lib.nixosSystem {
 
         modules = [
-				  ./configuration.nix
-
 					nvf.nixosModules.default
-
+				  ./configuration.nix
 					home-manager.nixosModules.home-manager {
 				    home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
-
 						home-manager.users.chaewoon = import ./home/home.nix;
 					}
 				];
