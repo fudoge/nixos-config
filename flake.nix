@@ -7,24 +7,23 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+		nvf.url = "github:notashelf/nvf";
 	};
 
-	outputs = inputs@{ nixpkgs, home-manager, ... }: {
+	outputs = inputs@{ nixpkgs, home-manager, nvf, ... }: {
     nixosConfigurations = {
       spaceship = nixpkgs.lib.nixosSystem {
 
         modules = [
-				  {
-				    nixpkgs.config.allowUnfree = true;
-				  }
-
 				  ./configuration.nix
+
+					nvf.nixosModules.default
 
 					home-manager.nixosModules.home-manager {
 				    home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
 
-						home-manager.users.chaewoon = import ./home.nix;
+						home-manager.users.chaewoon = import ./home/home.nix;
 					}
 				];
 			};
