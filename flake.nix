@@ -12,14 +12,6 @@
 	outputs = inputs@{ nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       spaceship = nixpkgs.lib.nixosSystem {
-				specialArgs = let
-				  system = "x86_64-linux";
-				in {
-				  pkgs = import nixpkgs {
-					  inherit system;
-						config.allowUnfree = true;
-				  };
-				};
 
         modules = [
 				  ./configuration.nix
