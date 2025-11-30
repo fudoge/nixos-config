@@ -72,7 +72,7 @@
   };
 
   # allow unfree softwares
-  config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   programs.hyprland.enable = true;
   programs.firefox.enable = true;
