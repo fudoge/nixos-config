@@ -27,6 +27,7 @@
 		eza
 		fzf
 		zoxide
+		github-cli
 
 		# networking
 		mtr
@@ -79,7 +80,7 @@
 
 		# shell configurations
 		zsh-fast-syntax-highlighting
-    zsh-autosuggestions		
+		zsh-autosuggestions		
 	];
 
 	# git configuration
@@ -87,6 +88,7 @@
 		enable = true;
 		userName = "Chaewoon Kang";
 		userEmail = "kchawoon@naver.com";
+		extraConfig.init.defaultBranch = "main";
 	};
 
 	# starship prompt
