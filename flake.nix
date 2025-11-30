@@ -14,6 +14,10 @@
       spaceship = nixpkgs.lib.nixosSystem {
 
         modules = [
+				  {
+				    nixpkgs.config.allowUnfree = true;
+				  }
+
 				  ./configuration.nix
 
 					home-manager.nixosModules.home-manager {
