@@ -3,9 +3,9 @@
   programs.nvf = {
     enable = true;
 		settings = {
-			vim.theme.name = "gruvbox";
-			vim.theme.style = "dark";
-
+      vim.lsp = {
+        enable = true;
+      };
 			vim.languages.nix.enable = true;
     };
   };
