@@ -74,7 +74,6 @@
   programs.hyprland.enable = true;
   programs.firefox.enable = true;
   programs.zsh.enable = true;
-  programs.vivaldi.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -85,6 +84,7 @@
     gcc
     neovim
     ghostty
+    vivaldi
   ];
 
   environment.variables.EDITOR = "vim";
