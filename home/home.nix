@@ -10,6 +10,9 @@
 	home.packages = with pkgs; [
 		# editor
 		neovim
+
+                # usb drive
+                ventoy
 		
 		# fetches
 		fastfetch
