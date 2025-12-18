@@ -163,5 +163,9 @@
                 enable = true;
         };
 
+        wayland.windowManager.hyprland.settings = {
+                "$terminal" = "ghostty";
+        };
+
 	home.stateVersion = "25.05";
 }
