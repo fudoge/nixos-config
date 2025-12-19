@@ -163,7 +163,7 @@
                 enable = true;
         };
 
-        wayland.windowManager.hyprland.settings = {
+        wayland.windowManager.hyprland = {
                 enable = true;
                 settings = {
                         "$terminal" = "ghostty";
