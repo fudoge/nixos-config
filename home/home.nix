@@ -167,6 +167,11 @@
                 enable = true;
                 settings = {
                         "$terminal" = "ghostty";
+                        "$mainMod" = "ALT";
+                        bind = 
+                                [
+                                        "$mainMod, Return, exec, $terminal"
+                                ]
                 };
         };
 
