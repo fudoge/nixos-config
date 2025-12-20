@@ -171,7 +171,7 @@
                         bind = 
                                 [
                                         "$mainMod, Return, exec, $terminal"
-                                ]
+                                ];
                 };
         };
 
