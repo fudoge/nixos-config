@@ -108,7 +108,6 @@
 		enable = true;
 		settings = {
 			add_newline = true;
-			truncate_to_repo = false;
 			time.disabled = false;
 			time.format = "$time ($style) ";
 			cpp.disabled = false;
