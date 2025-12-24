@@ -4,6 +4,8 @@
 	programs.neovim = {
 		enable = true;
 		extraPackages = with pkgs; [
+            nixd
+            nixfmt-rfc-style
 			lua-language-server
 			nil
 			stylua
