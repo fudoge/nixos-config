@@ -10,7 +10,7 @@
 			nodePackages.typescript-language-server
 			nodePackages.prettier
 		];
-		extraConfig = lib.fileContents ./nvim/init.lua;
+		extraLuaConfig = builtins.readFile ./nvim/init.lua;
 	};
-
+	xdg.configFile."nvim".source = ./nvim;
 }
