@@ -1,5 +1,5 @@
 {
-  description = "A simple NixOS flake";
+  description = "Chaewoon's NixOS Flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
