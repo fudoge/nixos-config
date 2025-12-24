@@ -8,9 +8,6 @@
 	home.homeDirectory = "/home/chaewoon";
 
 	home.packages = with pkgs; [
-		# editor
-		neovim
-		
 		# fetches
 		fastfetch
 		nitch
