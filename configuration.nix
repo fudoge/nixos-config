@@ -88,6 +88,7 @@
     neovim
     ghostty
     vivaldi
+    smartmontools
   ];
 
   environment.variables.EDITOR = "vim";
