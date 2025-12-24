@@ -26,7 +26,7 @@ local roots = {
 	helm_ls = { "Chart.yaml", ".git" },
 	gh_actions_ls = { ".github/workflows", ".git" },
 	rust_analyzer = { "Cargo.toml", ".git" },
-	nixd = { "flake.nix", "configuration.nix", ".git" },
+	nixd = { "flake.nix", "flake.lock", "configuration.nix", ".git" },
 }
 
 local servers = {
