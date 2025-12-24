@@ -10,7 +10,7 @@
 			nodePackages.typescript-language-server
 			nodePackages.prettier
 		];
-		extraConfig = lib.fileContents ./nvim/init.lua
+		extraConfig = lib.fileContents ./nvim/init.lua;
 	};
 
 }
