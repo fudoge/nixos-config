@@ -12,10 +12,10 @@
 
 	outputs = inputs@{ nixpkgs, home-manager, nvf, ... }: {
     nixosConfigurations = {
-      spaceship = nixpkgs.lib.nixosSystem {
+      thinkpad = nixpkgs.lib.nixosSystem {
 
         modules = [
-				  ./hosts/thinkpad-e14-gen6/configuration.nix
+				  ./hosts/thinkpad/configuration.nix
 					home-manager.nixosModules.home-manager {
 				    home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
