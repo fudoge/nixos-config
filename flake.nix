@@ -7,10 +7,9 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-		nvf.url = "github:notashelf/nvf";
 	};
 
-	outputs = inputs@{ nixpkgs, home-manager, nvf, ... }: {
+	outputs = inputs@{ nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
 
@@ -21,7 +20,6 @@
 						home-manager.useUserPackages = true;
 						home-manager.users.chaewoon = {
 						  imports = [
-								inputs.nvf.homeManagerModules.default
 								./home/home.nix
 							];
 						};
