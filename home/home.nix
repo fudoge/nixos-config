@@ -1,181 +1,164 @@
 { config, pkgs, ... }:
 {
-	imports = [
-		./programs
-	];
+  imports = [
+    ./programs
+  ];
 
-	home.username = "chaewoon";
-	home.homeDirectory = "/home/chaewoon";
+  home.username = "chaewoon";
+  home.homeDirectory = "/home/chaewoon";
 
-	home.packages = with pkgs; [
-		# fetches
-		fastfetch
-		nitch
-		pfetch
-		onefetch
+  home.packages = with pkgs; [
+    # fetches
+    fastfetch
+    nitch
+    pfetch
+    onefetch
 
-		# archives
-		nnn
-		zip
-		xz
-		unzip
-		p7zip
+    # archives
+    nnn
+    zip
+    xz
+    unzip
+    p7zip
 
-		# utils
-		ripgrep
-		jq
-		yq-go
-		eza
-		fzf
-		zoxide
-		github-cli
+    # utils
+    ripgrep
+    jq
+    yq-go
+    eza
+    fzf
+    zoxide
+    github-cli
 
-		# networking
-		mtr
-		iperf3
-		dnsutils
-		ldns
-		aria2
-		socat
-		nmap
-		ipcalc
+    # networking
+    mtr
+    iperf3
+    dnsutils
+    ldns
+    aria2
+    socat
+    nmap
+    ipcalc
 
-		# misc
-		cowsay
-		file
-		which
-		tree
-		gnused
-		gnutar
-		gawk
-		zstd
-		gnupg
+    # misc
+    cowsay
+    file
+    which
+    tree
+    gnused
+    gnutar
+    gawk
+    zstd
+    gnupg
 
-		# nix related
-		nix-output-monitor
+    # nix related
+    nix-output-monitor
 
-		# productivity
-		hugo
-		glow
+    # productivity
+    hugo
+    glow
 
-		# monitoring
-		btop
-		iotop
-		iftop
+    # monitoring
+    btop
+    iotop
+    iftop
 
-		# syscall monitoring
-		lsof
-		strace
-		ltrace
+    # syscall monitoring
+    lsof
+    strace
+    ltrace
 
-		# system tools
-		sysstat
-		lm_sensors
-		ethtool
-		dnsutils
-		pciutils
-		usbutils
+    # system tools
+    sysstat
+    lm_sensors
+    ethtool
+    dnsutils
+    pciutils
+    usbutils
 
-		# guis
-		hyprland
+    # guis
+    hyprland
 
-		# shell configurations
-		zsh-fast-syntax-highlighting
-		zsh-autosuggestions		
-        
-        # node
-        yarn
+    # shell configurations
+    zsh-fast-syntax-highlighting
+    zsh-autosuggestions
 
-        # clipboards
-        wl-clipboard
-	];
+    # node
+    yarn
 
-	# git configuration
-	programs.git = {
-		enable = true;
-		userName = "Chaewoon Kang";
-		userEmail = "kchawoon@naver.com";
-		extraConfig.init.defaultBranch = "main";
-	};
+    # clipboards
+    wl-clipboard
+  ];
 
-	# gh-cli configuration
-	programs.gh = {
-				enable = true;
-				gitCredentialHelper = {
-								enable = true;
-				};
+  # git configuration
+  programs.git = {
+    enable = true;
+    userName = "Chaewoon Kang";
+    userEmail = "kchawoon@naver.com";
+    extraConfig.init.defaultBranch = "main";
   };
 
-	# starship prompt
-	programs.starship = {
-		enable = true;
-		settings = {
-			add_newline = true;
-			time.disabled = false;
-			time.format = "$time ($style) ";
-			cpp.disabled = false;
-		};
-	};
+  # gh-cli configuration
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper = {
+      enable = true;
+    };
+  };
 
-	# zsh configuration
-	programs.zsh = {
-		enable = true;
+  # starship prompt
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = true;
+      time.disabled = false;
+      time.format = "$time ($style) ";
+      cpp.disabled = false;
+    };
+  };
+
+  # zsh configuration
+  programs.zsh = {
+    enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
 
     shellAliases = {
-				ls = "eza --icons";
-		};
+      ls = "eza --icons";
+    };
 
-		history.size = 10000;
-		history.path = "$HOME/.zsh_history";
+    history.size = 10000;
+    history.path = "$HOME/.zsh_history";
     history.ignoreAllDups = true;
 
-		oh-my-zsh = {
-			enable = true;
-			plugins = [
-				"git"
-				"zoxide"
-			];
-		};
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "zoxide"
+      ];
+    };
 
     initContent = ''
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
     '';
-	};
+  };
 
-	# Ghostty
-	programs.ghostty = {
+  # vscode
+  programs.vscode = {
     enable = true;
-		settings = {
-      font-size = 11;
-			font-thicken = "true";
-			font-thicken-strength = "10";
-			theme = "catppuccin-frappe";
-			cursor-style = "block";
-			background-opacity = "0.9";
+  };
 
-			window-padding-x = "2, 2";
-			window-padding-y = "2, 2";
-		};
-	};
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = {
+      "$terminal" = "ghostty";
+      "$mainMod" = "ALT";
+      bind = [
+        "$mainMod, Return, exec, $terminal"
+      ];
+    };
+  };
 
-        # vscode
-        programs.vscode = {
-                enable = true;
-        };
-
-        wayland.windowManager.hyprland = {
-                enable = true;
-                settings = {
-                        "$terminal" = "ghostty";
-                        "$mainMod" = "ALT";
-                        bind = 
-                                [
-                                        "$mainMod, Return, exec, $terminal"
-                                ];
-                };
-        };
-
-	home.stateVersion = "25.05";
+  home.stateVersion = "25.05";
 }

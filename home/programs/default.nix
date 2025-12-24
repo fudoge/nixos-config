@@ -1,5 +1,6 @@
 {
-	imports = [
-		./neovim
-	];
+  imports = [
+    ./neovim
+    ./ghostty
+  ];
 }
