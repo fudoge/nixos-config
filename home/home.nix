@@ -82,6 +82,12 @@
 		# shell configurations
 		zsh-fast-syntax-highlighting
 		zsh-autosuggestions		
+        
+        # node
+        yarn
+
+        # clipboards
+        wl-clipboard
 	];
 
 	# git configuration

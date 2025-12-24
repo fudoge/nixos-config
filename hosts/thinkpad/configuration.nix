@@ -89,6 +89,7 @@
     ghostty
     vivaldi
     smartmontools
+    gnumake
   ];
 
   environment.variables.EDITOR = "vim";
