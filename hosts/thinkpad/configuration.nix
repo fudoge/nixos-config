@@ -80,7 +80,6 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.hyprland.enable = true;
-  programs.firefox.enable = true;
   programs.zsh.enable = true;
 
   # List packages installed in system profile.
@@ -90,9 +89,6 @@
     wget
     git
     gcc
-    neovim
-    ghostty
-    vivaldi
     smartmontools
     gnumake
   ];
