@@ -10,6 +10,7 @@
     ../../modules/cli
     ../../modules/guis
     ../../modules/shell
+    ../../services/greetd-regreet
   ];
 
   home.username = username;
