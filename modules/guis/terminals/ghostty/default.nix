@@ -10,7 +10,6 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      custom-shader = "shaders/cursor_fronzen.glsl";
       font-size = 11;
       font-thicken = "true";
       font-thicken-strength = "10";
