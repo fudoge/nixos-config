@@ -6,9 +6,10 @@
 }:
 {
   imports = [
-    ../modules/cli
-    ../modules/services
-    ../modules/guis
+    ../../modules/cli
+    ../../modules/guis
+    ../../modules/services
+    ../../modules/shell
   ];
 
   home.username = "chaewoon";
