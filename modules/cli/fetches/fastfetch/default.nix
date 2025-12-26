@@ -6,7 +6,7 @@
   ...
 }:
 let
-  logoImage = ../../../assets/logo.png;
+  logoImage = ../../../../assets/logo.png;
 in
 {
   programs.fastfetch = {
