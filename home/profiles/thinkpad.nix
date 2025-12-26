@@ -2,6 +2,7 @@
   pkgs,
   withGui,
   withHyprland,
+  ...
 }:
 {
   imports = [
