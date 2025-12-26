@@ -17,8 +17,8 @@ in
           {
             type = "kitty";
             source = "${logoImage}";
-            width = 30;
-            height = 15;
+            width = 40;
+            height = 20;
             padding = {
               top = 1;
               left = 2;
