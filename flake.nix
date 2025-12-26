@@ -39,7 +39,7 @@
                 withGui = true;
                 withHyprland = true;
               };
-              home-manager.users.chaewoon = {
+              home-manager.users.${username} = {
                 imports = [
                   ./home/profiles/thinkpad.nix
                 ];
