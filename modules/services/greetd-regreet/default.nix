@@ -9,26 +9,15 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.regreet}/bin/regreet";
+        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.regreet}/bin/regreet";
         user = "greeter";
-      };
-      initial_session = {
-        command = "Hyprland";
-        user = "chaewoon";
       };
     };
   };
 
-  environment.etc."greetd/environments".text = ''
-    Hyprland
+  environment.etc."greetd/regreet.toml".text = ''
+    [command]
+    reboot = ["systemctl", "reboot"]
+    poweroff = ["systemctl", "poweroff"]
   '';
-
-  environment.systemPackages = with pkgs; [
-    adw-gtk3
-    papirus-icon-theme
-  ];
-
-  environment.variables = {
-    GTK_THEME = "adw-gtk3-dark";
-  };
 }
