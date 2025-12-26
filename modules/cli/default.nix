@@ -90,6 +90,6 @@
 
     # wayland
     dart-sass
-    wl-clipboar
+    wl-clipboard
   ];
 }
