@@ -123,7 +123,7 @@
     smartmontools
     gnumake
     libgtop
-    libsoup3
+    libsoup_3
     gtksourceview3
   ];
 
