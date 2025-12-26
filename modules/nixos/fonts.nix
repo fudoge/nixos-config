@@ -9,7 +9,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
-    liberatoin_ttf
+    liberation_ttf
     nerd-fonts.jetbrains-mono
   ];
 }
