@@ -88,7 +88,8 @@
     # node
     yarn
 
-    # clipboards
-    wl-clipboard
+    # wayland
+    dart-sass
+    wl-clipboar
   ];
 }

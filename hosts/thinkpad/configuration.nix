@@ -65,16 +65,37 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
+
   # Enable sound.
   # services.pulseaudio.enable = true;
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+    enable = true;
+    wireplumber.enable = true;
+  };
+  services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
+
+  # userspace virtual filesystem
+  services.gvfs.enable = true;
+
+  # upower
+  services.upower.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.chaewoon = {
@@ -101,6 +122,9 @@
     gcc
     smartmontools
     gnumake
+    libgtop
+    libsoup3
+    gtksourceview3
   ];
 
   environment.variables.EDITOR = "vim";
