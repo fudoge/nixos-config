@@ -16,6 +16,8 @@
       ls = "eza --icons";
       k = "kubectl";
       tf = "terraform";
+      cl = "clear";
+      cd = "z";
     };
 
     history.size = 10000;

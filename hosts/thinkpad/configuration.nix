@@ -126,7 +126,10 @@
     libgtop
     libsoup_3
     gtksourceview3
+
+    # gui apps
     spotify
+    vivaldi
   ];
 
   environment.variables.EDITOR = "vim";
