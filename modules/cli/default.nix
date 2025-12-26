@@ -8,6 +8,7 @@
   imports = [
     ./editors
     ./git
+    ./fetches
   ];
   home.packages = with pkgs; [
     # fetches
