@@ -17,6 +17,12 @@ in
           {
             type = "kitty";
             source = "${logoImage}";
+            width = 30;
+            height = 15;
+            padding = {
+              top = 1;
+              left = 2;
+            };
           }
         else
           {
@@ -24,7 +30,7 @@ in
           };
       modules = [
         "title"
-        "seperator"
+        "separator"
         "os"
         "host"
         "kernel"
@@ -33,17 +39,17 @@ in
         "shell"
         "display"
         "wm"
-        "wm theme"
+        "wmtheme"
         "font"
         "cursor"
         "terminal"
-        "terminal font"
+        "terminalfont"
         "cpu"
         "gpu"
         "memory"
         "swap"
         "disk"
-        "local ip"
+        "localip"
         "battery"
         "locale"
       ];
