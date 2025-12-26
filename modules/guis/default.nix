@@ -7,7 +7,7 @@
 {
   imports = [
     ./editors
-    ./hyprland
+    ./hypr
     ./terminals
   ];
 }
