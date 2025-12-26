@@ -10,5 +10,6 @@
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     liberatoin_ttf
+    nerd-fonts.jetbrains-mono
   ];
 }
