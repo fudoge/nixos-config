@@ -19,6 +19,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # ZRAM
+  zramSwap = {
+    enable = true;
+    algorithm = "lz4";
+    memoryPercent = 40;
+    priority = 100;
+  };
+
   networking.hostName = "spaceship"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
