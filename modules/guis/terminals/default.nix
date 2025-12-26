@@ -6,6 +6,6 @@
 }:
 {
   imports = [
-    ./vscode
+    ./ghostty
   ];
 }
