@@ -3,6 +3,7 @@
   lib,
   pkgs,
   enable ? true,
+  ...
 }:
 
 lib.mkIf enable {
