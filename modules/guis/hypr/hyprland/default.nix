@@ -80,7 +80,6 @@
       ];
       decoration = {
         blur = {
-          enable = true;
           size = 6;
           passes = 3;
           new_optimizations = true;
@@ -88,9 +87,8 @@
       };
       windowrulev2 = [
         "opacity 0.92 0.88,class:^(org.kde.dolphin)$"
-        "blur,class:^(org.kde.dolphin)$"
         "float,class:^(org.kde.dolphin)$"
-        "centerr,class:^(org.kde.dolphin)$"
+        "center,class:^(org.kde.dolphin)$"
       ];
     };
   };
