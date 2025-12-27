@@ -117,7 +117,17 @@
   # allow unfree softwares
   nixpkgs.config.allowUnfree = true;
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
   programs.zsh.enable = true;
 
   # List packages installed in system profile.
