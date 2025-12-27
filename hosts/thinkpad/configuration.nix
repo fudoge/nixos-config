@@ -97,10 +97,16 @@
   # upower
   services.upower.enable = true;
 
+  # polkit
+  security.polkit.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.chaewoon = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
       tree
@@ -126,6 +132,9 @@
     libgtop
     libsoup_3
     gtksourceview3
+
+    # hyprpolkit
+    hyprpolkitagent
 
     # gui apps
     spotify

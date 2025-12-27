@@ -13,6 +13,11 @@
       "$mainMod" = "ALT";
       exec-once = [
         "hyprpanel"
+        "hyprpolkitagent"
+      ];
+      env = [
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_SIZE,24"
       ];
       bind = [
         # basic binds..
