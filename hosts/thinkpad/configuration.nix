@@ -128,6 +128,9 @@
       xdg-desktop-portal-gtk
     ];
   };
+  xdg.mime.defaultApplications = {
+    "inode/directory" = "org.kde.dolphin.desktop";
+  };
   programs.zsh.enable = true;
 
   # List packages installed in system profile.
@@ -149,9 +152,17 @@
     # gui apps
     spotify
     vivaldi
+    kdePackages.dolphin
+    catppuccin-kde
+    catppuccin-gtk
+    papirus-icon-theme
+    xdg-utils
   ];
 
   environment.variables.EDITOR = "vim";
+  environment.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "Hyprland";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -11,6 +11,7 @@
       monitor = ", preferred,auto,1.25";
       "$terminal" = "ghostty";
       "$mainMod" = "ALT";
+      "$fileManager" = "dolphin";
       exec-once = [
         "hyprpanel"
         "hyprpolkitagent"
@@ -24,7 +25,7 @@
         "$mainMod, Return, exec, $terminal"
         "$mainMod, Q, killactive"
         "$mainMod, M, exit"
-        "$mainMod, E, exec, $filemanager"
+        "$mainMod, E, exec, $fileManager"
         "$mainMod, V, togglefloating"
         "$mainMod, L, exec, wlogout"
         "$mainMod, F, fullscreen, 0"
@@ -76,6 +77,20 @@
       windowrule = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+      ];
+      decoration = {
+        blur = {
+          enable = true;
+          size = 6;
+          passes = 3;
+          new_optimizations = true;
+        };
+      };
+      windowrulev2 = [
+        "opacity 0.92 0.88,class:^(org.kde.dolphin)$"
+        "blur,class:^(org.kde.dolphin)$"
+        "float,class:^(org.kde.dolphin)$"
+        "centerr,class:^(org.kde.dolphin)$"
       ];
     };
   };
