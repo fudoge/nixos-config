@@ -20,7 +20,7 @@
   environment.etc."greetd/hyprland.conf".text = ''
     monitor = ,preferred,auto,1
 
-    exec-once = ${pkgs.greetd.regreet}/bin/regreet; hyprctl dispatch exit
+    exec-once = ${pkgs.regreet}/bin/regreet; hyprctl dispatch exit
 
     misc {
         disable_hyprland_logo = true

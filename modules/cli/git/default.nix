@@ -13,9 +13,13 @@
   # git configuration
   programs.git = {
     enable = true;
-    userName = "Chaewoon Kang";
-    userEmail = "kchawoon@naver.com";
-    extraConfig.init.defaultBranch = "main";
+    settings = {
+      user = {
+        name = "Chaewoon Kang";
+        email = "kchawoon@naver.com";
+      };
+      init.defaultBranch = "main";
+    };
   };
 
 }
