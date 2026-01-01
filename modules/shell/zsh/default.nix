@@ -33,7 +33,7 @@
     };
 
     initContent = ''
-      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+      source ${pkgs.fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
     '';
   };
 }
