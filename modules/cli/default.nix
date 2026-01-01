@@ -83,7 +83,7 @@
     hyprland
 
     # shell configurations
-    zsh-fast-syntax-highlighting
+    fast-syntax-highlighting
     zsh-autosuggestions
 
     # node
