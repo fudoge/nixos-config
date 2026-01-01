@@ -16,7 +16,7 @@
       theme = "Catppuccin Frappe";
       cursor-style = "block";
       background-opacity = "0.9";
-      custom-shader = "shaders/cursor_frozen.glsl";
+      custom-shader = "${./shaders/cursor_frozen.glsl}";
 
       window-padding-x = "2, 2";
       window-padding-y = "2, 2";
