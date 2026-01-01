@@ -13,7 +13,7 @@
       font-size = 11;
       font-thicken = "true";
       font-thicken-strength = "10";
-      theme = "catppuccin-frappe";
+      theme = "Catppuccin Frappe";
       cursor-style = "block";
       background-opacity = "0.9";
 
