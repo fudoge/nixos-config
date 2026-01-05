@@ -54,10 +54,10 @@
     fcitx5.addons = with pkgs; [
       fcitx5-gtk
       fcitx5-hangul
+      qt6Packages.fcitx5-configtool
     ];
   };
 
-  qt6Packages.fcitx5-configtool.enable = true;
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
