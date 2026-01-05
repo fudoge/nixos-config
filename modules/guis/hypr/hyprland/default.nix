@@ -15,11 +15,20 @@
       exec-once = [
         "hyprpanel"
         "hyprpolkitagent"
+        "fcitx5 -d --replace"
       ];
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
+        "GTK_IM_MODULE,fcitx"
+        "QT_IM_MODULE,fcitx"
+        "XMODIFIERS,@im=fcitx"
+        "SDL_IM_MODULE,fcitx"
       ];
+      input = {
+        kb_layout = "us";
+        kb_options = "korean:ralt_hangul";
+      };
       bind = [
         # basic binds..
         "$mainMod, Return, exec, $terminal"
