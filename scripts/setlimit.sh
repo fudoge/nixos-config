@@ -10,7 +10,7 @@ if [[ ! -d "$BAT" ]]; then
     exit 1
 fi
 
-echo "$START" | sudo tee "$BAT/charge_control_start_threshold" > /dev/null
-echo "$END" | sudo tee "$BAT/charge_control_end_threshold" > /dev/null
+echo "$START" | tee "$BAT/charge_control_start_threshold" > /dev/null
+echo "$END" | tee "$BAT/charge_control_end_threshold" > /dev/null
 
 echo "🔋 Battery charge limit set: $START% -> $END%"
