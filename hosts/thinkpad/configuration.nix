@@ -15,8 +15,8 @@
     ./hardware-configuration.nix
     ../../modules/nixos/greetd-regreet.nix
     ../../modules/nixos/fonts.nix
-    ../../modules/nixos/tlp.nix
     ../../modules/nixos/tailscale.nix
+    ../../modules/nixos/power-management.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -111,6 +111,7 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      "power"
     ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [

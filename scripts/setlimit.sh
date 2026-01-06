@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 START=75
 END=80
