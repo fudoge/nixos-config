@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./catppuccin
     ./editors
     ./hypr
     ./terminals
