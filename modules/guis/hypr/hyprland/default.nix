@@ -16,7 +16,6 @@
         "hyprpanel"
         "hyprpolkitagent"
         "fcitx5 -d --replace"
-        "~/.local/bin/setlimit.sh"
       ];
       env = [
         "XCURSOR_SIZE,24"
