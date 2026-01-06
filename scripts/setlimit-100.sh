@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 BAT="/sys/class/power_supply/BAT0";
 if [[ ! -d "$BAT" ]]; then
     echo "Battery not found 😿"
