@@ -12,6 +12,7 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -21,6 +22,7 @@
       nix-darwin,
       nixos-wsl,
       home-manager,
+      catppuccin,
       ...
     }@inputs:
     let
@@ -47,6 +49,7 @@
               home-manager.users.${username} = {
                 imports = [
                   ./home/profiles/thinkpad.nix
+                  catppuccin.homeModules.catppuccin
                 ];
               };
             }
