@@ -17,6 +17,7 @@
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/tailscale.nix
     ../../modules/nixos/power-management.nix
+    ../../modules/nixos/battery-charge-limit.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
