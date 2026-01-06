@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/greetd-regreet.nix
     ../../modules/nixos/fonts.nix
+    ../../modules/nixos/tlp.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
