@@ -9,5 +9,6 @@
     ./hyprland
     ./hyprpanel
     ./hyprlock
+    ./hypridle
   ];
 }
