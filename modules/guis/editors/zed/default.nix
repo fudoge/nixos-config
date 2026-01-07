@@ -21,6 +21,8 @@
       "lua"
       "make"
     ];
-    vim_mode = true;
+    userSettings = {
+      vim_mode = true;
+    };
   };
 }
