@@ -5,7 +5,7 @@
   ...
 }:
 {
-  import = [
+  imports = [
     ./k9s
   ];
 }
