@@ -21,6 +21,6 @@
       "lua"
       "make"
     ];
+    vim_mode = true;
   };
-  programs.nix-ld.enable = true;
 }
