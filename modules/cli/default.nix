@@ -9,6 +9,7 @@
     ./editors
     ./git
     ./fetches
+    ./other-tools
   ];
   home.packages = with pkgs; [
     # fetches
