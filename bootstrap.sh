@@ -43,6 +43,6 @@ echo "❄️ Rebuilding with flake: $TARGET_HOST"
 if sudo nixos-rebuild switch --flake "/etc/nixos#$TARGET_HOST"; then
     echo "Bootstrapping Success! 😊"
 else
-    echo "Failed to Bootstrapping.. 😿"
+    echo "Bootstrapping Failed.. 😿"
 fi
 
