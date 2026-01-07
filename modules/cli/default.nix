@@ -92,5 +92,12 @@
     # wayland
     dart-sass
     wl-clipboard
+
+    # infra-tools
+    terraform
+    kubectl
+    argocd
+    helm
+    cilium-cli
   ];
 }
