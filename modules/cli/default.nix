@@ -10,6 +10,7 @@
     ./git
     ./fetches
     ./other-tools
+    ./infra-tools
   ];
   home.packages = with pkgs; [
     # fetches
