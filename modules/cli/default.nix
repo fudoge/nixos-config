@@ -98,8 +98,9 @@
     # infra-tools
     terraform
     kubectl
+    kubernetes-helm
+    kubectx
     argocd
-    helm
     cilium-cli
   ];
 }
