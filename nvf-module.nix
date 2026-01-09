@@ -1,6 +1,4 @@
-# nvf-module.nix
-# Simplified nvf configuration for latest nvf version
-{ inputs, pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, ... }:
 
 {
   imports = [ inputs.nvf.homeManagerModules.default ];
@@ -10,96 +8,48 @@
 
     settings.vim = {
       # =====================
-      # 기본 설정
+      # Basic Settings
       # =====================
       viAlias = true;
       vimAlias = true;
+      preventJunkFiles = true;
 
+      # Line numbers
+      lineNumberMode = "relNumber";
+
+      # Search
+      searchCase = "smart";
+      hideSearchHighlight = true;
+
+      # Globals
       globals = {
         mapleader = " ";
         maplocalleader = " ";
       };
 
-      # 기본 옵션
+      # Options
       options = {
         tabstop = 4;
         shiftwidth = 4;
-        mouse = "a";
+        autoindent = true;
         termguicolors = true;
         signcolumn = "yes";
+        mouse = "a";
         wrap = false;
-        cursorlineopt = "both";
+        cmdheight = 1;
         updatetime = 250;
-        tm = 300;
+        tm = 300;  # timeoutlen
         splitright = true;
         splitbelow = true;
       };
 
-      # 줄 번호 모드
-      lineNumberMode = "relNumber";
-
-      # 검색 설정
-      searchCase = "smart";
-
-      # 백업 파일 방지
-      preventJunkFiles = true;
-
       # =====================
-      # 테마
+      # Theme
       # =====================
       theme = {
         enable = true;
         name = "gruvbox";
         style = "dark";
-      };
-
-      # =====================
-      # UI
-      # =====================
-      ui = {
-        borders.enable = true;
-        illuminate.enable = true;
-        colorizer.enable = true;
-        indent-blankline.enable = true;
-        noice.enable = true;
-      };
-
-      # 상태바
-      statusline.lualine = {
-        enable = true;
-        theme = "gruvbox";
-      };
-
-      # 버퍼라인
-      tabline.nvimBufferline.enable = true;
-
-      # 파일 트리
-      filetree.neo-tree = {
-        enable = true;
-        setupOpts = {
-          close_if_last_window = true;
-        };
-      };
-
-      # =====================
-      # 검색 & 탐색
-      # =====================
-      telescope.enable = true;
-
-      # =====================
-      # Treesitter
-      # =====================
-      treesitter = {
-        enable = true;
-        fold = true;
-        autotagHtml = true;
-        addDefaultGrammars = true;
-        grammars = [
-          "bash" "c" "cpp" "css" "dockerfile" "go" "gomod" "gosum"
-          "hcl" "html" "java" "javascript" "json" "lua" "markdown"
-          "markdown_inline" "nix" "python" "rust" "sql" "terraform"
-          "toml" "tsx" "typescript" "yaml"
-        ];
       };
 
       # =====================
@@ -111,18 +61,16 @@
       };
 
       # =====================
-      # 언어별 설정
+      # Languages
       # =====================
       languages = {
-        enableLSP = true;
         enableTreesitter = true;
         enableFormat = true;
 
-        # 각 언어 활성화만 - 세부 옵션은 기본값 사용
         nix.enable = true;
         rust = {
           enable = true;
-          crates.enable = true;
+          extensions.crates-nvim.enable = true;
         };
         go.enable = true;
         python.enable = true;
@@ -138,7 +86,7 @@
       };
 
       # =====================
-      # 자동완성
+      # Autocomplete
       # =====================
       autocomplete.nvim-cmp = {
         enable = true;
@@ -152,84 +100,99 @@
       };
 
       # =====================
+      # UI Components
+      # =====================
+      statusline.lualine = {
+        enable = true;
+        theme = "gruvbox";
+      };
+
+      tabline.nvimBufferline.enable = true;
+
+      filetree.neo-tree = {
+        enable = true;
+        setupOpts = {
+          close_if_last_window = true;
+        };
+      };
+
+      telescope.enable = true;
+
+      ui = {
+        illuminate.enable = true;
+        colorizer.enable = true;
+      };
+
+      # =====================
       # Git
       # =====================
       git = {
         enable = true;
         gitsigns = {
           enable = true;
-          setupOpts = {
-            current_line_blame = true;
-          };
+          setupOpts.current_line_blame = true;
         };
       };
 
       # =====================
-      # 기타 기능
+      # Utility
       # =====================
       autopairs.nvim-autopairs.enable = true;
       comments.comment-nvim.enable = true;
-
-      # Which-key
       binds.whichKey.enable = true;
 
       # =====================
-      # 키맵
+      # Keymaps
       # =====================
       keymaps = [
-        # Neo-tree
-        {
-          key = "<leader>e";
-          mode = "n";
-          action = "<cmd>Neotree toggle<CR>";
-          desc = "Toggle file explorer";
-        }
+        # File explorer
+        { mode = "n"; key = "<leader>e"; action = "<cmd>Neotree toggle<CR>"; desc = "Toggle explorer"; }
 
-        # 창 이동
-        { key = "<C-h>"; mode = "n"; action = "<C-w>h"; desc = "Move left"; }
-        { key = "<C-j>"; mode = "n"; action = "<C-w>j"; desc = "Move down"; }
-        { key = "<C-k>"; mode = "n"; action = "<C-w>k"; desc = "Move up"; }
-        { key = "<C-l>"; mode = "n"; action = "<C-w>l"; desc = "Move right"; }
+        # Window navigation
+        { mode = "n"; key = "<C-h>"; action = "<C-w>h"; desc = "Move left"; }
+        { mode = "n"; key = "<C-j>"; action = "<C-w>j"; desc = "Move down"; }
+        { mode = "n"; key = "<C-k>"; action = "<C-w>k"; desc = "Move up"; }
+        { mode = "n"; key = "<C-l>"; action = "<C-w>l"; desc = "Move right"; }
 
-        # 검색 하이라이트 제거
-        { key = "<leader>h"; mode = "n"; action = "<cmd>nohlsearch<CR>"; desc = "Clear highlights"; }
+        # Clear search highlight
+        { mode = "n"; key = "<leader>h"; action = "<cmd>nohlsearch<CR>"; desc = "Clear highlights"; }
 
-        # 버퍼 이동
-        { key = "<A-,>"; mode = "n"; action = "<cmd>BufferLineCyclePrev<CR>"; desc = "Previous buffer"; }
-        { key = "<A-.>"; mode = "n"; action = "<cmd>BufferLineCycleNext<CR>"; desc = "Next buffer"; }
-        { key = "<A-c>"; mode = "n"; action = "<cmd>bdelete<CR>"; desc = "Close buffer"; }
+        # Buffer navigation
+        { mode = "n"; key = "<A-,>"; action = "<cmd>BufferLineCyclePrev<CR>"; desc = "Prev buffer"; }
+        { mode = "n"; key = "<A-.>"; action = "<cmd>BufferLineCycleNext<CR>"; desc = "Next buffer"; }
+        { mode = "n"; key = "<A-c>"; action = "<cmd>bdelete<CR>"; desc = "Close buffer"; }
 
         # Telescope
-        { key = "<leader>ff"; mode = "n"; action = "<cmd>Telescope find_files<CR>"; desc = "Find files"; }
-        { key = "<leader>fg"; mode = "n"; action = "<cmd>Telescope live_grep<CR>"; desc = "Live grep"; }
-        { key = "<leader>fb"; mode = "n"; action = "<cmd>Telescope buffers<CR>"; desc = "Buffers"; }
-        { key = "<leader>fh"; mode = "n"; action = "<cmd>Telescope help_tags<CR>"; desc = "Help tags"; }
+        { mode = "n"; key = "<leader>ff"; action = "<cmd>Telescope find_files<CR>"; desc = "Find files"; }
+        { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<CR>"; desc = "Live grep"; }
+        { mode = "n"; key = "<leader>fb"; action = "<cmd>Telescope buffers<CR>"; desc = "Buffers"; }
+        { mode = "n"; key = "<leader>fh"; action = "<cmd>Telescope help_tags<CR>"; desc = "Help"; }
 
         # LSP
-        { key = "gd"; mode = "n"; action = "<cmd>lua vim.lsp.buf.definition()<CR>"; desc = "Go to definition"; }
-        { key = "<leader>ca"; mode = "n"; action = "<cmd>lua vim.lsp.buf.code_action()<CR>"; desc = "Code actions"; }
-        { key = "K"; mode = "n"; action = "<cmd>lua vim.lsp.buf.hover()<CR>"; desc = "Hover"; }
-        { key = "<leader>rn"; mode = "n"; action = "<cmd>lua vim.lsp.buf.rename()<CR>"; desc = "Rename"; }
-        { key = "gr"; mode = "n"; action = "<cmd>Telescope lsp_references<CR>"; desc = "References"; }
+        { mode = "n"; key = "gd"; action = "<cmd>lua vim.lsp.buf.definition()<CR>"; desc = "Go to definition"; }
+        { mode = "n"; key = "K"; action = "<cmd>lua vim.lsp.buf.hover()<CR>"; desc = "Hover"; }
+        { mode = "n"; key = "<leader>ca"; action = "<cmd>lua vim.lsp.buf.code_action()<CR>"; desc = "Code action"; }
+        { mode = "n"; key = "<leader>rn"; action = "<cmd>lua vim.lsp.buf.rename()<CR>"; desc = "Rename"; }
+        { mode = "n"; key = "gr"; action = "<cmd>Telescope lsp_references<CR>"; desc = "References"; }
 
-        # Gitsigns
-        { key = "<leader>hs"; mode = "n"; action = "<cmd>Gitsigns stage_hunk<CR>"; desc = "Stage hunk"; }
-        { key = "<leader>hr"; mode = "n"; action = "<cmd>Gitsigns reset_hunk<CR>"; desc = "Reset hunk"; }
-        { key = "<leader>hb"; mode = "n"; action = "<cmd>Gitsigns blame_line<CR>"; desc = "Blame"; }
-        { key = "]c"; mode = "n"; action = "<cmd>Gitsigns next_hunk<CR>"; desc = "Next hunk"; }
-        { key = "[c"; mode = "n"; action = "<cmd>Gitsigns prev_hunk<CR>"; desc = "Prev hunk"; }
+        # Git
+        { mode = "n"; key = "<leader>hs"; action = "<cmd>Gitsigns stage_hunk<CR>"; desc = "Stage hunk"; }
+        { mode = "n"; key = "<leader>hr"; action = "<cmd>Gitsigns reset_hunk<CR>"; desc = "Reset hunk"; }
+        { mode = "n"; key = "<leader>hb"; action = "<cmd>Gitsigns blame_line<CR>"; desc = "Blame"; }
+        { mode = "n"; key = "]c"; action = "<cmd>Gitsigns next_hunk<CR>"; desc = "Next hunk"; }
+        { mode = "n"; key = "[c"; action = "<cmd>Gitsigns prev_hunk<CR>"; desc = "Prev hunk"; }
 
-        # 저장
-        { key = "<C-s>"; mode = "n"; action = "<cmd>w<CR>"; desc = "Save"; }
-        { key = "<C-s>"; mode = "i"; action = "<Esc><cmd>w<CR>"; desc = "Save"; }
+        # Save
+        { mode = "n"; key = "<C-s>"; action = "<cmd>w<CR>"; desc = "Save"; }
+        { mode = "i"; key = "<C-s>"; action = "<Esc><cmd>w<CR>"; desc = "Save"; }
 
-        # 들여쓰기 유지
-        { key = "<"; mode = "v"; action = "<gv"; desc = "Indent left"; }
-        { key = ">"; mode = "v"; action = ">gv"; desc = "Indent right"; }
+        # Keep indent in visual mode
+        { mode = "v"; key = "<"; action = "<gv"; desc = "Indent left"; }
+        { mode = "v"; key = ">"; action = ">gv"; desc = "Indent right"; }
       ];
 
       # =====================
-      # 추가 플러그인
+      # Extra Plugins
       # =====================
       extraPlugins = {
         harpoon = {
@@ -237,7 +200,7 @@
           setup = ''
             local harpoon = require("harpoon")
             harpoon:setup()
-            vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Add to Harpoon" })
+            vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon add" })
             vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon menu" })
             vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end, { desc = "Harpoon prev" })
             vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "Harpoon next" })
@@ -246,38 +209,32 @@
 
         dressing = {
           package = pkgs.vimPlugins.dressing-nvim;
-          setup = "require('dressing').setup()";
+          setup = "require('dressing').setup({})";
         };
       };
 
       # =====================
-      # 추가 Lua 설정
+      # Extra Lua Config
       # =====================
       luaConfigPost = ''
-        -- 클립보드 통합
+        -- Clipboard
         vim.opt.clipboard = "unnamedplus"
 
-        -- 커서라인
+        -- Cursor line
         vim.opt.cursorline = true
 
-        -- 탭/인덴트 추가 설정
+        -- Extra indent settings
         vim.opt.softtabstop = 4
         vim.opt.expandtab = true
         vim.opt.smartindent = true
 
-        -- 검색
+        -- Search settings
         vim.opt.incsearch = true
         vim.opt.ignorecase = true
         vim.opt.smartcase = true
 
-        -- 스크롤 오프셋
+        -- Scroll offset
         vim.opt.scrolloff = 10
-
-        -- 인코딩
-        vim.opt.encoding = "UTF-8"
-
-        -- 커맨드 높이
-        vim.opt.cmdheight = 1
       '';
     };
   };
