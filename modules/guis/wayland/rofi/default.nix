@@ -26,6 +26,7 @@
     ];
 
     extraConfig = {
+      show-icons = true;
       drun-display-format = "{icon} {name}";
       window-format = "{w} · {c}";
       matching = "fuzzy";
