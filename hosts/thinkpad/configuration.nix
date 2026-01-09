@@ -167,6 +167,8 @@
     # gui apps
     spotify
     vivaldi
+    discord-ptb
+    obsidian
     kdePackages.dolphin
     catppuccin-kde
     catppuccin-gtk
