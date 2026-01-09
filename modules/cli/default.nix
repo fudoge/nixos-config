@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ./git
     ./fetches
@@ -30,7 +29,7 @@
     jq
     yq-go
     eza
-    fzf
+    skim
     zoxide
     github-cli
 
