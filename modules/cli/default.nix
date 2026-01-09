@@ -102,5 +102,11 @@
     kubectx
     argocd
     cilium-cli
+
+    # dev
+    go
+    python3
+    rustup
+    nodejs
   ];
 }
