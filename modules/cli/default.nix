@@ -10,6 +10,7 @@
     ./fetches
     ./other-tools
     ./infra-tools
+    ./editor
   ];
   home.packages = with pkgs; [
     # fetches
