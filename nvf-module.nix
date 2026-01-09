@@ -574,7 +574,27 @@
           highlight Normal guibg=none
           highlight NonText guibg=none
           highlight Normal ctermbg=none
-          highlight NonText ctermbg=none
+          highlight NormalNC guibg=none
+         highlight NormalFloat guibg=none
+         highlight FloatBorder guibg=none
+         highlight Pmenu guibg=none
+         highlight PmenuSel guibg=none
+         highlight SignColumn guibg=none
+         highlight EndOfBuffer guibg=none
+         highlight NeoTreeNormal guibg=none
+         highlight NeoTreeNormalNC guibg=none
+         highlight NeoTreeEndOfBuffer guibg=none
+         highlight NeoTreeWinSeparator guibg=none
+         highlight TelescopeNormal guibg=none
+         highlight TelescopeBorder guibg=none
+         highlight WhichKeyFloat guibg=none
+         highlight BufferLineFill guibg=none
+         highlight BufferLineBackground guibg=none
+         highlight StatusLine guibg=none
+         highlight StatusLineNC guibg=none
+         highlight VertSplit guibg=none
+         highlight WinSeparator guibg=none
+         highlight NonText ctermbg=none
         ]]
       '';
     };
