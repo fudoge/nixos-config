@@ -66,6 +66,7 @@
     btop
     iotop
     iftop
+    bottom
 
     # syscall monitoring
     lsof
