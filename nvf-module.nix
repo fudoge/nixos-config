@@ -124,6 +124,7 @@
       ui = {
         illuminate.enable = true;
         colorizer.enable = true;
+        noice.enable = true;
       };
 
       # =====================
