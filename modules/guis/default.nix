@@ -10,6 +10,7 @@
     ./editors
     ./hypr
     ./terminals
+    ./wayland
   ];
 
   gtk = {
