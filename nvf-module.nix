@@ -463,7 +463,7 @@
             local datetime = os.date("%a %b %d %H:%M")
             dashboard.section.header.val = {
               "      NEOVIM  ",
-              "      datetime  ",
+              "      " .. datetime .. "",
               "      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
               "          +                         +                      _.._                    ",
               "                +                                        .' .-'`             +     ",
