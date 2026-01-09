@@ -1,7 +1,10 @@
-{ inputs, pkgs, lib, ... }:
-
 {
-  imports = [ inputs.nvf.homeManagerModules.default ];
+  inputs,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [inputs.nvf.homeManagerModules.default];
 
   programs.nvf = {
     enable = true;
@@ -10,8 +13,8 @@
       # =====================
       # Basic Settings
       # =====================
-      viAlias = true;
-      vimAlias = true;
+      viAlias = false;
+      vimAlias = false;
       preventJunkFiles = true;
 
       # Line numbers
@@ -38,7 +41,7 @@
         wrap = false;
         cmdheight = 1;
         updatetime = 250;
-        tm = 300;  # timeoutlen
+        tm = 300; # timeoutlen
         splitright = true;
         splitbelow = true;
       };
@@ -48,8 +51,8 @@
       # =====================
       theme = {
         enable = true;
-        name = "gruvbox";
-        style = "dark";
+        name = "catppuccin";
+        style = "frappe";
       };
 
       # =====================
@@ -146,75 +149,192 @@
       # =====================
       keymaps = [
         # File explorer
-        { mode = "n"; key = "<leader>e"; action = "<cmd>Neotree toggle<CR>"; desc = "Toggle explorer"; }
+        {
+          mode = "n";
+          key = "<leader>e";
+          action = "<cmd>Neotree toggle<CR>";
+          desc = "Toggle explorer";
+        }
 
         # Window navigation
-        { mode = "n"; key = "<C-h>"; action = "<C-w>h"; desc = "Move left"; }
-        { mode = "n"; key = "<C-j>"; action = "<C-w>j"; desc = "Move down"; }
-        { mode = "n"; key = "<C-k>"; action = "<C-w>k"; desc = "Move up"; }
-        { mode = "n"; key = "<C-l>"; action = "<C-w>l"; desc = "Move right"; }
+        {
+          mode = "n";
+          key = "<C-h>";
+          action = "<C-w>h";
+          desc = "Move left";
+        }
+        {
+          mode = "n";
+          key = "<C-j>";
+          action = "<C-w>j";
+          desc = "Move down";
+        }
+        {
+          mode = "n";
+          key = "<C-k>";
+          action = "<C-w>k";
+          desc = "Move up";
+        }
+        {
+          mode = "n";
+          key = "<C-l>";
+          action = "<C-w>l";
+          desc = "Move right";
+        }
 
         # Clear search highlight
-        { mode = "n"; key = "<leader>h"; action = "<cmd>nohlsearch<CR>"; desc = "Clear highlights"; }
+        {
+          mode = "n";
+          key = "<leader>h";
+          action = "<cmd>nohlsearch<CR>";
+          desc = "Clear highlights";
+        }
 
         # Buffer navigation
-        { mode = "n"; key = "<A-,>"; action = "<cmd>BufferLineCyclePrev<CR>"; desc = "Prev buffer"; }
-        { mode = "n"; key = "<A-.>"; action = "<cmd>BufferLineCycleNext<CR>"; desc = "Next buffer"; }
-        { mode = "n"; key = "<A-c>"; action = "<cmd>bdelete<CR>"; desc = "Close buffer"; }
+        {
+          mode = "n";
+          key = "<A-,>";
+          action = "<cmd>BufferLineCyclePrev<CR>";
+          desc = "Prev buffer";
+        }
+        {
+          mode = "n";
+          key = "<A-.>";
+          action = "<cmd>BufferLineCycleNext<CR>";
+          desc = "Next buffer";
+        }
+        {
+          mode = "n";
+          key = "<A-c>";
+          action = "<cmd>bdelete<CR>";
+          desc = "Close buffer";
+        }
 
         # Telescope
-        { mode = "n"; key = "<leader>ff"; action = "<cmd>Telescope find_files<CR>"; desc = "Find files"; }
-        { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<CR>"; desc = "Live grep"; }
-        { mode = "n"; key = "<leader>fb"; action = "<cmd>Telescope buffers<CR>"; desc = "Buffers"; }
-        { mode = "n"; key = "<leader>fh"; action = "<cmd>Telescope help_tags<CR>"; desc = "Help"; }
+        {
+          mode = "n";
+          key = "<leader>ff";
+          action = "<cmd>Telescope find_files<CR>";
+          desc = "Find files";
+        }
+        {
+          mode = "n";
+          key = "<leader>fg";
+          action = "<cmd>Telescope live_grep<CR>";
+          desc = "Live grep";
+        }
+        {
+          mode = "n";
+          key = "<leader>fb";
+          action = "<cmd>Telescope buffers<CR>";
+          desc = "Buffers";
+        }
+        {
+          mode = "n";
+          key = "<leader>fh";
+          action = "<cmd>Telescope help_tags<CR>";
+          desc = "Help";
+        }
 
         # LSP
-        { mode = "n"; key = "gd"; action = "<cmd>lua vim.lsp.buf.definition()<CR>"; desc = "Go to definition"; }
-        { mode = "n"; key = "K"; action = "<cmd>lua vim.lsp.buf.hover()<CR>"; desc = "Hover"; }
-        { mode = "n"; key = "<leader>ca"; action = "<cmd>lua vim.lsp.buf.code_action()<CR>"; desc = "Code action"; }
-        { mode = "n"; key = "<leader>rn"; action = "<cmd>lua vim.lsp.buf.rename()<CR>"; desc = "Rename"; }
-        { mode = "n"; key = "gr"; action = "<cmd>Telescope lsp_references<CR>"; desc = "References"; }
+        {
+          mode = "n";
+          key = "gd";
+          action = "<cmd>lua vim.lsp.buf.definition()<CR>";
+          desc = "Go to definition";
+        }
+        {
+          mode = "n";
+          key = "K";
+          action = "<cmd>lua vim.lsp.buf.hover()<CR>";
+          desc = "Hover";
+        }
+        {
+          mode = "n";
+          key = "<leader>ca";
+          action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
+          desc = "Code action";
+        }
+        {
+          mode = "n";
+          key = "<leader>rn";
+          action = "<cmd>lua vim.lsp.buf.rename()<CR>";
+          desc = "Rename";
+        }
+        {
+          mode = "n";
+          key = "gr";
+          action = "<cmd>Telescope lsp_references<CR>";
+          desc = "References";
+        }
 
         # Git
-        { mode = "n"; key = "<leader>hs"; action = "<cmd>Gitsigns stage_hunk<CR>"; desc = "Stage hunk"; }
-        { mode = "n"; key = "<leader>hr"; action = "<cmd>Gitsigns reset_hunk<CR>"; desc = "Reset hunk"; }
-        { mode = "n"; key = "<leader>hb"; action = "<cmd>Gitsigns blame_line<CR>"; desc = "Blame"; }
-        { mode = "n"; key = "]c"; action = "<cmd>Gitsigns next_hunk<CR>"; desc = "Next hunk"; }
-        { mode = "n"; key = "[c"; action = "<cmd>Gitsigns prev_hunk<CR>"; desc = "Prev hunk"; }
+        {
+          mode = "n";
+          key = "<leader>hs";
+          action = "<cmd>Gitsigns stage_hunk<CR>";
+          desc = "Stage hunk";
+        }
+        {
+          mode = "n";
+          key = "<leader>hr";
+          action = "<cmd>Gitsigns reset_hunk<CR>";
+          desc = "Reset hunk";
+        }
+        {
+          mode = "n";
+          key = "<leader>hb";
+          action = "<cmd>Gitsigns blame_line<CR>";
+          desc = "Blame";
+        }
+        {
+          mode = "n";
+          key = "]c";
+          action = "<cmd>Gitsigns next_hunk<CR>";
+          desc = "Next hunk";
+        }
+        {
+          mode = "n";
+          key = "[c";
+          action = "<cmd>Gitsigns prev_hunk<CR>";
+          desc = "Prev hunk";
+        }
 
         # Save
-        { mode = "n"; key = "<C-s>"; action = "<cmd>w<CR>"; desc = "Save"; }
-        { mode = "i"; key = "<C-s>"; action = "<Esc><cmd>w<CR>"; desc = "Save"; }
+        {
+          mode = "n";
+          key = "<C-s>";
+          action = "<cmd>w<CR>";
+          desc = "Save";
+        }
+        {
+          mode = "i";
+          key = "<C-s>";
+          action = "<Esc><cmd>w<CR>";
+          desc = "Save";
+        }
 
         # Keep indent in visual mode
-        { mode = "v"; key = "<"; action = "<gv"; desc = "Indent left"; }
-        { mode = "v"; key = ">"; action = ">gv"; desc = "Indent right"; }
+        {
+          mode = "v";
+          key = "<";
+          action = "<gv";
+          desc = "Indent left";
+        }
+        {
+          mode = "v";
+          key = ">";
+          action = ">gv";
+          desc = "Indent right";
+        }
       ];
 
       # =====================
-      # Extra Plugins
+      # Dashboard (alpha-nvim)
       # =====================
-      extraPlugins = {
-        harpoon = {
-          package = pkgs.vimPlugins.harpoon2;
-          setup = ''
-            local harpoon = require("harpoon")
-            harpoon:setup()
-            vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon add" })
-            vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon menu" })
-            vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end, { desc = "Harpoon prev" })
-            vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "Harpoon next" })
-          '';
-        };
-
-        dressing = {
-          package = pkgs.vimPlugins.dressing-nvim;
-          setup = "require('dressing').setup({})";
-        };
-
       dashboard.alpha = {
         enable = true;
-        theme = null;  # custom layout 사용
+        theme = null; # custom layout 사용
         layout = [
           {
             type = "padding";
@@ -330,7 +450,26 @@
         ];
       };
 
+      # =====================
+      # Extra Plugins
+      # =====================
+      extraPlugins = {
+        harpoon = {
+          package = pkgs.vimPlugins.harpoon2;
+          setup = ''
+            local harpoon = require("harpoon")
+            harpoon:setup()
+            vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon add" })
+            vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon menu" })
+            vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end, { desc = "Harpoon prev" })
+            vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "Harpoon next" })
+          '';
+        };
 
+        dressing = {
+          package = pkgs.vimPlugins.dressing-nvim;
+          setup = "require('dressing').setup({})";
+        };
       };
 
       # =====================
@@ -355,6 +494,39 @@
 
         -- Scroll offset
         vim.opt.scrolloff = 10
+
+        -- Diagnostics config
+        vim.diagnostic.config({
+          virtual_text = false,
+          virtual_lines = true,
+          underline = true,
+          update_in_insert = false,
+          severity_sort = true,
+          float = {
+            border = "rounded",
+            source = true,
+          },
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = "",
+              [vim.diagnostic.severity.WARN]  = "",
+              [vim.diagnostic.severity.INFO]  = "",
+              [vim.diagnostic.severity.HINT]  = "",
+            },
+            numhl = {
+              [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+              [vim.diagnostic.severity.WARN]  = "WarningMsg",
+            },
+          },
+        })
+
+        -- Transparency
+        vim.cmd [[
+          highlight Normal guibg=none
+          highlight NonText guibg=none
+          highlight Normal ctermbg=none
+          highlight NonText ctermbg=none
+        ]]
       '';
     };
   };
