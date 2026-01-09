@@ -1,18 +1,34 @@
-{config, pkgs, lib, ... }:
-
 {
-	programs.neovim = {
-		enable = true;
-		extraPackages = with pkgs; [
-            nixd
-            nixfmt-rfc-style
-			lua-language-server
-			nil
-			stylua
-			nodePackages.typescript-language-server
-			nodePackages.prettier
-		];
-		extraLuaConfig = builtins.readFile ./nvim/init.lua;
-	};
-	xdg.configFile."nvim".source = ./nvim;
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
+  programs.nvf = {
+    enable = true;
+    settings = {
+      vim.lsp = {
+        enable = true;
+      };
+    };
+  };
+  config.vim = {
+    languages = {
+      rust.enable = true;
+      clang.enable = true;
+      ts.enable = true;
+      nix.enable = true;
+      go.enable = true;
+      lua.enable = true;
+      html.enable = true;
+      markdown.enable = true;
+      css.enable = true;
+      hcl.enable = true;
+      helm.enable = true;
+      yaml.enable = true;
+      bash.enable = true;
+      python.enable = true;
+    };
+  };
 }

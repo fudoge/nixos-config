@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -23,6 +27,7 @@
       nixos-wsl,
       home-manager,
       catppuccin,
+      nvf,
       ...
     }@inputs:
     let
@@ -50,6 +55,7 @@
                 imports = [
                   ./home/profiles/thinkpad.nix
                   catppuccin.homeModules.catppuccin
+                  nvf.homeManagerModules.default
                 ];
               };
             }
