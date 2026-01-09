@@ -35,6 +35,8 @@
         "$mainMod, Q, killactive"
         "$mainMod, M, exit"
         "$mainMod, D, exec, pkill rofi || rofi -show drun"
+        "$mainMod, W, exec, pkill rofi || rofi -show window"
+        "$mainMod, C, exec, pkill rofi || rofi -show calc"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, V, togglefloating"
         "$mainMod, L, exec, wlogout"

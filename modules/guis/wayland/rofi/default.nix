@@ -7,20 +7,34 @@
 {
   programs.rofi = {
     enable = true;
-    cycle = true;
-    font = "JetBrainsMono Nerd Font";
+
+    font = "JetBrainsMono Nerd Font 14";
     location = "center";
+    cycle = true;
+
+    terminal = "ghostty";
+    show-icons = true;
+
+    default = "drun";
+
     modes = [
-      "window"
       "drun"
+      "window"
       "ssh"
       "calc"
       "filebrowser"
-      "recursivebrowser"
     ];
+
     plugins = with pkgs; [
       rofi-calc
       rofi-file-browser
     ];
+
+    extraConfig = {
+      drun-display-format = "{icon} {name}";
+      window-format = "{w} · {c}";
+      matching = "fuzzy";
+      sort = true;
+    };
   };
 }
