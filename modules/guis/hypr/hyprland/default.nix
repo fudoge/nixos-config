@@ -24,6 +24,8 @@
         "QT_IM_MODULE,fcitx"
         "XMODIFIERS,@im=fcitx"
         "SDL_IM_MODULE,fcitx"
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        "ELECTRON_ENABLE_WAYLAND,1"
       ];
       input = {
         kb_layout = "us";
