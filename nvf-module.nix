@@ -1,17 +1,5 @@
 # nvf-module.nix
-# 기존 Home Manager 설정에 import해서 사용
-#
-# 사용법:
-# 1. flake.nix inputs에 nvf 추가:
-#    nvf.url = "github:notashelf/nvf";
-#    nvf.inputs.nixpkgs.follows = "nixpkgs";
-#
-# 2. home-manager 모듈에서 import:
-#    imports = [ ./nvf-module.nix ];
-#
-# 3. extraSpecialArgs로 inputs 전달 필요:
-#    home-manager.extraSpecialArgs = { inherit inputs; };
-
+# Simplified nvf configuration for latest nvf version
 { inputs, pkgs, lib, config, ... }:
 
 {
@@ -32,31 +20,29 @@
         maplocalleader = " ";
       };
 
+      # 기본 옵션
       options = {
         tabstop = 4;
         shiftwidth = 4;
-        softtabstop = 4;
-        expandtab = true;
-        smartindent = true;
-        wrap = false;
-        incsearch = true;
-        ignorecase = true;
-        smartcase = true;
-        number = true;
-        relativenumber = true;
+        mouse = "a";
         termguicolors = true;
         signcolumn = "yes";
-        encoding = "UTF-8";
-        cmdheight = 1;
-        scrolloff = 10;
-        mouse = "a";
-        cursorline = true;
+        wrap = false;
+        cursorlineopt = "both";
+        updatetime = 250;
+        tm = 300;
         splitright = true;
         splitbelow = true;
-        updatetime = 250;
-        timeoutlen = 300;
-        clipboard = "unnamedplus";
       };
+
+      # 줄 번호 모드
+      lineNumberMode = "relNumber";
+
+      # 검색 설정
+      searchCase = "smart";
+
+      # 백업 파일 방지
+      preventJunkFiles = true;
 
       # =====================
       # 테마
@@ -70,34 +56,29 @@
       # =====================
       # UI
       # =====================
+      ui = {
+        borders.enable = true;
+        illuminate.enable = true;
+        colorizer.enable = true;
+        indent-blankline.enable = true;
+        noice.enable = true;
+      };
+
+      # 상태바
       statusline.lualine = {
         enable = true;
         theme = "gruvbox";
       };
 
-      tabline.nvimBufferline = {
-        enable = true;
-        setupOpts.options = {
-          numbers = "ordinal";
-          diagnostics = "nvim_lsp";
-          separator_style = "slant";
-        };
-      };
+      # 버퍼라인
+      tabline.nvimBufferline.enable = true;
 
+      # 파일 트리
       filetree.neo-tree = {
         enable = true;
         setupOpts = {
           close_if_last_window = true;
-          popup_border_style = "rounded";
-          window.width = 30;
         };
-      };
-
-      ui = {
-        indent-blankline.enable = true;
-        icons.enable = true;
-        breadcrumbs.enable = true;
-        noice.enable = true;
       };
 
       # =====================
@@ -111,13 +92,13 @@
       treesitter = {
         enable = true;
         fold = true;
-        highlight.enable = true;
-        indent.enable = true;
+        autotagHtml = true;
+        addDefaultGrammars = true;
         grammars = [
           "bash" "c" "cpp" "css" "dockerfile" "go" "gomod" "gosum"
           "hcl" "html" "java" "javascript" "json" "lua" "markdown"
           "markdown_inline" "nix" "python" "rust" "sql" "terraform"
-          "toml" "typescript" "yaml"
+          "toml" "tsx" "typescript" "yaml"
         ];
       };
 
@@ -127,9 +108,6 @@
       lsp = {
         enable = true;
         formatOnSave = true;
-        lspconfig.enable = true;
-        lspsaga.enable = true;
-        lspSignature.enable = true;
       };
 
       # =====================
@@ -140,64 +118,27 @@
         enableTreesitter = true;
         enableFormat = true;
 
-        nix = {
-          enable = true;
-          format = { enable = true; type = "nixfmt"; };
-          lsp = { enable = true; server = "nil"; };
-        };
-
+        # 각 언어 활성화만 - 세부 옵션은 기본값 사용
+        nix.enable = true;
         rust = {
           enable = true;
           crates.enable = true;
-          format.enable = true;
-          lsp.enable = true;
         };
-
-        go = {
-          enable = true;
-          format.enable = true;
-          lsp.enable = true;
-        };
-
-        python = {
-          enable = true;
-          format = { enable = true; type = "black"; };
-          lsp = { enable = true; server = "pyright"; };
-        };
-
-        ts = {
-          enable = true;
-          format = { enable = true; type = "prettier"; };
-          lsp.enable = true;
-        };
-
+        go.enable = true;
+        python.enable = true;
+        ts.enable = true;
         html.enable = true;
         css.enable = true;
-
-        clang = {
-          enable = true;
-          format = { enable = true; type = "clang-format"; };
-          lsp.enable = true;
-        };
-
-        markdown = {
-          enable = true;
-          format.enable = true;
-        };
-
+        clang.enable = true;
+        markdown.enable = true;
         yaml.enable = true;
         sql.enable = true;
         bash.enable = true;
-
-        lua = {
-          enable = true;
-          format = { enable = true; type = "stylua"; };
-          lsp.enable = true;
-        };
+        lua.enable = true;
       };
 
       # =====================
-      # 자동완성 & Snippets
+      # 자동완성
       # =====================
       autocomplete.nvim-cmp = {
         enable = true;
@@ -210,11 +151,6 @@
         };
       };
 
-      snippets.luasnip = {
-        enable = true;
-        providers = [ "friendly-snippets" ];
-      };
-
       # =====================
       # Git
       # =====================
@@ -224,11 +160,6 @@
           enable = true;
           setupOpts = {
             current_line_blame = true;
-            signs = {
-              add = { text = "│"; };
-              change = { text = "│"; };
-              delete = { text = "_"; };
-            };
           };
         };
       };
@@ -238,39 +169,64 @@
       # =====================
       autopairs.nvim-autopairs.enable = true;
       comments.comment-nvim.enable = true;
-      utility.preview.markdownPreview.enable = true;
+
+      # Which-key
+      binds.whichKey.enable = true;
 
       # =====================
       # 키맵
       # =====================
-      maps = {
-        normal = {
-          "<leader>e" = { action = "<cmd>Neotree toggle<CR>"; desc = "Toggle explorer"; };
-          "<C-h>" = { action = "<C-w>h"; };
-          "<C-j>" = { action = "<C-w>j"; };
-          "<C-k>" = { action = "<C-w>k"; };
-          "<C-l>" = { action = "<C-w>l"; };
-          "<leader>h" = { action = "<cmd>nohlsearch<CR>"; desc = "Clear highlights"; };
-          "<A-,>" = { action = "<cmd>BufferLineCyclePrev<CR>"; };
-          "<A-.>" = { action = "<cmd>BufferLineCycleNext<CR>"; };
-          "<A-c>" = { action = "<cmd>bdelete<CR>"; };
-          "<leader>ff" = { action = "<cmd>Telescope find_files<CR>"; };
-          "<leader>fg" = { action = "<cmd>Telescope live_grep<CR>"; };
-          "<leader>fb" = { action = "<cmd>Telescope buffers<CR>"; };
-          "gd" = { action = "<cmd>lua vim.lsp.buf.definition()<CR>"; };
-          "<leader>ca" = { action = "<cmd>lua vim.lsp.buf.code_action()<CR>"; };
-          "K" = { action = "<cmd>lua vim.lsp.buf.hover()<CR>"; };
-          "<leader>rn" = { action = "<cmd>lua vim.lsp.buf.rename()<CR>"; };
-          "<C-s>" = { action = "<cmd>w<CR>"; };
-        };
-        visual = {
-          "<" = { action = "<gv"; };
-          ">" = { action = ">gv"; };
-        };
-        insert = {
-          "<C-s>" = { action = "<Esc><cmd>w<CR>"; };
-        };
-      };
+      keymaps = [
+        # Neo-tree
+        {
+          key = "<leader>e";
+          mode = "n";
+          action = "<cmd>Neotree toggle<CR>";
+          desc = "Toggle file explorer";
+        }
+
+        # 창 이동
+        { key = "<C-h>"; mode = "n"; action = "<C-w>h"; desc = "Move left"; }
+        { key = "<C-j>"; mode = "n"; action = "<C-w>j"; desc = "Move down"; }
+        { key = "<C-k>"; mode = "n"; action = "<C-w>k"; desc = "Move up"; }
+        { key = "<C-l>"; mode = "n"; action = "<C-w>l"; desc = "Move right"; }
+
+        # 검색 하이라이트 제거
+        { key = "<leader>h"; mode = "n"; action = "<cmd>nohlsearch<CR>"; desc = "Clear highlights"; }
+
+        # 버퍼 이동
+        { key = "<A-,>"; mode = "n"; action = "<cmd>BufferLineCyclePrev<CR>"; desc = "Previous buffer"; }
+        { key = "<A-.>"; mode = "n"; action = "<cmd>BufferLineCycleNext<CR>"; desc = "Next buffer"; }
+        { key = "<A-c>"; mode = "n"; action = "<cmd>bdelete<CR>"; desc = "Close buffer"; }
+
+        # Telescope
+        { key = "<leader>ff"; mode = "n"; action = "<cmd>Telescope find_files<CR>"; desc = "Find files"; }
+        { key = "<leader>fg"; mode = "n"; action = "<cmd>Telescope live_grep<CR>"; desc = "Live grep"; }
+        { key = "<leader>fb"; mode = "n"; action = "<cmd>Telescope buffers<CR>"; desc = "Buffers"; }
+        { key = "<leader>fh"; mode = "n"; action = "<cmd>Telescope help_tags<CR>"; desc = "Help tags"; }
+
+        # LSP
+        { key = "gd"; mode = "n"; action = "<cmd>lua vim.lsp.buf.definition()<CR>"; desc = "Go to definition"; }
+        { key = "<leader>ca"; mode = "n"; action = "<cmd>lua vim.lsp.buf.code_action()<CR>"; desc = "Code actions"; }
+        { key = "K"; mode = "n"; action = "<cmd>lua vim.lsp.buf.hover()<CR>"; desc = "Hover"; }
+        { key = "<leader>rn"; mode = "n"; action = "<cmd>lua vim.lsp.buf.rename()<CR>"; desc = "Rename"; }
+        { key = "gr"; mode = "n"; action = "<cmd>Telescope lsp_references<CR>"; desc = "References"; }
+
+        # Gitsigns
+        { key = "<leader>hs"; mode = "n"; action = "<cmd>Gitsigns stage_hunk<CR>"; desc = "Stage hunk"; }
+        { key = "<leader>hr"; mode = "n"; action = "<cmd>Gitsigns reset_hunk<CR>"; desc = "Reset hunk"; }
+        { key = "<leader>hb"; mode = "n"; action = "<cmd>Gitsigns blame_line<CR>"; desc = "Blame"; }
+        { key = "]c"; mode = "n"; action = "<cmd>Gitsigns next_hunk<CR>"; desc = "Next hunk"; }
+        { key = "[c"; mode = "n"; action = "<cmd>Gitsigns prev_hunk<CR>"; desc = "Prev hunk"; }
+
+        # 저장
+        { key = "<C-s>"; mode = "n"; action = "<cmd>w<CR>"; desc = "Save"; }
+        { key = "<C-s>"; mode = "i"; action = "<Esc><cmd>w<CR>"; desc = "Save"; }
+
+        # 들여쓰기 유지
+        { key = "<"; mode = "v"; action = "<gv"; desc = "Indent left"; }
+        { key = ">"; mode = "v"; action = ">gv"; desc = "Indent right"; }
+      ];
 
       # =====================
       # 추가 플러그인
@@ -281,25 +237,48 @@
           setup = ''
             local harpoon = require("harpoon")
             harpoon:setup()
-            vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-            vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-            vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
-            vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end)
+            vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Add to Harpoon" })
+            vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon menu" })
+            vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end, { desc = "Harpoon prev" })
+            vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "Harpoon next" })
           '';
         };
-        nvim-ts-autotag = {
-          package = pkgs.vimPlugins.nvim-ts-autotag;
-          setup = "require('nvim-ts-autotag').setup()";
-        };
-        nvim-colorizer = {
-          package = pkgs.vimPlugins.nvim-colorizer-lua;
-          setup = "require('colorizer').setup()";
-        };
+
         dressing = {
           package = pkgs.vimPlugins.dressing-nvim;
           setup = "require('dressing').setup()";
         };
       };
+
+      # =====================
+      # 추가 Lua 설정
+      # =====================
+      luaConfigPost = ''
+        -- 클립보드 통합
+        vim.opt.clipboard = "unnamedplus"
+
+        -- 커서라인
+        vim.opt.cursorline = true
+
+        -- 탭/인덴트 추가 설정
+        vim.opt.softtabstop = 4
+        vim.opt.expandtab = true
+        vim.opt.smartindent = true
+
+        -- 검색
+        vim.opt.incsearch = true
+        vim.opt.ignorecase = true
+        vim.opt.smartcase = true
+
+        -- 스크롤 오프셋
+        vim.opt.scrolloff = 10
+
+        -- 인코딩
+        vim.opt.encoding = "UTF-8"
+
+        -- 커맨드 높이
+        vim.opt.cmdheight = 1
+      '';
     };
   };
 }
