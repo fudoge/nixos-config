@@ -54,8 +54,8 @@
               home-manager.users.${username} = {
                 imports = [
                   ./home/profiles/thinkpad.nix
+                  ./nvf-module.nix
                   catppuccin.homeModules.catppuccin
-                  nvf.homeManagerModules.default
                 ];
               };
             }
