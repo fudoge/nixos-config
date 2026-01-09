@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ./editors
     ./git
     ./fetches
     ./other-tools
