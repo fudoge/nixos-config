@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  username,
   ...
 }: {
   wayland.windowManager.hyprland = {
@@ -15,7 +16,7 @@
         "hyprpanel"
         "hyprpolkitagent"
         "fcitx5 -d --replace"
-        "vicinae server"
+        "/etc/profiles/per-user/${username}/bin/vicinae server"
       ];
       env = [
         "XCURSOR_SIZE,24"
@@ -36,7 +37,7 @@
         "$mainMod, Return, exec, $terminal"
         "$mainMod, Q, killactive"
         "$mainMod, M, exit"
-        "$mainMod, D, exec, vicinae open"
+        "$mainMod, D, exec, /etc/profiles/per-user/${username}/vicinae open"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, V, togglefloating"
         "$mainMod, L, exec, wlogout"
