@@ -6,6 +6,6 @@
 }:
 {
   imports = [
-
+    ./spotify-player
   ];
 }
