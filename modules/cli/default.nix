@@ -32,6 +32,7 @@
     skim
     zoxide
     github-cli
+    bat
 
     # networking
     mtr
