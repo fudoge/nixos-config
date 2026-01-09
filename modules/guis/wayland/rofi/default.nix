@@ -11,12 +11,16 @@
     font = "JetBrainsMono Nerd Font";
     location = "center";
     modes = [
+      "window"
       "drun"
-      "emoji"
       "ssh"
+      "calc"
+      "filebrowser"
+      "recursivebrowser"
     ];
     plugins = with pkgs; [
       rofi-calc
+      rofi-file-browser
     ];
   };
 }
