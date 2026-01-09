@@ -3,9 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
-
+}: {
   # zsh configuration
   programs.zsh = {
     enable = true;
@@ -18,6 +16,8 @@
       tf = "terraform";
       cl = "clear";
       cd = "z";
+      cat = "bat";
+      sk = "sk --preview='bat {} --color=always'";
     };
 
     history.size = 10000;
