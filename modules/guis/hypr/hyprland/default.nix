@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -16,6 +15,7 @@
         "hyprpanel"
         "hyprpolkitagent"
         "fcitx5 -d --replace"
+        "vicinae server"
       ];
       env = [
         "XCURSOR_SIZE,24"
@@ -36,9 +36,7 @@
         "$mainMod, Return, exec, $terminal"
         "$mainMod, Q, killactive"
         "$mainMod, M, exit"
-        "$mainMod, D, exec, pkill rofi || rofi -show drun"
-        "$mainMod, W, exec, pkill rofi || rofi -show window"
-        "$mainMod, C, exec, pkill rofi || rofi -show calc"
+        "$mainMod, D, exec, vicinae open"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, V, togglefloating"
         "$mainMod, L, exec, wlogout"
