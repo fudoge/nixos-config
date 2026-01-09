@@ -3,11 +3,10 @@
   pkgs,
   lib,
   ...
-}:
-{
-
+}: {
   imports = [
     ./gh-cli
+    ./gh-dash
   ];
 
   # git configuration
@@ -21,5 +20,4 @@
       init.defaultBranch = "main";
     };
   };
-
 }
