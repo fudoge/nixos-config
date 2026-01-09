@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./app
     ./catppuccin
     ./editors
     ./hypr

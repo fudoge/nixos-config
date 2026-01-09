@@ -12,11 +12,6 @@
     location = "center";
     cycle = true;
 
-    terminal = "ghostty";
-    show-icons = true;
-
-    default = "drun";
-
     modes = [
       "drun"
       "window"
