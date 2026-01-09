@@ -8,5 +8,7 @@
   catppuccin = {
     enable = true;
     flavor = "frappe";
+
+    accent = "sky";
   };
 }
