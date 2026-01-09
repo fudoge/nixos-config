@@ -333,128 +333,176 @@
       # =====================
       # Dashboard (alpha-nvim)
       # =====================
-      dashboard.alpha = {
-        enable = true;
-        theme = null; # custom layout 사용
-        layout = [
-          {
-            type = "padding";
-            val = 2;
-          }
-          {
-            type = "text";
-            val = [
-              "      NEOVIM  "
-              "      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-              "          +                         +                      _.._                    "
-              "                +                                        .' .-'`             +     "
-              "      +                                                 /  /     +                 "
-              "                             +                          |  |                       "
-              "                                                    +   \\  \\                       "
-              "           +                               +             '._'-._            +      "
-              "                                                            ```                    "
-              "                                   +                                               "
-              "                            /^--^\\     /^--^\\     /^--^\\                           "
-              "            +               \\____/     \\____/     \\____/                           "
-              "                           /      \\   /      \\   /      \\         +                "
-              "                          |        | |        | |        |                         "
-              "                           \\__  __/   \\__  __/   \\__  __/                          "
-              "      |^|^|^|^|^|^|^|^|^|^|^|^\\ \\^|^|^|^/ /^|^|^|^|^\\ \\^|^|^|^|^|^|^|^|^|^|^|^|    "
-              "      | | | | | | | | | | | | |\\ \\| | |/ /| | | | | | \\ \\ | | | | | | | | | | |    "
-              "      | | | | | | | | | | | | / / | | |\\ \\| | | | | |/ /| | | | | | | | | | | |    "
-              "      | | | | | | | | | | | | \\/| | | | \\/| | | | | |\\/ | | | | | | | | | | | |    "
-              "      #########################################################################    "
-            ];
-            opts = {
-              position = "center";
-              hl = "Type";
-            };
-          }
-          {
-            type = "padding";
-            val = 2;
-          }
-          {
-            type = "group";
-            val = [
-              {
-                type = "button";
-                val = "🆕  New file";
-                on_press.__raw = "function() vim.cmd('ene') end";
-                opts = {
-                  shortcut = "n";
-                  position = "center";
-                  cursor = 3;
-                  width = 50;
-                  align_shortcut = "right";
-                  hl_shortcut = "Keyword";
-                };
-              }
-              {
-                type = "button";
-                val = "🔍  Find file";
-                on_press.__raw = "function() vim.cmd('Telescope find_files') end";
-                opts = {
-                  shortcut = "f";
-                  position = "center";
-                  cursor = 3;
-                  width = 50;
-                  align_shortcut = "right";
-                  hl_shortcut = "Keyword";
-                };
-              }
-              {
-                type = "button";
-                val = "👀  Find word";
-                on_press.__raw = "function() vim.cmd('Telescope live_grep') end";
-                opts = {
-                  shortcut = "w";
-                  position = "center";
-                  cursor = 3;
-                  width = 50;
-                  align_shortcut = "right";
-                  hl_shortcut = "Keyword";
-                };
-              }
-              {
-                type = "button";
-                val = "📗  Recent files";
-                on_press.__raw = "function() vim.cmd('Telescope oldfiles') end";
-                opts = {
-                  shortcut = "r";
-                  position = "center";
-                  cursor = 3;
-                  width = 50;
-                  align_shortcut = "right";
-                  hl_shortcut = "Keyword";
-                };
-              }
-              {
-                type = "button";
-                val = "🚪  Quit";
-                on_press.__raw = "function() vim.cmd('qa') end";
-                opts = {
-                  shortcut = "q";
-                  position = "center";
-                  cursor = 3;
-                  width = 50;
-                  align_shortcut = "right";
-                  hl_shortcut = "Keyword";
-                };
-              }
-            ];
-          }
-          {
-            type = "padding";
-            val = 2;
-          }
-        ];
-      };
+      # dashboard.alpha = {
+      #   enable = false;
+      #   theme = null; # custom layout 사용
+      #   layout = [
+      #     {
+      #       type = "padding";
+      #       val = 2;
+      #     }
+      #     {
+      #       type = "text";
+      #       val = [
+      #         "      NEOVIM  "
+      #         "      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      #         "          +                         +                      _.._                    "
+      #         "                +                                        .' .-'`             +     "
+      #         "      +                                                 /  /     +                 "
+      #         "                             +                          |  |                       "
+      #         "                                                    +   \\  \\                       "
+      #         "           +                               +             '._'-._            +      "
+      #         "                                                            ```                    "
+      #         "                                   +                                               "
+      #         "                            /^--^\\     /^--^\\     /^--^\\                           "
+      #         "            +               \\____/     \\____/     \\____/                           "
+      #         "                           /      \\   /      \\   /      \\         +                "
+      #         "                          |        | |        | |        |                         "
+      #         "                           \\__  __/   \\__  __/   \\__  __/                          "
+      #         "      |^|^|^|^|^|^|^|^|^|^|^|^\\ \\^|^|^|^/ /^|^|^|^|^\\ \\^|^|^|^|^|^|^|^|^|^|^|^|    "
+      #         "      | | | | | | | | | | | | |\\ \\| | |/ /| | | | | | \\ \\ | | | | | | | | | | |    "
+      #         "      | | | | | | | | | | | | / / | | |\\ \\| | | | | |/ /| | | | | | | | | | | |    "
+      #         "      | | | | | | | | | | | | \\/| | | | \\/| | | | | |\\/ | | | | | | | | | | | |    "
+      #         "      #########################################################################    "
+      #       ];
+      #       opts = {
+      #         position = "center";
+      #         hl = "Type";
+      #       };
+      #     }
+      #     {
+      #       type = "padding";
+      #       val = 2;
+      #     }
+      #     {
+      #       type = "group";
+      #       val = [
+      #         {
+      #           type = "button";
+      #           val = "🆕  New file";
+      #           on_press.__raw = "function() vim.cmd('ene') end";
+      #           opts = {
+      #             shortcut = "n";
+      #             position = "center";
+      #             cursor = 3;
+      #             width = 50;
+      #             align_shortcut = "right";
+      #             hl_shortcut = "Keyword";
+      #           };
+      #         }
+      #         {
+      #           type = "button";
+      #           val = "🔍  Find file";
+      #           on_press.__raw = "function() vim.cmd('Telescope find_files') end";
+      #           opts = {
+      #             shortcut = "f";
+      #             position = "center";
+      #             cursor = 3;
+      #             width = 50;
+      #             align_shortcut = "right";
+      #             hl_shortcut = "Keyword";
+      #           };
+      #         }
+      #         {
+      #           type = "button";
+      #           val = "👀  Find word";
+      #           on_press.__raw = "function() vim.cmd('Telescope live_grep') end";
+      #           opts = {
+      #             shortcut = "w";
+      #             position = "center";
+      #             cursor = 3;
+      #             width = 50;
+      #             align_shortcut = "right";
+      #             hl_shortcut = "Keyword";
+      #           };
+      #         }
+      #         {
+      #           type = "button";
+      #           val = "📗  Recent files";
+      #           on_press.__raw = "function() vim.cmd('Telescope oldfiles') end";
+      #           opts = {
+      #             shortcut = "r";
+      #             position = "center";
+      #             cursor = 3;
+      #             width = 50;
+      #             align_shortcut = "right";
+      #             hl_shortcut = "Keyword";
+      #           };
+      #         }
+      #         {
+      #           type = "button";
+      #           val = "🚪  Quit";
+      #           on_press.__raw = "function() vim.cmd('qa') end";
+      #           opts = {
+      #             shortcut = "q";
+      #             position = "center";
+      #             cursor = 3;
+      #             width = 50;
+      #             align_shortcut = "right";
+      #             hl_shortcut = "Keyword";
+      #           };
+      #         }
+      #       ];
+      #     }
+      #     {
+      #       type = "padding";
+      #       val = 2;
+      #     }
+      #   ];
+      # };
 
       # =====================
       # Extra Plugins
       # =====================
       extraPlugins = {
+        alpha = {
+          package = pkgs.vimPlugins.alpha-nvim;
+          setup = ''
+            local alpha = require("alpha")
+            local dashboard = require("alpha.themes.dashboard")
+            local datetime = os.date("%a %b %d %H:%M")
+            dashboard.section.header.val = {
+              "      NEOVIM  ",
+              "      datetime  ",
+              "      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+              "          +                         +                      _.._                    ",
+              "                +                                        .' .-'`             +     ",
+              "      +                                                 /  /     +                 ",
+              "                             +                          |  |                       ",
+              "                                                    +   \\  \\                       ",
+              "           +                               +             '._'-._            +      ",
+              "                                                            ```                    ",
+              "                                   +                                               ",
+              "                            /^--^\\     /^--^\\     /^--^\\                           ",
+              "            +               \\____/     \\____/     \\____/                           ",
+              "                           /      \\   /      \\   /      \\         +                ",
+              "                          |        | |        | |        |                         ",
+              "                           \\__  __/   \\__  __/   \\__  __/                          ",
+              "      |^|^|^|^|^|^|^|^|^|^|^|^\\ \\^|^|^|^/ /^|^|^|^|^\\ \\^|^|^|^|^|^|^|^|^|^|^|^|    ",
+              "      | | | | | | | | | | | | |\\ \\| | |/ /| | | | | | \\ \\ | | | | | | | | | | |    ",
+              "      | | | | | | | | | | | | / / | | |\\ \\| | | | | |/ /| | | | | | | | | | | |    ",
+              "      | | | | | | | | | | | | \\/| | | | \\/| | | | | |\\/ | | | | | | | | | | | |    ",
+              "      #########################################################################    ",
+            }
+
+            dashboard.section.buttons.val = {
+              dashboard.button("n", "🆕 > New file", function()
+                  local fname = vim.fn.input("New file: ")
+                  if fname ~= "" then
+                      vim.cmd("edit " .. fname)
+                      vim.cmd("startinsert")
+                  end
+              end),
+              dashboard.button("f", "🔍  Find file", ":Telescope find_files<CR>"),
+              dashboard.button("w", "👀  Find word", ":Telescope live_grep<CR>"),
+              dashboard.button("r", "📗  Recent", ":Telescope oldfiles<CR>"),
+              dashboard.button("q", "🚪  Quit", ":qa<CR>"),
+            }
+
+            alpha.setup(dashboard.opts)
+          '';
+        };
+
         harpoon = {
           package = pkgs.vimPlugins.harpoon2;
           setup = ''
