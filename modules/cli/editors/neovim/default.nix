@@ -13,7 +13,7 @@
       };
     };
   };
-  config.vim = {
+  vim = {
     languages = {
       rust.enable = true;
       clang.enable = true;
