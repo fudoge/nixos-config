@@ -7,5 +7,6 @@
   imports = [
     ./spotify-player
     ./vesktop
+    ./sioyek
   ];
 }
