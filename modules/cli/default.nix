@@ -33,6 +33,7 @@
     zoxide
     github-cli
     bat
+    parted
 
     # networking
     mtr
