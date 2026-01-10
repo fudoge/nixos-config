@@ -19,7 +19,10 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 10;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ZRAM
@@ -36,6 +39,11 @@
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Enabling Flakes...
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
