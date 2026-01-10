@@ -3,8 +3,8 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
+    ./cava
   ];
 }
