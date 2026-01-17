@@ -126,7 +126,13 @@
         go.enable = true;
         python.enable = true;
         ts.enable = true;
-        html.enable = true;
+        html = {
+          enable = true;
+          treesitter = {
+            enable = true;
+            autotagHtml = true;
+          };
+        };
         css.enable = true;
         clang.enable = true;
         markdown.enable = true;
@@ -173,7 +179,6 @@
         illuminate.enable = true;
         colorizer.enable = true;
         noice.enable = true;
-        nvim-ufo.enable = true;
       };
 
       # =====================
