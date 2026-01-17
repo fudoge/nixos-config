@@ -18,6 +18,8 @@
     grimblast
     slurp
     libnotify
+
+    chafa
   ];
 
   gtk = {

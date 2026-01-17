@@ -3,14 +3,12 @@
   pkgs,
   lib,
   ...
-}:
-
-{
+}: {
   # Ghostty
   programs.ghostty = {
     enable = true;
     settings = {
-      font-size = 11;
+      font-size = 14;
       font-thicken = "true";
       font-thicken-strength = "10";
       theme = "Catppuccin Frappe";

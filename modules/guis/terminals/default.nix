@@ -3,9 +3,9 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ./ghostty
+    ./kitty
   ];
 }

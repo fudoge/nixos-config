@@ -2,15 +2,12 @@
 
 WALLDIR="$HOME/Pictures/wallpapers"
 
-IMG=$(fd -e jpg -e png -e webp -e jxl . "$WALLDIR" |
-    sk --prompt="🖼 wallpaper > " \
-        --height=50% \
-        --reverse)
+IMG=$(
+    fd -e jpg -e png -e webp -e jxl . "$WALLDIR" |
+        sk --prompt="🖼 wallpaper > "
+)
 
 [ -z "$IMG" ] && exit 0
 
-# ✨ 중요: 먼저 preload
 hyprctl hyprpaper preload "$IMG" >/dev/null
-
-# 그 다음 적용
 hyprctl hyprpaper wallpaper ",$IMG" >/dev/null
