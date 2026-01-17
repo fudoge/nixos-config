@@ -6,3 +6,8 @@ mkdir -p "$DIR"
 FILE="$DIR/$(date +'%Y-%m-%d_%H-%M-%S').png"
 
 grimblast save screen "$FILE" && wl-copy <"$FILE"
+
+notify-send \
+    -i "$FILE" \
+    "📸 Screenshot saved" \
+    "$FILE"

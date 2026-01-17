@@ -14,8 +14,10 @@
   ];
 
   home.packages = with pkgs; [
+    grim
     grimblast
     slurp
+    libnotify
   ];
 
   gtk = {

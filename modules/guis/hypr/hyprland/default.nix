@@ -7,7 +7,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      monitor = ", preferred,auto,1.5";
+      monitor = ", preferred,auto,1.25";
       "$terminal" = "ghostty";
       "$mainMod" = "ALT";
       "$fileManager" = "dolphin";
@@ -43,8 +43,8 @@
         "$mainMod, F, fullscreen, 0"
 
         # screenshot
-        ", Print, exec, grimblast copy screen ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
-        "SHIFT, Print, exec, grimblast copy area ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
+        ", Print, exec, ~/.local/bin/screenshot-area.sh"
+        "SHIFT, Print, exec, ~/.local/bin/screenshot-screen.sh"
 
         # Switch workspace with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"

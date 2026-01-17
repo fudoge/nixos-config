@@ -9,25 +9,25 @@ if [ -d /etc/nixos ]; then
     while true; do
         read -rp "choose action: [o]verwrite, [b]ackup, [s]skip(Do not use this option in first use). (lowercase only) " ans
         case "$ans" in
-            o|overwrite)
-                sudo rm -rf /etc/nixos
-                sudo ln -s $PWD /etc/nixos
-                break
-                ;;
-            b|backup)
-                TIME="$(date +"%T")"
-                sudo mv /etc/nixos /etc/nixos.bak-${TIME}
-                sudo ln -s $PWD /etc/nixos
-                break
-                ;;
-            s|skip)
-                sudo rm -rf /etc/nixos
-                sudo ln -s $PWD /etc/nixos
-                break
-                ;;
-            *)
-                echo "invalid input"
-                ;;
+        o | overwrite)
+            sudo rm -rf /etc/nixos
+            sudo ln -s $PWD /etc/nixos
+            break
+            ;;
+        b | backup)
+            TIME="$(date +"%T")"
+            sudo mv /etc/nixos /etc/nixos.bak-${TIME}
+            sudo ln -s $PWD /etc/nixos
+            break
+            ;;
+        s | skip)
+            sudo rm -rf /etc/nixos
+            sudo ln -s $PWD /etc/nixos
+            break
+            ;;
+        *)
+            echo "invalid input"
+            ;;
         esac
     done
 fi
@@ -35,6 +35,7 @@ fi
 echo "📃 Setting up scripts"
 mkdir -p $BIN_DIR
 cp -r ./scripts/* ~/.local/bin/
+chmod +x $BIN_DIR/*
 
 echo "🪝 Adding Untracked files..."
 git add . 2>/dev/null || true
@@ -45,4 +46,3 @@ if sudo nixos-rebuild switch --flake "/etc/nixos#$TARGET_HOST"; then
 else
     echo "Bootstrapping Failed.. 😿"
 fi
-
