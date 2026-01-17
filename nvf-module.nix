@@ -173,6 +173,7 @@
         illuminate.enable = true;
         colorizer.enable = true;
         noice.enable = true;
+        nvim-ufo.enable = true;
       };
 
       # =====================
