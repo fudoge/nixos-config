@@ -56,7 +56,7 @@
       };
 
       visuals = {
-        nvim-web-devicons.enable = true;
+        tiny-devicons-auto-colors.enable = true;
         indent-blankline = {
           enable = true;
 
