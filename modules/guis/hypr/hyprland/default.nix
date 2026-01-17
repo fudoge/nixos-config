@@ -42,6 +42,10 @@
         "$mainMod, L, exec, wlogout"
         "$mainMod, F, fullscreen, 0"
 
+        # screenshot
+        ", Print, exec, grimblast copy screen ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
+        "SHIFT, Print, exec, grimblast copy area ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
+
         # Switch workspace with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"

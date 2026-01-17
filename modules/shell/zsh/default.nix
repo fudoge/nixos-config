@@ -34,6 +34,7 @@
 
     initContent = ''
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+      export PATH=$PATH:~/.local/bin
     '';
   };
 }

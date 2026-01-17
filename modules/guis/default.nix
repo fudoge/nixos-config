@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ./app
     ./catppuccin
@@ -12,6 +11,11 @@
     ./hypr
     ./terminals
     ./wayland
+  ];
+
+  home.packages = with pkgs; [
+    grimblast
+    slurp
   ];
 
   gtk = {
