@@ -34,6 +34,7 @@
     github-cli
     bat
     parted
+    fd
 
     # networking
     mtr

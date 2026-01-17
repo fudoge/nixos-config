@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+WALLDIR="$HOME/Pictures/wallpapers"
+
+# 이미지 목록
+IMG=$(fd -e jpg -e png -e webp -e jxl . "$WALLDIR" |
+    sk --prompt="🖼 wallpaper > " \
+        --height=50% \
+        --reverse)
+
+[ -z "$IMG" ] && exit 0
+
+hyprctl hyprpaper wallpaper ",$IMG,cover"
