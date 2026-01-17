@@ -5,9 +5,6 @@
   ...
 }: {
   imports = [
-    ./spotify-player
-    ./vesktop
-    ./sioyek
-    ./anki
+    ./yazi
   ];
 }

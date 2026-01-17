@@ -11,6 +11,7 @@
     ./hypr
     ./terminals
     ./wayland
+    ./filemanager
   ];
 
   home.packages = with pkgs; [
@@ -20,6 +21,12 @@
     libnotify
 
     chafa
+
+    # yazi
+    ffmpegthumbnailer
+    poppler
+    imagemagick
+    ueberzugpp
   ];
 
   gtk = {

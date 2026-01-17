@@ -38,6 +38,7 @@
         "$mainMod, M, exit"
         "$mainMod, Space, exec, vicinae toggle"
         "$mainMod, E, exec, $fileManager"
+        "$mainMod, D, exec, ghostty -e yazi"
         "$mainMod, V, togglefloating"
         "$mainMod, L, exec, wlogout"
         "$mainMod, F, fullscreen, 0"
