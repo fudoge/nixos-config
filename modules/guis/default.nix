@@ -27,6 +27,8 @@
     poppler
     imagemagick
     ueberzugpp
+
+    rclone
   ];
 
   gtk = {
