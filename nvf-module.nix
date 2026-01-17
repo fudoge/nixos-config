@@ -55,50 +55,53 @@
         style = "frappe";
       };
 
-      visuals.indent-blankline = {
-        enable = true;
+      visuals = {
+        nvim-web-devicons.enable = true;
+        indent-blankline = {
+          enable = true;
 
-        setupOpts = {
-          debounce = 100;
+          setupOpts = {
+            debounce = 100;
 
-          indent = {
-            char = "│";
-            tab_char = "▏";
-            smart_indent_cap = true;
-            repeat_linebreak = true;
-            priority = 1;
-            highlight = [
-              "IblIndent"
-            ];
-          };
+            indent = {
+              char = "│";
+              tab_char = "▏";
+              smart_indent_cap = true;
+              repeat_linebreak = true;
+              priority = 1;
+              highlight = [
+                "IblIndent"
+              ];
+            };
 
-          scope = {
-            enabled = true;
-            char = "┃";
-            show_start = false;
-            show_end = false;
-            highlight = [
-              "IblScope"
-            ];
-            priority = 1024;
+            scope = {
+              enabled = true;
+              char = "┃";
+              show_start = false;
+              show_end = false;
+              highlight = [
+                "IblScope"
+              ];
+              priority = 1024;
 
-            exclude = {
-              language = ["help" "dashboard" "alpha"];
-              node_type = {
-                "*" = ["source_file" "program"];
-                lua = ["chunk"];
-                python = ["module"];
+              exclude = {
+                language = ["help" "dashboard" "alpha"];
+                node_type = {
+                  "*" = ["source_file" "program"];
+                  lua = ["chunk"];
+                  python = ["module"];
+                };
               };
             };
-          };
 
-          whitespace = {
-            remove_blankline_trail = true;
-          };
+            whitespace = {
+              remove_blankline_trail = true;
+            };
 
-          viewport_buffer = {
-            min = 30;
-            max = 300;
+            viewport_buffer = {
+              min = 30;
+              max = 300;
+            };
           };
         };
       };
