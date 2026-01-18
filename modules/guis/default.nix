@@ -12,6 +12,7 @@
     ./terminals
     ./wayland
     ./filemanager
+    ./kde
   ];
 
   home.packages = with pkgs; [

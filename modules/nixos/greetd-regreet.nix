@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   services.greetd = {
     enable = true;
     settings = {
@@ -34,11 +33,11 @@
 
     [GTK]
     application_prefer_dark_theme = true
-    theme_name = "Adwaita-dark"
+    theme_name = "catppuccin-frappe-blue-standard"
+    icon_theme_name = "Papirus-Dark"
 
     [commands]
     reboot = ["systemctl", "reboot"]
     poweroff = ["systemctl", "poweroff"]
   '';
-
 }

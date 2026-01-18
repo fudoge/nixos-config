@@ -146,11 +146,16 @@
   };
   programs.zsh.enable = true;
 
+  environment.variables = {
+    EDITOR = "vim";
+    QT_ICON_THEME = "Papirus-Dark";
+  };
   environment.sessionVariables = {
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
     SDL_IM_MODULE = "fcitx";
+    XDG_CURRENT_DESKTOP = "Hyprland";
   };
 
   # List packages installed in system profile.
@@ -178,12 +183,10 @@
     catppuccin-gtk
     papirus-icon-theme
     xdg-utils
+    kdePackages.qtstyleplugin-kvantum
+    catppuccin-kvantum
+    catppuccin-kde
   ];
-
-  environment.variables.EDITOR = "vim";
-  environment.sessionVariables = {
-    XDG_CURRENT_DESKTOP = "Hyprland";
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
