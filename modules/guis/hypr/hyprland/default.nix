@@ -7,7 +7,10 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      monitor = ", preferred,auto,1";
+      monitor = [
+        "eDP-1,preferred,auto,1"
+        ",preferred,auto,1.5"
+      ];
       "$terminal" = "ghostty";
       "$mainMod" = "ALT";
       "$fileManager" = "dolphin";
@@ -17,6 +20,8 @@
         "fcitx5 -d --replace"
         "vicinae server"
         "blueman-applet"
+        "~/.local/bin/hypr-monitor-autoset.sh"
+        "~/.local/bin/hypr-monitor-listen.sh"
       ];
       env = [
         "XCURSOR_SIZE,24"

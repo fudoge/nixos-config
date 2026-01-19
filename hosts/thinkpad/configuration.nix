@@ -181,6 +181,7 @@
     spotify
     vivaldi
     obsidian
+    notion-app-enhanced
     kdePackages.dolphin
     catppuccin-kde
     catppuccin-gtk
