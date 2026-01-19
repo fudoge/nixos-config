@@ -9,5 +9,6 @@
     ./vesktop
     ./sioyek
     ./anki
+    ./notion
   ];
 }

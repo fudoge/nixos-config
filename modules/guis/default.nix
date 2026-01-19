@@ -15,6 +15,8 @@
     ./kde
   ];
 
+  xdg.enable = true;
+
   home.packages = with pkgs; [
     grim
     grimblast
