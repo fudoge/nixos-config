@@ -13,6 +13,8 @@
     '')
   ];
 
+  home.file.".local/share/icons/hicolor/256x256/apps/notion.png".source = ../../../../assets/icons/notion.png;
+
   xdg.desktopEntries.notion = {
     name = "Notion";
     exec = "notion-pwa";
