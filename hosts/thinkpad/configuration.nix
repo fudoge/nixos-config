@@ -109,6 +109,9 @@
   # upower
   services.upower.enable = true;
 
+  # dbus
+  services.dbus.enable = true;
+
   # polkit
   security.polkit.enable = true;
 
