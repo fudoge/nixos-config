@@ -104,6 +104,7 @@
     kubectx
     argocd
     cilium-cli
+    awscli
 
     # dev
     go
