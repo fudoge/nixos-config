@@ -16,6 +16,7 @@
         "hyprpolkitagent"
         "fcitx5 -d --replace"
         "vicinae server"
+        "blueman-applet"
       ];
       env = [
         "XCURSOR_SIZE,24"
