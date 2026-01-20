@@ -29,6 +29,7 @@
     jq
     yq-go
     eza
+    fzf
     skim
     zoxide
     github-cli
@@ -56,6 +57,7 @@
     gawk
     zstd
     gnupg
+    chafa
 
     # nix related
     nix-output-monitor

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WALLDIR="$HOME/Pictures/wallpapers"
+
+IMG=$(
+    fd -e jpg -e png -e webp -e jxl . "$WALLDIR" |
+        fzf \
+            --preview 'chafa --size=80x40 --symbols=block --colors=full {}' \
+            --preview-window=right:60%
+)
+
+[ -z "$IMG" ] && exit 0
+
+hyprctl hyprpaper preload "$IMG" >/dev/null 2>&1 || true
+hyprctl hyprpaper wallpaper ",$IMG" >/dev/null 2>&1
