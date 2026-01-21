@@ -189,6 +189,7 @@
     kdePackages.qtstyleplugin-kvantum
     catppuccin-kvantum
     catppuccin-kde
+    onlyoffice-desktopeditors
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
