@@ -149,4 +149,28 @@
       package = pkgs.catppuccin-gtk;
     };
   };
+
+  xdg = {
+    enable = true;
+
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
+    };
+
+    mimeApps = {
+      enable = true;
+
+      defaultApplications = {
+        "inode/directory" = ["org.kde.dolphin.desktop"];
+
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = ["onlyoffice-desktopeditors.desktop"];
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = ["onlyoffice-desktopeditors.desktop"];
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = ["onlyoffice-desktopeditors.desktop"];
+      };
+    };
+  };
 }
