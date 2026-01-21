@@ -4,11 +4,9 @@
   withGui,
   withHyprland,
   ...
-}:
-{
+}: {
   imports = [
-    ../../modules/cli
-    ../../modules/guis
+    ../../modules/programs
     ../../modules/shell
   ];
 

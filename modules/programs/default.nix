@@ -9,6 +9,15 @@
     ./fetches
     ./other-tools
     ./infra-tools
+    ./app
+    ./catppuccin
+    ./editors
+    ./hypr
+    ./terminals
+    ./wayland
+    ./filemanager
+    ./kde
+    ./rclone
   ];
   home.packages = with pkgs; [
     # fetches
@@ -113,5 +122,31 @@
     python3
     rustup
     nodejs
+
+    # hyprpapers
+    grim
+    grimblast
+    slurp
+    libnotify
+
+    # image rendering
+    chafa
+
+    # yazi
+    ffmpegthumbnailer
+    poppler
+    imagemagick
+    ueberzugpp
+
+    # rclone
+    rclone
   ];
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Mocha-Standard";
+      package = pkgs.catppuccin-gtk;
+    };
+  };
 }
