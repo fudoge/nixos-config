@@ -32,10 +32,16 @@ if [ -d /etc/nixos ]; then
     done
 fi
 
-echo "📃 Setting up scripts"
+echo "📃 Setting up scripts..."
 mkdir -p $BIN_DIR
 cp -r ./scripts/* ~/.local/bin/
 chmod +x $BIN_DIR/*
+
+echo "🖼️ Setting default wallpaper..."
+mkdir -p "$HOME/Pictures/wallpapers"
+if [[ ! -f "$HOME/Pictures/wallpapers/nix-black-4k.png" ]]; then
+    cp "assets/wallpapers/nix-black-4k.png" "$HOME/Pictures/wallpapers/nix-black-4k.png"
+fi
 
 echo "🪝 Adding Untracked files..."
 git add . 2>/dev/null || true
