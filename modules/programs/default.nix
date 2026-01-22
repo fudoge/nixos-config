@@ -116,6 +116,7 @@
     argocd
     cilium-cli
     awscli
+    supabase-cli
 
     # dev
     go
