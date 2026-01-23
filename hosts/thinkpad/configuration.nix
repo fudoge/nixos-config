@@ -122,6 +122,7 @@
       "wheel"
       "networkmanager"
       "power"
+      "docker"
     ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
