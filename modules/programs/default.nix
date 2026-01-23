@@ -2,8 +2,11 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
-}: {
+}: let
+  unstable = import inputs.nixpkgs-unstable {system = pkgs.system;};
+in {
   imports = [
     ./git
     ./fetches
@@ -116,7 +119,7 @@
     argocd
     cilium-cli
     awscli
-    supabase-cli
+    unstable.supabase-cli
 
     # dev
     go

@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +23,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     nix-darwin,
     nixos-wsl,
     home-manager,
