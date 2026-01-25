@@ -143,6 +143,10 @@
         sql.enable = true;
         bash.enable = true;
         lua.enable = true;
+        hcl = {
+          enable = true;
+          format.enable = true;
+        };
       };
 
       # =====================
