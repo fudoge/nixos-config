@@ -8,6 +8,9 @@ My NixOS dots.
 ./bootstrap.sh thinkpad # nix profile
 ```
 
+## 🍏 Install Nix-Darwin
+[Determinate Nix](https://docs.determinate.systems/determinate-nix/)
+
 ## 🔒 Google drive authentication
 
 ```bash
