@@ -117,6 +117,8 @@
             ./nvf-module.nix
             catppuccin.homeModules.catppuccin
           ];
+
+          home-manager.backupFileExtension = "flake-backup";
         }
       ];
     };
