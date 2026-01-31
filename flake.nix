@@ -8,6 +8,10 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -33,6 +37,7 @@
   } @ inputs: let
     username = "chaewoon";
   in {
+    # 🐧 NixOS 
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs username;};
