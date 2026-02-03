@@ -113,6 +113,7 @@ in {
 
     # infra-tools
     terraform
+    opentofu
     kubectl
     kubernetes-helm
     kubectx
