@@ -8,10 +8,24 @@ My NixOS dots.
 ./bootstrap.sh thinkpad # nix profile
 ```
 
-## 🍏 Install Nix-Darwin
+## 🍏 Nix-Darwin
+
+For more information, visit [here](https://github.com/nix-darwin/nix-darwin?tab=readme-ov-file#step-1-creating-flakenix)
+
+### Install Nix-Darwin
 [Determinate Nix](https://docs.determinate.systems/determinate-nix/)
 
-## 🔒 Google drive authentication
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
+  sh -s -- install --determinate
+```
+
+### Apply
+```bash
+sudo -H nix run nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake .#macbook
+```
+
+## 🔒 Google Drive authentication
 
 ```bash
 rclone config
