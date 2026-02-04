@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
@@ -13,5 +12,10 @@
     nerd-fonts.jetbrains-mono
     nanum
     nanum-gothic-coding
+    pretendard
+    pretendard-jp
+    pretendard-std
   ];
+
+  fonts.fontDir.enable = true;
 }
