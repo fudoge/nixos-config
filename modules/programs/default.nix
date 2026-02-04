@@ -21,6 +21,7 @@ in {
     ./filemanager
     ./kde
     ./rclone
+    ./agent
   ];
   home.packages = with pkgs; [
     # fetches
