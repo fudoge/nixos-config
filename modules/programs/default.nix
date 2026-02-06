@@ -2,11 +2,9 @@
   config,
   pkgs,
   lib,
-  inputs,
+  unstable,
   ...
-}: let
-  unstable = import inputs.nixpkgs-unstable {system = pkgs.stdenv.hostPlatform.system;};
-in {
+}: {
   imports = [
     ./git
     ./fetches

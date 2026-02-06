@@ -6,5 +6,7 @@
 }: {
   imports = [
     ./codex
+    ./claude-code
+    ./gemini-cli
   ];
 }

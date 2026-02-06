@@ -192,6 +192,7 @@
     catppuccin-kde
     onlyoffice-desktopeditors
     obs-studio
+    antigravity
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

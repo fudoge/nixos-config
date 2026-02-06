@@ -48,11 +48,18 @@
     ...
   } @ inputs: let
     username = "chaewoon";
+    mkPkgs = system: src:
+      import src {
+        inherit system;
+        config.allowUnfree = true;
+      };
   in {
-    # 🐧 NixOS 
+    # 🐧 NixOS
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs username;};
+        specialArgs = {
+          inherit inputs username;
+        };
         modules = [
           ./hosts/thinkpad/configuration.nix
           home-manager.nixosModules.home-manager
@@ -65,6 +72,7 @@
               platform = "linux-desktop";
               withGui = true;
               withHyprland = true;
+              unstable = mkPkgs "x86_64-linux" inputs.nixpkgs-unstable;
             };
             home-manager.users.${username} = {
               imports = [
