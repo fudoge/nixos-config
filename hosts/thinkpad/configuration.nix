@@ -191,6 +191,7 @@
     catppuccin-kvantum
     catppuccin-kde
     onlyoffice-desktopeditors
+    obs-studio
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
