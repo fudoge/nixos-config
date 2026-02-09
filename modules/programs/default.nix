@@ -136,6 +136,8 @@
 
     # image rendering
     chafa
+    # pdf rendering
+    tdf
 
     # yazi
     ffmpegthumbnailer
