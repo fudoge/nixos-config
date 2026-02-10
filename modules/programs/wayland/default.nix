@@ -7,5 +7,6 @@
   imports = [
     ./wlogout
     ./vicinae
+    ./caelestia
   ];
 }
