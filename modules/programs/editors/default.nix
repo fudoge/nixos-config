@@ -7,5 +7,6 @@
   imports = [
     ./vscode
     ./zed
+    ./nvf
   ];
 }

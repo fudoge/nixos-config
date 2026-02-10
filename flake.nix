@@ -81,7 +81,6 @@
             home-manager.users.${username} = {
               imports = [
                 ./home/profiles/thinkpad.nix
-                ./nvf-module.nix
                 catppuccin.homeModules.catppuccin
               ];
             };
@@ -126,7 +125,6 @@
 
           home-manager.users.${username}.imports = [
             ./home/profiles/macbook.nix
-            ./nvf-module.nix
             catppuccin.homeModules.catppuccin
           ];
 
