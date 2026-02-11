@@ -8,5 +8,6 @@
     ./codex
     ./claude-code
     ./gemini-cli
+    ./opencode
   ];
 }
