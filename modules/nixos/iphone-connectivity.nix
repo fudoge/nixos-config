@@ -9,5 +9,8 @@
   environment.systemPackages = with pkgs; [
     libimobiledevice
     ifuse
+
+    # for factory reset
+    idevicerestore
   ];
 }
