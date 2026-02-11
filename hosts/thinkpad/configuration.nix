@@ -16,6 +16,7 @@
     ../../modules/nixos/power-management.nix
     ../../modules/nixos/battery-charge-limit.nix
     ../../modules/nixos/docker.nix
+    ../../modules/nixos/iphone-connectivity.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
