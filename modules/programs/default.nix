@@ -20,6 +20,7 @@
     ./kde
     ./rclone
     ./agent
+    ./email
   ];
   home.packages = with pkgs; [
     # fetches

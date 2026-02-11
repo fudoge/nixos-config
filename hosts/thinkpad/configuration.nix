@@ -194,6 +194,7 @@
     onlyoffice-desktopeditors
     obs-studio
     antigravity
+    slack
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
