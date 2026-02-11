@@ -37,6 +37,10 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    alejandra = {
+      url = "github:kamadorueda/alejandra/4.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -49,6 +53,8 @@
     home-manager,
     catppuccin,
     nvf,
+    caelestia-shell,
+    alejandra,
     ...
   } @ inputs: let
     username = "chaewoon";
@@ -63,9 +69,15 @@
       thinkpad = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs username;
+          system = "x86_64-linux";
         };
         modules = [
+          ({system, ...}: {
+            environment.systemPackages = [alejandra.defaultPackage.${system}];
+          })
           ./hosts/thinkpad/configuration.nix
+          {
+          }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
