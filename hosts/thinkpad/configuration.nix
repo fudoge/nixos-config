@@ -195,6 +195,9 @@
     obs-studio
     antigravity
     slack
+    wine-wayland
+    winetricks
+    bottles
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
