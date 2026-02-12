@@ -13,3 +13,4 @@ IMG=$(
 [ -z "$IMG" ] && exit 0
 
 caelestia wallpaper -f "$IMG"
+caelestia scheme set -n dynamic
