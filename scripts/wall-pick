@@ -12,5 +12,4 @@ IMG=$(
 
 [ -z "$IMG" ] && exit 0
 
-hyprctl hyprpaper preload "$IMG" >/dev/null 2>&1
-hyprctl hyprpaper wallpaper ",$IMG" >/dev/null 2>&1
+caelestia wallpaper -f "$IMG"
