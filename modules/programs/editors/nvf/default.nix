@@ -112,6 +112,24 @@
       lsp = {
         enable = true;
         formatOnSave = true;
+        lspconfig.enable = true;
+      };
+
+      # For Protocol Buffer support
+      extraPackages = with pkgs; [
+        buf
+      ];
+
+      lsp.servers.buf-lsp = {
+        enable = true;
+        cmd = ["${pkgs.buf}/bin/buf" "lsp" "serve"];
+        filetypes = ["proto"];
+        root_markers = ["buf.yaml" "buf.work.yaml" ".git"];
+      };
+
+      lsp.servers.clangd = {
+        enable = true;
+        filetypes = ["c" "cpp" "objc" "objcpp" "cuda"];
       };
 
       # =====================
@@ -538,4 +556,22 @@
       '';
     };
   };
+
+  xdg.configFile."nvf/after/plugin/no-clangd-proto.lua".text = ''
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client or client.name ~= "clangd" then
+          return
+        end
+
+        local ft = vim.bo[args.buf].filetype
+        if ft == "proto" then
+          vim.schedule(function()
+            pcall(vim.lsp.buf_detach_client, args.buf, client.id)
+          end)
+        end
+      end,
+    })
+  '';
 }
