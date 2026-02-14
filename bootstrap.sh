@@ -46,6 +46,11 @@ fi
 echo "🪝 Adding Untracked files..."
 git add . 2>/dev/null || true
 
+# Delete dirty cava config (caelestia vs nix cava config collision)
+if [[ -f "$HOME/.config/cava/config.backup" ]]; then
+    rm "$HOME/.config/cava/config.backup"
+fi
+
 echo "❄️ Rebuilding with flake: $TARGET_HOST"
 if sudo nixos-rebuild switch --flake "/etc/nixos#$TARGET_HOST"; then
     echo "Bootstrapping Success! 😊"
