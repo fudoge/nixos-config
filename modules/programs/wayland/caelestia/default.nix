@@ -13,6 +13,9 @@
     };
 
     settings = {
+      services = {
+        useFahrenheit = false;
+      };
     };
 
     cli = {
