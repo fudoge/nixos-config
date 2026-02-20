@@ -122,6 +122,7 @@
     cilium-cli
     awscli
     unstable.supabase-cli
+    eksctl
 
     # dev
     go
