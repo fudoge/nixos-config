@@ -177,6 +177,7 @@
     libgtop
     libsoup_3
     gtksourceview3
+    cdrtools
 
     # hyprpolkit
     hyprpolkitagent
