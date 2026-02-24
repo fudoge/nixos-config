@@ -16,6 +16,7 @@
     ../../modules/nixos/power-management.nix
     ../../modules/nixos/battery-charge-limit.nix
     ../../modules/nixos/docker.nix
+    ../../modules/nixos/kvm.nix
     ../../modules/nixos/iphone-connectivity.nix
   ];
 
@@ -124,6 +125,7 @@
       "networkmanager"
       "power"
       "docker"
+      "libvirtd"
     ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
