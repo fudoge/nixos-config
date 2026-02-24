@@ -201,6 +201,9 @@
     wine-wayland
     winetricks
     bottles
+
+    # virtualization
+    virt-viewer
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
