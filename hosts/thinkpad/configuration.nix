@@ -178,6 +178,7 @@
     libsoup_3
     gtksourceview3
     cdrtools
+    tcpdump
 
     # hyprpolkit
     hyprpolkitagent
