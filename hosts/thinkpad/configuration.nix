@@ -202,6 +202,7 @@
     wine-wayland
     winetricks
     bottles
+    zoom-us
 
     # virtualization
     virt-viewer
