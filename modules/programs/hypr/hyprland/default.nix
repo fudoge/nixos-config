@@ -32,6 +32,7 @@
         "SDL_IM_MODULE,fcitx"
         "ELECTRON_OZONE_PLATFORM_HINT,auto"
         "ELECTRON_ENABLE_WAYLAND,1"
+        "QT_QPA_PLATFORMTHEME,hyprqt6engine"
       ];
       input = {
         kb_layout = "us";

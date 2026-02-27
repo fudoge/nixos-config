@@ -41,6 +41,10 @@
       url = "github:kamadorueda/alejandra/4.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprqt6engine = {
+      url = "github:hyprwm/hyprqt6engine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

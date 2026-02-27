@@ -9,5 +9,6 @@
     ./hyprlock
     ./hypridle
     ./hyprpaper
+    ./hyprqt6engine
   ];
 }
