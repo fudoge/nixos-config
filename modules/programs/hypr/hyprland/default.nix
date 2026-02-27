@@ -48,6 +48,10 @@
         "$mainMod, V, togglefloating"
         "$mainMod, L, exec, wlogout"
         "$mainMod, F, fullscreen, 0"
+        "$mainMod, C, movetoworkspace, special"
+        "$mainMod, X, togglespecialworkspace"
+        "$mainMod, P, pin"
+        "$mainMod, A, centerwindow"
 
         # screenshot
         ", Print, exec, ~/.local/bin/screenshot-area.sh"
@@ -81,6 +85,10 @@
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+      ];
+      bindm = [
+        "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:273, resizewindow"
       ];
       # Laptop multimedia keys and LCD brightness
       bindel = [
