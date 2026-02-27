@@ -180,6 +180,9 @@
     cdrtools
     tcpdump
 
+    termdown
+    tomato-c
+
     # hyprpolkit
     hyprpolkitagent
 
