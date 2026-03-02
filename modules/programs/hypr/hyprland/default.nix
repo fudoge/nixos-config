@@ -22,6 +22,7 @@
         "blueman-applet"
         "~/.local/bin/hypr-monitor-autoset.sh"
         "~/.local/bin/hypr-monitor-listen.sh"
+        "hyprctl setcursor Bibata-Modern-Ice 24"
       ];
       env = [
         "XCURSOR_SIZE,24"

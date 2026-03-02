@@ -185,7 +185,6 @@
 
     # hypr
     hyprpolkitagent
-    hyprcursor
 
     # gui apps
     spotify
