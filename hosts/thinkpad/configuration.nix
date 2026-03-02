@@ -183,8 +183,9 @@
     termdown
     tomato-c
 
-    # hyprpolkit
+    # hypr
     hyprpolkitagent
+    hyprcursor
 
     # gui apps
     spotify

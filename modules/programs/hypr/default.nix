@@ -10,5 +10,6 @@
     ./hypridle
     ./hyprpaper
     ./hyprqt6engine
+    ./hyprcursor
   ];
 }
