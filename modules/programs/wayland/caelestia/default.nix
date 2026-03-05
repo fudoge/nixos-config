@@ -15,6 +15,7 @@
     settings = {
       services = {
         useFahrenheit = false;
+        useFahrenheitPerformance = false;
       };
     };
 
