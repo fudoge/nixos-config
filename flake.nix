@@ -45,6 +45,10 @@
       url = "github:hyprwm/hyprqt6engine";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gws-cli = {
+      url = "github:googleworkspace/cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

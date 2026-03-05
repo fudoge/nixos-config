@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   unstable,
   ...
 }: {
@@ -121,6 +122,7 @@
     argocd
     cilium-cli
     awscli
+    google-cloud-sdk
     unstable.supabase-cli
     eksctl
 
@@ -149,6 +151,9 @@
 
     # rclone
     rclone
+
+    # google
+    inputs.gws-cli.packages.${pkgs.stdenv.hostPlatform.system}.gws
   ];
 
   gtk = {
