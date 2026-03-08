@@ -18,6 +18,7 @@
     ../../modules/nixos/docker.nix
     ../../modules/nixos/kvm.nix
     ../../modules/nixos/iphone-connectivity.nix
+    ../../modules/nixos/gns3.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
