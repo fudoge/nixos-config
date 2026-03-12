@@ -49,6 +49,7 @@
     bat
     parted
     fd
+    pre-commit
 
     # networking
     mtr
