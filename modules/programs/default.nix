@@ -114,8 +114,8 @@
     wl-clipboard
 
     # infra-tools
-    terraform
-    opentofu
+    unstable.terraform
+    unstable.opentofu
     terragrunt
     kubectl
     kubernetes-helm
