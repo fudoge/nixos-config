@@ -135,6 +135,9 @@
     ];
   };
 
+  # nix-ld
+  programs.nix-ld.enable = true;
+
   # allow unfree softwares
   nixpkgs.config.allowUnfree = true;
 
