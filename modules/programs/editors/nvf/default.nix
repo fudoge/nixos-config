@@ -156,7 +156,13 @@
         };
         css.enable = true;
         clang.enable = true;
-        markdown.enable = true;
+        markdown = {
+            enable = true;
+            format = {
+                enable = true;
+                type = ["prettierd"]
+            }
+        }
         yaml.enable = true;
         sql.enable = true;
         bash.enable = true;
@@ -165,6 +171,9 @@
           enable = true;
           format.enable = true;
         };
+        terraform = {
+            enable = true;
+        }
       };
 
       # =====================
@@ -178,6 +187,22 @@
           scrollDocsUp = "<C-b>";
           scrollDocsDown = "<C-f>";
           close = "<C-e>";
+          next = "<C-n>";
+          previous = "<C-p>";
+        };
+
+        setupOpts = {
+          completion.completeopt = "menu,menuone,noinsert";
+          sorting.comparators = [
+            "offset"
+            "exact"
+            "score"
+            "recently_used"
+            "kind"
+            "sort_text"
+            "length"
+            "order"
+          ];
         };
       };
 
@@ -186,7 +211,7 @@
       # =====================
       statusline.lualine = {
         enable = true;
-        theme = "gruvbox";
+        theme = "catppuccin";
       };
 
       tabline.nvimBufferline.enable = true;
@@ -554,6 +579,15 @@
          highlight NonText ctermbg=none
         ]]
       '';
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function()
+          vim.opt_local.wrap = false
+          vim.opt_local.linebreak = false
+          vim.opt_local.textwidth = 0
+          vim.opt_local.formatoptions:remove({ "t", "c", "a" })
+        end,
+      })
     };
   };
 
