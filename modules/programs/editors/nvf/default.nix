@@ -157,12 +157,12 @@
         css.enable = true;
         clang.enable = true;
         markdown = {
+          enable = true;
+          format = {
             enable = true;
-            format = {
-                enable = true;
-                type = ["prettierd"]
-            }
-        }
+            type = ["prettierd"];
+          };
+        };
         yaml.enable = true;
         sql.enable = true;
         bash.enable = true;
@@ -172,8 +172,8 @@
           format.enable = true;
         };
         terraform = {
-            enable = true;
-        }
+          enable = true;
+        };
       };
 
       # =====================
@@ -507,87 +507,87 @@
       # Extra Lua Config
       # =====================
       luaConfigPost = ''
-        -- Clipboard
-        vim.opt.clipboard = "unnamedplus"
+          -- Clipboard
+          vim.opt.clipboard = "unnamedplus"
 
-        -- Cursor line
-        vim.opt.cursorline = true
+          -- Cursor line
+          vim.opt.cursorline = true
 
-        -- Extra indent settings
-        vim.opt.softtabstop = 4
-        vim.opt.expandtab = true
-        vim.opt.smartindent = true
+          -- Extra indent settings
+          vim.opt.softtabstop = 4
+          vim.opt.expandtab = true
+          vim.opt.smartindent = true
 
-        -- Search settings
-        vim.opt.incsearch = true
-        vim.opt.ignorecase = true
-        vim.opt.smartcase = true
+          -- Search settings
+          vim.opt.incsearch = true
+          vim.opt.ignorecase = true
+          vim.opt.smartcase = true
 
-        -- Scroll offset
-        vim.opt.scrolloff = 10
+          -- Scroll offset
+          vim.opt.scrolloff = 10
 
-        -- Diagnostics config
-        vim.diagnostic.config({
-          virtual_text = false,
-          virtual_lines = true,
-          underline = true,
-          update_in_insert = false,
-          severity_sort = true,
-          float = {
-            border = "rounded",
-            source = true,
-          },
-          signs = {
-            text = {
-              [vim.diagnostic.severity.ERROR] = "",
-              [vim.diagnostic.severity.WARN]  = "",
-              [vim.diagnostic.severity.INFO]  = "",
-              [vim.diagnostic.severity.HINT]  = "󰋼",
+          -- Diagnostics config
+          vim.diagnostic.config({
+            virtual_text = false,
+            virtual_lines = true,
+            underline = true,
+            update_in_insert = false,
+            severity_sort = true,
+            float = {
+              border = "rounded",
+              source = true,
             },
-            numhl = {
-              [vim.diagnostic.severity.ERROR] = "ErrorMsg",
-              [vim.diagnostic.severity.WARN]  = "WarningMsg",
+            signs = {
+              text = {
+                [vim.diagnostic.severity.ERROR] = "",
+                [vim.diagnostic.severity.WARN]  = "",
+                [vim.diagnostic.severity.INFO]  = "",
+                [vim.diagnostic.severity.HINT]  = "󰋼",
+              },
+              numhl = {
+                [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+                [vim.diagnostic.severity.WARN]  = "WarningMsg",
+              },
             },
-          },
+          })
+
+          -- Transparency
+          vim.cmd [[
+            highlight Normal guibg=none
+            highlight NonText guibg=none
+            highlight Normal ctermbg=none
+            highlight NormalNC guibg=none
+           highlight NormalFloat guibg=none
+           highlight FloatBorder guibg=none
+           highlight Pmenu guibg=none
+           highlight PmenuSel guibg=none
+           highlight SignColumn guibg=none
+           highlight EndOfBuffer guibg=none
+           highlight NeoTreeNormal guibg=none
+           highlight NeoTreeNormalNC guibg=none
+           highlight NeoTreeEndOfBuffer guibg=none
+           highlight NeoTreeWinSeparator guibg=none
+           highlight TelescopeNormal guibg=none
+           highlight TelescopeBorder guibg=none
+           highlight WhichKeyFloat guibg=none
+           highlight BufferLineFill guibg=none
+           highlight BufferLineBackground guibg=none
+           highlight StatusLine guibg=none
+           highlight StatusLineNC guibg=none
+           highlight VertSplit guibg=none
+           highlight WinSeparator guibg=none
+           highlight NonText ctermbg=none
+          ]]
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = "markdown",
+          callback = function()
+            vim.opt_local.wrap = false
+            vim.opt_local.linebreak = false
+            vim.opt_local.textwidth = 0
+            vim.opt_local.formatoptions:remove({ "t", "c", "a" })
+          end,
         })
-
-        -- Transparency
-        vim.cmd [[
-          highlight Normal guibg=none
-          highlight NonText guibg=none
-          highlight Normal ctermbg=none
-          highlight NormalNC guibg=none
-         highlight NormalFloat guibg=none
-         highlight FloatBorder guibg=none
-         highlight Pmenu guibg=none
-         highlight PmenuSel guibg=none
-         highlight SignColumn guibg=none
-         highlight EndOfBuffer guibg=none
-         highlight NeoTreeNormal guibg=none
-         highlight NeoTreeNormalNC guibg=none
-         highlight NeoTreeEndOfBuffer guibg=none
-         highlight NeoTreeWinSeparator guibg=none
-         highlight TelescopeNormal guibg=none
-         highlight TelescopeBorder guibg=none
-         highlight WhichKeyFloat guibg=none
-         highlight BufferLineFill guibg=none
-         highlight BufferLineBackground guibg=none
-         highlight StatusLine guibg=none
-         highlight StatusLineNC guibg=none
-         highlight VertSplit guibg=none
-         highlight WinSeparator guibg=none
-         highlight NonText ctermbg=none
-        ]]
       '';
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "markdown",
-        callback = function()
-          vim.opt_local.wrap = false
-          vim.opt_local.linebreak = false
-          vim.opt_local.textwidth = 0
-          vim.opt_local.formatoptions:remove({ "t", "c", "a" })
-        end,
-      })
     };
   };
 
