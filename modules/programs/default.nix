@@ -116,6 +116,7 @@
     # infra-tools
     unstable.terraform
     unstable.opentofu
+    unstable.ansible
     terragrunt
     kubectl
     kubernetes-helm
