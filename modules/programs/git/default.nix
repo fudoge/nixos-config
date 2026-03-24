@@ -18,6 +18,7 @@
         email = "kchawoon@naver.com";
       };
       init.defaultBranch = "main";
+      credential."https://gitlab.com".helper = "!${lib.getExe pkgs.glab} auth git-credential";
     };
   };
 
