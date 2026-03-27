@@ -77,7 +77,7 @@
     nix-output-monitor
 
     # productivity
-    hugo
+    unstable.hugo
     glow
 
     # monitoring
