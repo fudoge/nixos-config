@@ -157,6 +157,8 @@
   };
   programs.zsh.enable = true;
 
+  programs.kdeconnect.enable = true;
+
   environment.variables = {
     EDITOR = "vim";
     QT_ICON_THEME = "Papirus-Dark";
