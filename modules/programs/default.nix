@@ -124,6 +124,7 @@
     argocd
     cilium-cli
     awscli
+    ssm-session-manager-plugin
     google-cloud-sdk
     unstable.supabase-cli
     eksctl
