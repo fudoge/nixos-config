@@ -93,6 +93,8 @@
       };
     };
   };
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
 
   # Enable sound.
   # services.pulseaudio.enable = true;
@@ -212,6 +214,7 @@
     winetricks
     bottles
     zoom-us
+    krita
 
     # virtualization
     virt-viewer
