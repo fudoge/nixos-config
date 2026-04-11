@@ -67,6 +67,7 @@
       fcitx5-gtk
       fcitx5-hangul
       qt6Packages.fcitx5-configtool
+      catppuccin-fcitx5
     ];
   };
 
@@ -171,6 +172,7 @@
     XMODIFIERS = "@im=fcitx";
     SDL_IM_MODULE = "fcitx";
     XDG_CURRENT_DESKTOP = "Hyprland";
+    NIXOS_OZONE_WL = "1";
   };
 
   # List packages installed in system profile.
