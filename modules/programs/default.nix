@@ -112,6 +112,7 @@
     # wayland
     dart-sass
     wl-clipboard
+    xclip
 
     # infra-tools
     unstable.terraform
