@@ -10,6 +10,5 @@
     ./sioyek
     ./anki
     ./notion
-    ./synology-chat
   ];
 }
