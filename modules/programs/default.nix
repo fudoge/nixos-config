@@ -41,10 +41,8 @@
     ripgrep
     jq
     yq-go
-    eza
     fzf
     skim
-    zoxide
     github-cli
     bat
     parted

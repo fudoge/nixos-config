@@ -66,31 +66,36 @@
     ...
   } @ inputs: let
     username = "chaewoon";
+
     mkPkgs = system: src:
       import src {
         inherit system;
         config.allowUnfree = true;
       };
   in {
-    # 🐧 NixOS
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
         specialArgs = {
           inherit inputs username;
-          system = "x86_64-linux";
         };
+
         modules = [
-          ({system, ...}: {
-            environment.systemPackages = [alejandra.defaultPackage.${system}];
+          ({pkgs, ...}: {
+            environment.systemPackages = [
+              pkgs.alejandra
+            ];
           })
+
           ./hosts/thinkpad/configuration.nix
-          {
-          }
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.backupFileExtension = "backup";
             home-manager.useUserPackages = true;
+
             home-manager.extraSpecialArgs = {
               inherit inputs username;
               platform = "linux-desktop";
@@ -98,6 +103,7 @@
               withHyprland = true;
               unstable = mkPkgs "x86_64-linux" inputs.nixpkgs-unstable;
             };
+
             home-manager.users.${username} = {
               imports = [
                 ./home/profiles/thinkpad.nix
@@ -107,25 +113,62 @@
           }
         ];
       };
+
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        specialArgs = {
+          inherit inputs username;
+        };
+
+        modules = [
+          nixos-wsl.nixosModules.default
+
+          ({pkgs, ...}: {
+            environment.systemPackages = [
+              pkgs.alejandra
+            ];
+          })
+
+          ./hosts/wsl/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.useUserPackages = true;
+
+            home-manager.extraSpecialArgs = {
+              inherit inputs username;
+              platform = "linux-wsl";
+              withGui = false;
+              withHyprland = false;
+              unstable = mkPkgs "x86_64-linux" inputs.nixpkgs-unstable;
+            };
+
+            home-manager.users.${username} = {
+              imports = [
+                ./home/profiles/wsl.nix
+                catppuccin.homeModules.catppuccin
+              ];
+            };
+          }
+        ];
+      };
     };
-    # 🍎 macOS
+
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
+
       specialArgs = {
         inherit inputs username;
       };
 
       modules = [
-        # Determinate manages Nix
         determinate.darwinModules.default
-
-        # Home Manager
         home-manager.darwinModules.home-manager
-
-        # Host-specific config
         ./hosts/macbook/configuration.nix
 
-        # Inline glue
         {
           nix.enable = false;
           system.stateVersion = 5;
@@ -134,6 +177,7 @@
             name = username;
             home = "/Users/${username}";
           };
+
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
