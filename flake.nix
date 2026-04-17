@@ -74,6 +74,7 @@
       };
   in {
     nixosConfigurations = {
+      # 🐧 ThinkPad
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
@@ -114,6 +115,7 @@
         ];
       };
 
+      # 🍫 Windows
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
@@ -157,6 +159,7 @@
       };
     };
 
+    # 🍎 MacOS
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
 

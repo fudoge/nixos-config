@@ -44,7 +44,6 @@
     fzf
     skim
     github-cli
-    bat
     parted
     fd
     pre-commit
