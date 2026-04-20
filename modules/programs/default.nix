@@ -121,7 +121,7 @@
     kubectx
     argocd
     cilium-cli
-    awscli
+    awscli2
     ssm-session-manager-plugin
     google-cloud-sdk
     unstable.supabase-cli
