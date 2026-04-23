@@ -225,6 +225,7 @@
     bottles
     zoom-us
     krita
+    bitwarden-desktop
 
     # virtualization
     virt-viewer
