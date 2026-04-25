@@ -126,6 +126,7 @@
     google-cloud-sdk
     unstable.supabase-cli
     eksctl
+    wrangler
 
     # dev
     go
