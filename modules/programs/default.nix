@@ -156,6 +156,10 @@
 
     # google
     inputs.gws-cli.packages.${pkgs.stdenv.hostPlatform.system}.gws
+
+    # icons
+    hicolor-icon-theme
+    adwaita-icon-theme
   ];
 
   gtk = {

@@ -34,6 +34,7 @@
         "ELECTRON_OZONE_PLATFORM_HINT,auto"
         "ELECTRON_ENABLE_WAYLAND,1"
         "QT_QPA_PLATFORMTHEME,hyprqt6engine"
+        "QS_ICON_THEME,hicolor"
       ];
       input = {
         kb_layout = "us";
