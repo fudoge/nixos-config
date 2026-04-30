@@ -208,11 +208,11 @@
     hyprpolkitagent
 
     # audio
-    pauvcontrol
+    pavucontrol
     helvum
     qpwgraph
     easyeffects
-    plmixer
+    pamixer
     playerctl
 
     # gui apps
