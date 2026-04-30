@@ -29,10 +29,10 @@
         env = {
           TERM = "ghostty";
         };
-        font_family = "JetBrains Mono Nerd Font";
+        font_family = "JetBrains Mono Nerd Font SemiBold";
         font_features = null;
         font_size = null;
-        line_height = "comfortable";
+        line_height = "standard";
         option_as_meta = false;
         shell = {
           program = "zsh";
