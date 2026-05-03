@@ -121,6 +121,7 @@
     kubectx
     argocd
     cilium-cli
+    kubeseal
     awscli2
     ssm-session-manager-plugin
     google-cloud-sdk
