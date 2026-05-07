@@ -28,7 +28,10 @@
     };
 
     # Extras
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nvf = {
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +52,10 @@
       url = "github:googleworkspace/cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -63,6 +70,7 @@
     nvf,
     caelestia-shell,
     alejandra,
+    spicetify-nix,
     ...
   } @ inputs: let
     username = "chaewoon";
@@ -109,6 +117,7 @@
               imports = [
                 ./home/profiles/thinkpad.nix
                 catppuccin.homeModules.catppuccin
+                spicetify-nix.homeManagerModules.default
               ];
             };
           }

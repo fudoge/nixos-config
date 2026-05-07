@@ -114,16 +114,22 @@
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
       ];
       decoration = {
+        rounding = 12;
         blur = {
+          enabled = true;
           size = 6;
           passes = 3;
           new_optimizations = true;
         };
       };
       windowrulev2 = [
+        # Dolphin
         "opacity 0.92 0.88,class:^(org.kde.dolphin)$"
         "float,class:^(org.kde.dolphin)$"
         "center,class:^(org.kde.dolphin)$"
+
+        # Spotify
+        "opacity 0.90 0.85,class:^(spotify)$"
       ];
     };
   };

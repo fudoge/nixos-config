@@ -51,8 +51,8 @@
       # =====================
       theme = {
         enable = true;
-        name = "catppuccin";
-        style = "frappe";
+        name = "rose-pine";
+        style = "moon";
       };
 
       visuals = {
@@ -208,7 +208,7 @@
       # =====================
       statusline.lualine = {
         enable = true;
-        theme = "catppuccin";
+        theme = "auto";
       };
 
       tabline.nvimBufferline.enable = true;
@@ -548,33 +548,6 @@
             },
           })
 
-          -- Transparency
-          vim.cmd [[
-            highlight Normal guibg=none
-            highlight NonText guibg=none
-            highlight Normal ctermbg=none
-            highlight NormalNC guibg=none
-           highlight NormalFloat guibg=none
-           highlight FloatBorder guibg=none
-           highlight Pmenu guibg=none
-           highlight PmenuSel guibg=none
-           highlight SignColumn guibg=none
-           highlight EndOfBuffer guibg=none
-           highlight NeoTreeNormal guibg=none
-           highlight NeoTreeNormalNC guibg=none
-           highlight NeoTreeEndOfBuffer guibg=none
-           highlight NeoTreeWinSeparator guibg=none
-           highlight TelescopeNormal guibg=none
-           highlight TelescopeBorder guibg=none
-           highlight WhichKeyFloat guibg=none
-           highlight BufferLineFill guibg=none
-           highlight BufferLineBackground guibg=none
-           highlight StatusLine guibg=none
-           highlight StatusLineNC guibg=none
-           highlight VertSplit guibg=none
-           highlight WinSeparator guibg=none
-           highlight NonText ctermbg=none
-          ]]
         vim.api.nvim_create_autocmd("FileType", {
           pattern = "markdown",
           callback = function()
@@ -584,6 +557,34 @@
             vim.opt_local.formatoptions:remove({ "t", "c", "a" })
           end,
         })
+
+        -- Transparency
+        vim.cmd [[
+          highlight Normal guibg=none
+          highlight NonText guibg=none
+          highlight Normal ctermbg=none
+          highlight NormalNC guibg=none
+          highlight NormalFloat guibg=none
+          highlight FloatBorder guibg=none
+          highlight Pmenu guibg=none
+          highlight PmenuSel guibg=none
+          highlight SignColumn guibg=none
+          highlight EndOfBuffer guibg=none
+          highlight NeoTreeNormal guibg=none
+          highlight NeoTreeNormalNC guibg=none
+          highlight NeoTreeEndOfBuffer guibg=none
+          highlight NeoTreeWinSeparator guibg=none
+          highlight TelescopeNormal guibg=none
+          highlight TelescopeBorder guibg=none
+          highlight WhichKeyFloat guibg=none
+          highlight BufferLineFill guibg=none
+          highlight BufferLineBackground guibg=none
+          highlight StatusLine guibg=none
+          highlight StatusLineNC guibg=none
+          highlight VertSplit guibg=none
+          highlight WinSeparator guibg=none
+          highlight NonText ctermbg=none
+        ]]
       '';
     };
   };
