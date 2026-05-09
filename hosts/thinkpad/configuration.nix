@@ -157,6 +157,8 @@
 
   # allow unfree softwares
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) ["corefonts"];
 
   programs.hyprland = {
     enable = true;

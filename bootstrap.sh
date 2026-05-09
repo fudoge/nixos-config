@@ -53,7 +53,10 @@ fi
 
 echo "❄️ Rebuilding with flake: $TARGET_HOST"
 if sudo nixos-rebuild switch --flake "/etc/nixos#$TARGET_HOST"; then
-    echo "Bootstrapping Success! 😊"
+    echo "Build Success! 😊"
 else
-    echo "Bootstrapping Failed.. 😿"
+    echo "Build Failed.. 😿"
+    exit 1
 fi
+
+echo "To update onlyoffice font, execute sync-onlyoffice-fonts"
