@@ -4,6 +4,8 @@
   lib,
   ...
 }: let
+  # Fonts copied into ~/.local/share/fonts/onlyoffice-nixos
+  # These are for ONLYOFFICE compatibility.
   onlyofficeFonts = with pkgs; [
     # General
     noto-fonts
@@ -15,14 +17,28 @@
     nanum
     nanum-gothic-coding
     pretendard
-    pretendard-jp
-    pretendard-std
 
     # Office compatibility
     corefonts
     liberation_ttf
 
     # Dev
+    nerd-fonts.jetbrains-mono
+  ];
+
+  # Fonts registered system-wide.
+  # Keep this smaller to avoid breaking browser font fallback.
+  systemFonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+
+    nanum
+    nanum-gothic-coding
+    pretendard
+
+    liberation_ttf
+
     nerd-fonts.jetbrains-mono
   ];
 
@@ -43,7 +59,7 @@
       echo "Syncing fonts for ONLYOFFICE..."
       mkdir -p "$target_dir"
 
-      # 오래된 복사본 제거
+      # Remove old copied font files
       find "$target_dir" -type f \( \
         -iname "*.ttf" -o \
         -iname "*.otf" -o \
@@ -87,5 +103,27 @@ in {
     syncOnlyOfficeFonts
   ];
 
-  fonts.packages = onlyofficeFonts;
+  fonts.packages = systemFonts;
+
+  fonts.fontconfig.defaultFonts = {
+    sansSerif = [
+      "Pretendard"
+      "Noto Sans CJK KR"
+      "Noto Sans"
+    ];
+
+    serif = [
+      "Noto Serif CJK KR"
+      "Noto Serif"
+    ];
+
+    monospace = [
+      "JetBrainsMono Nerd Font"
+      "NanumGothicCoding"
+    ];
+
+    emoji = [
+      "Noto Color Emoji"
+    ];
+  };
 }
