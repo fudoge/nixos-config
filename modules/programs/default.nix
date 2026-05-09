@@ -121,6 +121,7 @@
     kubectx
     argocd
     cilium-cli
+    istioctl
     kubeseal
     awscli2
     ssm-session-manager-plugin
@@ -134,6 +135,7 @@
     python3
     rustup
     nodejs
+    unstable.devenv
 
     # hyprpapers
     grim
