@@ -242,6 +242,7 @@
     zoom-us
     krita
     bitwarden-desktop
+    filezilla
 
     # virtualization
     virt-viewer
