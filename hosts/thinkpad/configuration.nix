@@ -243,6 +243,7 @@
     krita
     bitwarden-desktop
     filezilla
+    kiro
 
     # virtualization
     virt-viewer
