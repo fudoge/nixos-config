@@ -5,8 +5,8 @@
   ...
 }: {
   imports = [
+    ./nvf
     ./vscode
     ./zed
-    ./nvf
   ];
 }
