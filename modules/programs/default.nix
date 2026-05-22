@@ -114,6 +114,8 @@
     # infra-tools
     unstable.terraform
     unstable.opentofu
+    terragrunt
+    # unstable.tenv
     unstable.ansible
     terragrunt
     kubectl
