@@ -3,27 +3,42 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  hyprland = config.programs.hyprland.package;
+  startHyprland = lib.getExe' hyprland "start-hyprland";
+  hyprctl = lib.getExe' hyprland "hyprctl";
+  dbusRunSession = lib.getExe' pkgs.dbus "dbus-run-session";
+
+  regreetSession = pkgs.writeShellScript "regreet-session" ''
+    export GDK_BACKEND=wayland
+    export XDG_SESSION_TYPE=wayland
+    export XDG_CURRENT_DESKTOP=Hyprland
+
+    ${pkgs.regreet}/bin/regreet --config /etc/greetd/regreet.toml
+    ${hyprctl} dispatch exit
+  '';
+in {
+  programs.hyprland.enable = true;
+
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland --config /etc/greetd/hyprland.conf";
+        command = "${dbusRunSession} ${startHyprland} -- -c /etc/greetd/hyprland.conf";
         user = "greeter";
       };
     };
   };
 
-  programs.hyprland.enable = true;
-
   environment.etc."greetd/hyprland.conf".text = ''
     monitor = ,preferred,auto,1
 
-    exec-once = ${pkgs.regreet}/bin/regreet; hyprctl dispatch exit
+    exec-once = ${regreetSession}
 
     misc {
-        disable_hyprland_logo = true
-        disable_splash_rendering = true
+      disable_hyprland_logo = true
+      disable_splash_rendering = true
+      disable_hyprland_guiutils_check = true
     }
   '';
 

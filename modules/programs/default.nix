@@ -114,23 +114,21 @@
     # infra-tools
     unstable.terraform
     unstable.opentofu
-    terragrunt
-    # unstable.tenv
+    unstable.terragrunt
     unstable.ansible
-    terragrunt
-    kubectl
-    kubernetes-helm
-    kubectx
-    argocd
-    cilium-cli
-    istioctl
-    kubeseal
-    awscli2
-    ssm-session-manager-plugin
-    google-cloud-sdk
+    unstable.kubectl
+    unstable.kubernetes-helm
+    unstable.kubectx
+    unstable.argocd
+    unstable.cilium-cli
+    unstable.istioctl
+    unstable.kubeseal
+    unstable.awscli2
+    unstable.ssm-session-manager-plugin
+    unstable.google-cloud-sdk
     unstable.supabase-cli
-    eksctl
-    wrangler
+    unstable.eksctl
+    unstable.wrangler
 
     # dev
     go

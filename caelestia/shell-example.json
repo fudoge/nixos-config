@@ -1,0 +1,94 @@
+{
+    "background": {
+        "desktopClock": {
+            "background": {
+                "enabled": false
+            },
+            "enabled": true
+        },
+        "visualiser": {
+            "autoHide": false,
+            "enabled": false
+        }
+    },
+    "bar": {
+        "activeWindow": {
+            "compact": true,
+            "inverted": false
+        },
+        "clock": {
+            "background": false,
+            "showDate": true,
+            "showIcon": true
+        },
+        "excludedScreens": [
+        ],
+        "popouts": {
+            "statusIcons": true
+        },
+        "scrollActions": {
+            "brightness": true,
+            "volume": true,
+            "workspaces": true
+        },
+        "status": {
+            "showAudio": true,
+            "showBattery": true,
+            "showBluetooth": true,
+            "showKbLayout": false,
+            "showLockStatus": true,
+            "showMicrophone": true,
+            "showNetwork": true,
+            "showWifi": true
+        },
+        "tray": {
+            "background": false,
+            "compact": true,
+            "recolour": false
+        },
+        "workspaces": {
+            "activeIndicator": true,
+            "occupiedBg": true,
+            "perMonitorWorkspaces": true,
+            "showWindows": true,
+            "shown": 5
+        }
+    },
+    "dashboard": {
+        "performance": {
+            "showBattery": true
+        }
+    },
+    "launcher": {
+        "enableDangerousActions": false,
+        "favouriteApps": [
+        ],
+        "showOnHover": false,
+        "useFuzzy": {
+            "actions": true,
+            "apps": true,
+            "schemes": true,
+            "variants": true,
+            "wallpapers": true
+        },
+        "vimKeybinds": true
+    },
+    "notifs": {
+        "openExpanded": false
+    },
+    "utilities": {
+        "vpn": {
+            "provider": [
+                {
+                    "displayName": "Tailscale",
+                    "enabled": true,
+                    "interface": "tailscale0",
+                    "name": "tailscale"
+                }
+            ]
+        }
+    },
+    "services": {
+        "useFahrenheit": false
+    }
+}

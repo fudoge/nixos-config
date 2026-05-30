@@ -128,6 +128,7 @@
 
   # dbus
   services.dbus.enable = true;
+  services.accounts-daemon.enable = true;
 
   # polkit
   security.polkit.enable = true;
@@ -159,6 +160,10 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) ["corefonts"];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10"
+  ];
 
   programs.hyprland = {
     enable = true;
@@ -205,6 +210,7 @@
     gtksourceview3
     cdrtools
     tcpdump
+    util-linux
 
     termdown
     tomato-c
@@ -214,7 +220,7 @@
 
     # audio
     pavucontrol
-    helvum
+    crosspipe
     qpwgraph
     easyeffects
     pamixer
@@ -244,6 +250,7 @@
     bitwarden-desktop
     filezilla
     kiro
+    vlc
 
     # virtualization
     virt-viewer
@@ -291,5 +298,5 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 }

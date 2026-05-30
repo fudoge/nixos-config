@@ -146,7 +146,7 @@
         };
         go.enable = true;
         python.enable = true;
-        ts.enable = true;
+        typescript.enable = true;
         html = {
           enable = true;
           treesitter = {
@@ -179,13 +179,13 @@
       autocomplete.nvim-cmp = {
         enable = true;
         mappings = {
-          confirm = "<CR>";
+          confirm = "<C-y>";
           complete = "<C-Space>";
-          scrollDocsUp = "<C-b>";
-          scrollDocsDown = "<C-f>";
+          scrollDocsUp = "<A-k>";
+          scrollDocsDown = "<A-j>";
           close = "<C-e>";
-          next = "<C-n>";
-          previous = "<C-p>";
+          next = "<C-j>";
+          previous = "<C-k>";
         };
 
         setupOpts = {
@@ -522,6 +522,35 @@
 
           -- Scroll offset
           vim.opt.scrolloff = 10
+
+          -- Language-specific indentation
+          vim.api.nvim_create_autocmd("FileType", {
+            pattern = {
+              "nix",
+              "yaml",
+              "json",
+              "jsonc",
+              "hcl",
+              "terraform",
+              "html",
+              "css",
+              "scss",
+              "javascript",
+              "typescript",
+              "javascriptreact",
+              "typescriptreact",
+              "vue",
+              "svelte",
+              "lua",
+            },
+            callback = function()
+              vim.opt_local.tabstop = 2
+              vim.opt_local.shiftwidth = 2
+              vim.opt_local.softtabstop = 2
+              vim.opt_local.expandtab = true
+              vim.opt_local.smartindent = false
+            end,
+          })
 
           -- Diagnostics config
           vim.diagnostic.config({

@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./wlogout
-    ./vicinae
     ./caelestia
   ];
 }

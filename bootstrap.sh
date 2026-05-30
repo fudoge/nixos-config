@@ -38,9 +38,9 @@ cp -r ./scripts/* ~/.local/bin/
 chmod +x $BIN_DIR/*
 
 echo "🖼️ Setting default wallpaper..."
-mkdir -p "$HOME/Pictures/wallpapers"
-if [[ ! -f "$HOME/Pictures/wallpapers/nix-black-4k.png" ]]; then
-    cp "assets/wallpapers/nix-black-4k.png" "$HOME/Pictures/wallpapers/nix-black-4k.png"
+mkdir -p "$HOME/Pictures/Wallpapers"
+if [[ ! -f "$HOME/Pictures/Wallpapers/nix-black-4k.png" ]]; then
+    cp "assets/wallpapers/nix-black-4k.png" "$HOME/Pictures/Wallpapers/nix-black-4k.png"
 fi
 
 echo "🪝 Adding Untracked files..."

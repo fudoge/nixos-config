@@ -12,13 +12,6 @@
       environment = [];
     };
 
-    settings = {
-      services = {
-        useFahrenheit = false;
-        useFahrenheitPerformance = false;
-      };
-    };
-
     cli = {
       enable = true;
       settings = {

@@ -2,11 +2,15 @@
 
 My NixOS dots.
 
+---
+
 ## 🚀 Bootstrapping
 
 ```bash
 ./bootstrap.sh thinkpad # nix profile
 ```
+
+---
 
 ## 🍏 Nix-Darwin
 
@@ -24,12 +28,16 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 ### Apply
 
 ```bash
-sudo -H nix run nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake .#macbook
+sudo -H nix run nix-darwin/nix-darwin-26.05#darwin-rebuild -- switch --flake .#macbook
 ```
+
+---
 
 ## 🍫 NixOS-WSL
 
 [Visit NixOS-WSL](https://github.com/nix-community/NixOS-WSL)
+
+---
 
 ## 🔒 Google Drive authentication
 
@@ -54,6 +62,8 @@ Interactions:
 ```bash
 systemctl restart --user gdrive-mount
 ```
+
+---
 
 ## ✍️ Neovim (nvf) keybindings
 
@@ -139,10 +149,22 @@ Leader key: `<Space>`
 
 | Mode | Key         | Action           |
 | ---- | ----------- | ---------------- |
-| i    | `<CR>`      | Confirm          |
+| i    | `<C-y>`     | Confirm          |
 | i    | `<C-Space>` | Complete         |
-| i    | `<C-b>`     | Scroll docs up   |
-| i    | `<C-f>`     | Scroll docs down |
+| i    | `<A-k>`     | Scroll docs up   |
+| i    | `<A-j>`     | Scroll docs down |
 | i    | `<C-e>`     | Close            |
-| i    | `<C-n>`     | Next item        |
-| i    | `<C-p>`     | Prev item        |
+| i    | `<C-j>`     | Next item        |
+| i    | `<C-k>`     | Prev item        |
+
+---
+
+## Caelestia Shell
+
+Currently, Caelestia config is not managed by Nix.
+
+Instead, you can manually import setup from `caelestia/shell-example.json`
+
+```bash
+cp caelestia/shell-example.json ~/.config/caelestia/shell.json
+```
