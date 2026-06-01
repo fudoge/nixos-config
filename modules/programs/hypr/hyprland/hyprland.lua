@@ -99,8 +99,7 @@ for i = 1, 10 do
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
--- 기존 focuscurrentorlast는 일단 hyprctl로 보존
-hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("hyprctl dispatch focuscurrentorlast"))
+hl.bind(mainMod .. " + Tab", hl.dsp.focus({ last = true }))
 
 -- Scroll through existing workspaces
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
