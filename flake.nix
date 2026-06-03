@@ -88,6 +88,7 @@
 
         specialArgs = {
           inherit inputs username;
+          unstable = mkPkgs "x86_64-linux" inputs.nixpkgs-unstable;
         };
 
         modules = [
@@ -130,6 +131,7 @@
 
         specialArgs = {
           inherit inputs username;
+          unstable = mkPkgs "x86_64-linux" inputs.nixpkgs-unstable;
         };
 
         modules = [
