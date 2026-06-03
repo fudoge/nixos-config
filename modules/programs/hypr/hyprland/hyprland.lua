@@ -1,6 +1,9 @@
 ----------------
 -- Programs
 ----------------
+---@diagnostic disable-next-line: undefined-global
+local hl = hl
+
 local terminal = "ghostty"
 local fileManager = "dolphin"
 local mainMod = "ALT"
