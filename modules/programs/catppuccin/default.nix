@@ -5,6 +5,7 @@
   ...
 }: {
   catppuccin = {
+    autoEnable = true;
     enable = true;
     flavor = "frappe";
 
