@@ -72,6 +72,10 @@ hl.config({
 			passes = 3,
 		},
 	},
+
+	misc = {
+		allow_session_lock_restore = true,
+	},
 })
 
 ----------------
@@ -84,7 +88,7 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("caelestia shell drawers toggle l
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("ghostty -e yazi"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("wlogout"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("wlogout --buttons-per-row 3 --column-spacing 24 --row-spacing 24 --margin 260"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 hl.bind(mainMod .. " + C", hl.dsp.window.move({ workspace = "special" }))
 hl.bind(mainMod .. " + X", hl.dsp.workspace.toggle_special(""))
