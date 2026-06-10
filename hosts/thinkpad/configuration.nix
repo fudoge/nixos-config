@@ -127,6 +127,10 @@
   # upower
   services.upower.enable = true;
 
+  services.udev.packages = [
+    pkgs.brightnessctl
+  ];
+
   # dbus
   services.dbus.enable = true;
   services.accounts-daemon.enable = true;
@@ -141,6 +145,7 @@
       "wheel"
       "networkmanager"
       "power"
+      "video"
       "docker"
       "libvirtd"
     ]; # Enable ‘sudo’ for the user.

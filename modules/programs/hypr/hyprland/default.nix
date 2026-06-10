@@ -10,6 +10,10 @@
 
     settings = {};
 
-    extraConfig = builtins.readFile ./hyprland.lua;
+    extraConfig =
+      builtins.replaceStrings
+      ["@brightnessctl@"]
+      ["${lib.getExe pkgs.brightnessctl}"]
+      (builtins.readFile ./hyprland.lua);
   };
 }
