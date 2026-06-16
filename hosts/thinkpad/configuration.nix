@@ -15,7 +15,7 @@
     ../../modules/nixos/tailscale.nix
     ../../modules/nixos/power-management.nix
     ../../modules/nixos/battery-charge-limit.nix
-    ../../modules/nixos/docker.nix
+    ../../modules/nixos/container.nix
     ../../modules/nixos/kvm.nix
     ../../modules/nixos/iphone-connectivity.nix
     ../../modules/nixos/gns3.nix
