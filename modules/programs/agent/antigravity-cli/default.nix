@@ -5,7 +5,7 @@
   unstable,
   ...
 }: {
-  programs.gemini-cli = {
+  programs.antigravity-cli = {
     enable = true;
     package = unstable.gemini-cli;
     settings = {

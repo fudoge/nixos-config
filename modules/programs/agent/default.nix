@@ -7,7 +7,7 @@
   imports = [
     ./codex
     ./claude-code
-    ./gemini-cli
+    ./antigravity-cli
     ./opencode
   ];
 }
