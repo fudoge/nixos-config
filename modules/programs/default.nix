@@ -137,6 +137,7 @@
     nodejs
     unstable.devenv
     unstable.uv
+    unstable.pipx
 
     # hyprpapers
     grim
