@@ -136,6 +136,7 @@
     rustup
     nodejs
     unstable.devenv
+    unstable.uv
 
     # hyprpapers
     grim
