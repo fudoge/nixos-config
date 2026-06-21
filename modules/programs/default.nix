@@ -4,170 +4,195 @@
   lib,
   inputs,
   unstable,
+  hostFeatures ? {},
   ...
-}: {
-  imports = [
-    ./git
-    ./fetches
-    ./other-tools
-    ./infra-tools
-    ./app
-    ./catppuccin
-    ./editors
-    ./hypr
-    ./terminals
-    ./wayland
-    ./filemanager
-    ./kde
-    ./rclone
-    ./agent
-    ./email
-  ];
-  home.packages = with pkgs; [
-    # fetches
-    fastfetch
-    nitch
-    pfetch
-    onefetch
+}: let
+  cfg =
+    {
+      name = "unknown";
+      platform = "unknown";
+      isNixOS = false;
+      isWsl = false;
+      isDarwin = false;
+      withGui = false;
+      withWayland = false;
+      withHyprland = false;
+      withDesktopApps = false;
+      withInfraTools = true;
+      withRclone = false;
+      withEmail = false;
+      withSpicetify = false;
+    }
+    // hostFeatures;
 
-    # archives
-    nnn
-    zip
-    xz
-    unzip
-    p7zip
+  isLinuxTarget = cfg.isNixOS || cfg.isWsl;
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
+  system = pkgs.stdenv.hostPlatform.system;
+  gws = inputs.gws-cli.packages.${system}.gws or null;
+in {
+  imports =
+    [
+      ./git
+      ./fetches
+      ./catppuccin
+      ./editors
+      ./filemanager
+      ./agent
+    ]
+    ++ lib.optionals cfg.withInfraTools [./infra-tools]
+    ++ lib.optionals cfg.withDesktopApps [
+      ./app
+    ]
+    ++ lib.optionals cfg.withGui [
+      ./terminals
+      ./kde
+      ./other-tools
+    ]
+    ++ lib.optionals (isLinuxTarget && cfg.withWayland) [./wayland]
+    ++ lib.optionals (isLinuxTarget && cfg.withHyprland) [./hypr]
+    ++ lib.optionals (isLinuxTarget && cfg.withRclone) [./rclone]
+    ++ lib.optionals (cfg.withEmail) [./email];
 
-    # utils
-    ripgrep
-    jq
-    yq-go
-    fzf
-    skim
-    github-cli
-    parted
-    fd
-    pre-commit
+  home.packages = with pkgs;
+    [
+      # archives
+      nnn
+      zip
+      xz
+      unzip
+      p7zip
 
-    # networking
-    mtr
-    iperf3
-    dnsutils
-    ldns
-    aria2
-    socat
-    nmap
-    ipcalc
+      # utils
+      ripgrep
+      jq
+      yq-go
+      fzf
+      skim
+      github-cli
+      fd
+      pre-commit
 
-    # misc
-    cowsay
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
-    chafa
+      # networking
+      iperf3
+      dnsutils
+      ldns
+      aria2
+      socat
+      nmap
+      ipcalc
 
-    # nix related
-    nix-output-monitor
+      # misc
+      cowsay
+      file
+      which
+      tree
+      gnused
+      gnutar
+      gawk
+      zstd
+      gnupg
+      chafa
 
-    # productivity
-    unstable.hugo
-    glow
+      # nix related
+      nix-output-monitor
 
-    # monitoring
-    btop
-    iotop
-    iftop
-    bottom
+      # productivity
+      unstable.hugo
+      glow
 
-    # syscall monitoring
-    lsof
-    strace
-    ltrace
+      # monitoring
+      btop
+      bottom
 
-    # system tools
-    sysstat
-    lm_sensors
-    ethtool
-    dnsutils
-    pciutils
-    usbutils
+      # shell configurations
+      zsh-fast-syntax-highlighting
+      zsh-autosuggestions
 
-    # guis
-    hyprland
+      # node
+      yarn
 
-    # shell configurations
-    zsh-fast-syntax-highlighting
-    zsh-autosuggestions
+      # dev
+      go
+      python3
+      rustup
+      nodejs
+      unstable.devenv
+      unstable.uv
+      unstable.pipx
+    ]
+    ++ lib.optionals isLinux [
+      # linux networking and system tools
+      mtr
+      parted
+      iotop
+      iftop
+      lsof
+      strace
+      ltrace
+      sysstat
+      lm_sensors
+      ethtool
+      pciutils
+      usbutils
+    ]
+    ++ lib.optionals isDarwin [
+      mtr
+      lsof
+    ]
+    ++ lib.optionals cfg.withInfraTools [
+      unstable.terraform
+      unstable.opentofu
+      unstable.terragrunt
+      unstable.ansible
+      unstable.kubectl
+      unstable.kubernetes-helm
+      unstable.kubectx
+      unstable.argocd
+      unstable.cilium-cli
+      unstable.istioctl
+      unstable.kubeseal
+      unstable.awscli2
+      unstable.google-cloud-sdk
+      unstable.supabase-cli
+      unstable.eksctl
+      unstable.wrangler
+    ]
+    ++ lib.optionals (isLinux && cfg.withInfraTools) [
+      unstable.ssm-session-manager-plugin
+    ]
+    ++ lib.optionals (isLinux && cfg.withWayland) [
+      dart-sass
+      wl-clipboard
+      xclip
+      grim
+      grimblast
+      slurp
+      libnotify
+    ]
+    ++ lib.optionals (isLinux && cfg.withHyprland) [
+      hyprland
+    ]
+    ++ lib.optionals (isLinux && cfg.withGui) [
+      # image/pdf rendering and preview helpers
+      tdf
+      ffmpegthumbnailer
+      poppler
+      imagemagick
+      ueberzugpp
 
-    # node
-    yarn
+      # icons
+      hicolor-icon-theme
+      adwaita-icon-theme
+    ]
+    ++ lib.optionals (isLinux && cfg.withRclone) [
+      rclone
+    ]
+    ++ lib.optionals (gws != null) [
+      gws
+    ];
 
-    # wayland
-    dart-sass
-    wl-clipboard
-    xclip
-
-    # infra-tools
-    unstable.terraform
-    unstable.opentofu
-    unstable.terragrunt
-    unstable.ansible
-    unstable.kubectl
-    unstable.kubernetes-helm
-    unstable.kubectx
-    unstable.argocd
-    unstable.cilium-cli
-    unstable.istioctl
-    unstable.kubeseal
-    unstable.awscli2
-    unstable.ssm-session-manager-plugin
-    unstable.google-cloud-sdk
-    unstable.supabase-cli
-    unstable.eksctl
-    unstable.wrangler
-
-    # dev
-    go
-    python3
-    rustup
-    nodejs
-    unstable.devenv
-    unstable.uv
-    unstable.pipx
-
-    # hyprpapers
-    grim
-    grimblast
-    slurp
-    libnotify
-
-    # image rendering
-    chafa
-    # pdf rendering
-    tdf
-
-    # yazi
-    ffmpegthumbnailer
-    poppler
-    imagemagick
-    ueberzugpp
-
-    # rclone
-    rclone
-
-    # google
-    inputs.gws-cli.packages.${pkgs.stdenv.hostPlatform.system}.gws
-
-    # icons
-    hicolor-icon-theme
-    adwaita-icon-theme
-  ];
-
-  gtk = {
+  gtk = lib.mkIf (isLinux && cfg.withGui) {
     enable = true;
     theme = {
       name = "Catppuccin-Mocha-Standard";
@@ -187,10 +212,10 @@
     };
   };
 
-  xdg = {
+  xdg = lib.mkIf (isLinux && cfg.withGui) {
     enable = true;
 
-    portal = {
+    portal = lib.mkIf cfg.withWayland {
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-hyprland

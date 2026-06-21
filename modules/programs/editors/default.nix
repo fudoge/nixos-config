@@ -2,11 +2,17 @@
   config,
   pkgs,
   lib,
+  hostFeatures ? {},
   ...
-}: {
-  imports = [
-    ./nvf
-    ./vscode
-    ./zed
-  ];
+}: let
+  cfg = {withGui = false;} // hostFeatures;
+in {
+  imports =
+    [
+      ./nvf
+    ]
+    ++ lib.optionals cfg.withGui [
+      ./vscode
+      ./zed
+    ];
 }

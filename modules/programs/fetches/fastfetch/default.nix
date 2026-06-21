@@ -3,8 +3,10 @@
   pkgs,
   lib,
   withGui ? false,
+  hostFeatures ? {},
   ...
 }: let
+  cfg = {inherit withGui;} // hostFeatures;
   # Fastfetch layout adapted from borko17/fastfetch-config:
   # https://github.com/borko17/fastfetch-config
   esc = builtins.fromJSON ''"\u001b"'';
@@ -15,7 +17,7 @@ in {
     enable = true;
     settings = {
       logo =
-        if withGui
+        if cfg.withGui
         then {
           type = "kitty";
           source = "${logoImage}";

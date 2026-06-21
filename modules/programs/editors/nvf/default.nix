@@ -179,13 +179,13 @@
       autocomplete.nvim-cmp = {
         enable = true;
         mappings = {
-          confirm = "<C-y>";
+          confirm = "<CR>";
           complete = "<C-Space>";
-          scrollDocsUp = "<A-k>";
-          scrollDocsDown = "<A-j>";
+          scrollDocsUp = "<C-b>";
+          scrollDocsDown = "<C-f>";
           close = "<C-e>";
-          next = "<C-j>";
-          previous = "<C-k>";
+          next = "<C-n>";
+          previous = "<C-p>";
         };
 
         setupOpts = {

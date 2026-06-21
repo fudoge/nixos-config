@@ -2,10 +2,16 @@
   config,
   pkgs,
   lib,
+  hostFeatures ? {},
   ...
-}: {
-  imports = [
-    ./cava
-    ./spicetify
-  ];
+}: let
+  cfg = {withSpicetify = false;} // hostFeatures;
+in {
+  imports =
+    [
+      ./cava
+    ]
+    ++ lib.optionals cfg.withSpicetify [
+      ./spicetify
+    ];
 }

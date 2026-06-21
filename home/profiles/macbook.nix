@@ -4,8 +4,8 @@
   ...
 }: {
   imports = [
+    ../../modules/programs
     ../../modules/shell
-    ../../modules/programs/editors/nvf
   ];
 
   home.username = username;

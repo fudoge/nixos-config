@@ -2,8 +2,11 @@
   config,
   pkgs,
   lib,
+  hostFeatures ? {},
   ...
-}: {
+}: let
+  cfg = {withWayland = false;} // hostFeatures;
+in {
   programs.aerc = {
     enable = true;
   };
@@ -34,7 +37,7 @@
 
   # Hyprland / Wayland: force native Wayland backend for Mozilla apps.
   # Thunderbird uses the same MOZ_ENABLE_WAYLAND switch.
-  home.sessionVariables = {
+  home.sessionVariables = lib.mkIf cfg.withWayland {
     MOZ_ENABLE_WAYLAND = "1";
   };
 }

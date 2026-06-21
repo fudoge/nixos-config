@@ -80,6 +80,38 @@
         inherit system;
         config.allowUnfree = true;
       };
+
+    mkHostFeatures = {
+      name,
+      platform,
+      isNixOS ? false,
+      isWsl ? false,
+      isDarwin ? false,
+      withGui ? false,
+      withWayland ? false,
+      withHyprland ? false,
+      withDesktopApps ? false,
+      withInfraTools ? true,
+      withRclone ? false,
+      withEmail ? false,
+      withSpicetify ? false,
+    }: {
+      inherit
+        name
+        platform
+        isNixOS
+        isWsl
+        isDarwin
+        withGui
+        withWayland
+        withHyprland
+        withDesktopApps
+        withInfraTools
+        withRclone
+        withEmail
+        withSpicetify
+        ;
+    };
   in {
     nixosConfigurations = {
       # 🐧 ThinkPad
@@ -108,9 +140,18 @@
 
             home-manager.extraSpecialArgs = {
               inherit inputs username;
-              platform = "linux-desktop";
-              withGui = true;
-              withHyprland = true;
+              hostFeatures = mkHostFeatures {
+                name = "thinkpad";
+                platform = "linux-desktop";
+                isNixOS = true;
+                withGui = true;
+                withWayland = true;
+                withHyprland = true;
+                withDesktopApps = true;
+                withRclone = true;
+                withEmail = true;
+                withSpicetify = true;
+              };
               unstable = mkPkgs "x86_64-linux" inputs.nixpkgs-unstable;
             };
 
@@ -153,9 +194,12 @@
 
             home-manager.extraSpecialArgs = {
               inherit inputs username;
-              platform = "linux-wsl";
-              withGui = false;
-              withHyprland = false;
+              hostFeatures = mkHostFeatures {
+                name = "wsl";
+                platform = "linux-wsl";
+                isNixOS = true;
+                isWsl = true;
+              };
               unstable = mkPkgs "x86_64-linux" inputs.nixpkgs-unstable;
             };
 
@@ -197,7 +241,15 @@
 
           home-manager.extraSpecialArgs = {
             inherit inputs username;
-            platform = "darwin";
+            hostFeatures = mkHostFeatures {
+              name = "macbook";
+              platform = "darwin";
+              isDarwin = true;
+              withGui = true;
+              withDesktopApps = false;
+              withInfraTools = true;
+            };
+            unstable = mkPkgs "aarch64-darwin" inputs.nixpkgs-unstable;
           };
 
           home-manager.users.${username}.imports = [

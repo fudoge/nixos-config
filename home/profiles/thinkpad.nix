@@ -1,10 +1,4 @@
-{
-  pkgs,
-  username,
-  withGui,
-  withHyprland,
-  ...
-}: {
+{username, ...}: {
   imports = [
     ../../modules/programs
     ../../modules/shell

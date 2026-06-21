@@ -39,6 +39,119 @@ sudo -H nix run nix-darwin/nix-darwin-26.05#darwin-rebuild -- switch --flake .#m
 
 ---
 
+## 🧩 Host feature flags
+
+Home-Manager modules are shared across NixOS, NixOS-WSL, and nix-darwin.
+Host-specific behavior is controlled through the `hostFeatures` attrset in
+`flake.nix`.
+
+Each host passes `hostFeatures` through `home-manager.extraSpecialArgs`:
+
+```nix
+hostFeatures = mkHostFeatures {
+  name = "thinkpad";
+  platform = "linux-desktop";
+  isNixOS = true;
+  withGui = true;
+  withWayland = true;
+  withHyprland = true;
+  withDesktopApps = true;
+  withRclone = true;
+  withEmail = true;
+  withSpicetify = true;
+};
+```
+
+The shared program entrypoint is `modules/programs/default.nix`. It always
+imports the core CLI modules, then conditionally imports desktop, Wayland,
+Hyprland, and service-specific modules from `hostFeatures`.
+
+Current flags:
+
+| Flag              | Meaning                                                    |
+| ----------------- | ---------------------------------------------------------- |
+| `name`            | Logical host name, for host-specific checks if needed      |
+| `platform`        | Human-readable platform group, such as `linux-desktop`     |
+| `isNixOS`         | True for NixOS-based hosts, including WSL                  |
+| `isWsl`           | True for the NixOS-WSL host                                |
+| `isDarwin`        | True for nix-darwin hosts                                  |
+| `withGui`         | Enable GUI-capable Home-Manager modules and GUI settings   |
+| `withWayland`     | Enable Wayland-specific modules and packages               |
+| `withHyprland`    | Enable Hyprland-specific Home-Manager modules              |
+| `withDesktopApps` | Enable Linux desktop app modules such as Vesktop and Anki  |
+| `withInfraTools`  | Enable Kubernetes, Terraform, cloud, and related tooling    |
+| `withRclone`      | Enable the user `gdrive-mount` systemd service             |
+| `withEmail`       | Enable email clients and email-related session variables   |
+| `withSpicetify`   | Enable Spicetify; requires its Home-Manager module import  |
+
+### Adding a new host
+
+1. Add the NixOS or darwin configuration in `flake.nix`.
+2. Create a matching profile under `home/profiles/`.
+3. Import `../../modules/programs` and `../../modules/shell` from that profile.
+4. Pass a `hostFeatures = mkHostFeatures { ... };` value through
+   `home-manager.extraSpecialArgs`.
+5. Only import external Home-Manager modules in the host when a feature actually
+   needs them. For example, `spicetify-nix.homeManagerModules.default` is only
+   imported by the ThinkPad host because only that host enables `withSpicetify`.
+
+### Adding a new feature flag
+
+Add the flag with a conservative default in `mkHostFeatures`, then add the same
+default in `modules/programs/default.nix`:
+
+```nix
+mkHostFeatures = {
+  withFoo ? false,
+  ...
+}: {
+  inherit withFoo;
+};
+```
+
+```nix
+cfg =
+  {
+    withFoo = false;
+  }
+  // hostFeatures;
+```
+
+Use it with `lib.optionals` for imports or package lists:
+
+```nix
+imports =
+  [
+    ./git
+    ./fetches
+  ]
+  ++ lib.optionals cfg.withFoo [./foo];
+```
+
+Use `lib.mkIf` for option definitions:
+
+```nix
+programs.foo = lib.mkIf cfg.withFoo {
+  enable = true;
+};
+```
+
+Important: avoid reading `pkgs`, `config`, or evaluated options while computing
+`imports`. Nix evaluates module imports before the full module graph is built, so
+imports should depend only on plain values passed through `hostFeatures`.
+
+For platform-specific packages or settings, use `pkgs.stdenv.hostPlatform` inside
+normal option definitions, not while deciding imports:
+
+```nix
+home.packages =
+  []
+  ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [pkgs.strace]
+  ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [pkgs.mtr];
+```
+
+---
+
 ## 🔒 Google Drive authentication
 
 ```bash
@@ -149,13 +262,13 @@ Leader key: `<Space>`
 
 | Mode | Key         | Action           |
 | ---- | ----------- | ---------------- |
-| i    | `<C-y>`     | Confirm          |
+| i    | `<CR>`      | Confirm          |
 | i    | `<C-Space>` | Complete         |
-| i    | `<A-k>`     | Scroll docs up   |
-| i    | `<A-j>`     | Scroll docs down |
+| i    | `<C-b>`     | Scroll docs up   |
+| i    | `<C-f>`     | Scroll docs down |
 | i    | `<C-e>`     | Close            |
-| i    | `<C-j>`     | Next item        |
-| i    | `<C-k>`     | Prev item        |
+| i    | `<C-n>`     | Next item        |
+| i    | `<C-p>`     | Prev item        |
 
 ---
 
