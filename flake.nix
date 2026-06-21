@@ -112,7 +112,64 @@
         withSpicetify
         ;
     };
+
+    systems = [
+      "x86_64-linux"
+      "aarch64-darwin"
+    ];
+
+    forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
+    formatter = forAllSystems (
+      system: let
+        pkgs = mkPkgs system nixpkgs;
+      in
+        pkgs.writeShellApplication {
+          name = "nix-format";
+          runtimeInputs = [
+            pkgs.alejandra
+          ];
+          text = ''
+            if [ "$#" -eq 0 ]; then
+              exec alejandra .
+            fi
+
+            exec alejandra "$@"
+          '';
+        }
+    );
+
+    checks = forAllSystems (
+      system: let
+        pkgs = mkPkgs system nixpkgs;
+      in {
+        format =
+          pkgs.runCommand "check-format"
+          {
+            nativeBuildInputs = [
+              pkgs.alejandra
+            ];
+          }
+          ''
+            alejandra --check ${self}
+            touch $out
+          '';
+      }
+    );
+
+    devShells = forAllSystems (
+      system: let
+        pkgs = mkPkgs system nixpkgs;
+      in {
+        default = pkgs.mkShell {
+          packages = [
+            pkgs.alejandra
+            pkgs.pre-commit
+          ];
+        };
+      }
+    );
+
     nixosConfigurations = {
       # 🐧 ThinkPad
       thinkpad = nixpkgs.lib.nixosSystem {

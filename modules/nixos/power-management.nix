@@ -4,8 +4,7 @@
   lib,
   username,
   ...
-}:
-{
+}: {
   powerManagement.enable = true;
   services.auto-cpufreq = {
     enable = true;

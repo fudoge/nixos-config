@@ -1,14 +1,19 @@
-{ config, pkgs, lib, inputs, username, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  inputs,
+  username,
+  ...
+}: {
   # Use Determinate Nix
   nix.enable = false;
 
   determinateNix = {
     enable = true;
     customSettings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" username ];
+      experimental-features = ["nix-command" "flakes"];
+      trusted-users = ["root" username];
     };
   };
 
@@ -19,5 +24,5 @@
     home = "/Users/${username}";
   };
 
-  environment.systemPackages = with pkgs; [ git ];
+  environment.systemPackages = with pkgs; [git];
 }
