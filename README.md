@@ -37,6 +37,12 @@ sudo -H nix run nix-darwin/nix-darwin-26.05#darwin-rebuild -- switch --flake .#m
 
 [Visit NixOS-WSL](https://github.com/nix-community/NixOS-WSL)
 
+### Apply
+
+```bash
+./bootstrap.sh wsl
+```
+
 ---
 
 ## 🧩 Host feature flags
@@ -68,21 +74,21 @@ Hyprland, and service-specific modules from `hostFeatures`.
 
 Current flags:
 
-| Flag              | Meaning                                                    |
-| ----------------- | ---------------------------------------------------------- |
-| `name`            | Logical host name, for host-specific checks if needed      |
-| `platform`        | Human-readable platform group, such as `linux-desktop`     |
-| `isNixOS`         | True for NixOS-based hosts, including WSL                  |
-| `isWsl`           | True for the NixOS-WSL host                                |
-| `isDarwin`        | True for nix-darwin hosts                                  |
-| `withGui`         | Enable GUI-capable Home-Manager modules and GUI settings   |
-| `withWayland`     | Enable Wayland-specific modules and packages               |
-| `withHyprland`    | Enable Hyprland-specific Home-Manager modules              |
-| `withDesktopApps` | Enable Linux desktop app modules such as Vesktop and Anki  |
-| `withInfraTools`  | Enable Kubernetes, Terraform, cloud, and related tooling    |
-| `withRclone`      | Enable the user `gdrive-mount` systemd service             |
-| `withEmail`       | Enable email clients and email-related session variables   |
-| `withSpicetify`   | Enable Spicetify; requires its Home-Manager module import  |
+| Flag              | Meaning                                                   |
+| ----------------- | --------------------------------------------------------- |
+| `name`            | Logical host name, for host-specific checks if needed     |
+| `platform`        | Human-readable platform group, such as `linux-desktop`    |
+| `isNixOS`         | True for NixOS-based hosts, including WSL                 |
+| `isWsl`           | True for the NixOS-WSL host                               |
+| `isDarwin`        | True for nix-darwin hosts                                 |
+| `withGui`         | Enable GUI-capable Home-Manager modules and GUI settings  |
+| `withWayland`     | Enable Wayland-specific modules and packages              |
+| `withHyprland`    | Enable Hyprland-specific Home-Manager modules             |
+| `withDesktopApps` | Enable Linux desktop app modules such as Vesktop and Anki |
+| `withInfraTools`  | Enable Kubernetes, Terraform, cloud, and related tooling  |
+| `withRclone`      | Enable the user `gdrive-mount` systemd service            |
+| `withEmail`       | Enable email clients and email-related session variables  |
+| `withSpicetify`   | Enable Spicetify; requires its Home-Manager module import |
 
 ### Adding a new host
 
