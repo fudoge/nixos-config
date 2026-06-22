@@ -6,6 +6,8 @@
   username,
   ...
 }: {
+  nixpkgs.config.allowUnfree = true;
+
   # Use Determinate Nix
   nix.enable = false;
 
