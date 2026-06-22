@@ -257,6 +257,7 @@
     filezilla
     kiro
     vlc
+    signal-desktop
 
     # virtualization
     virt-viewer
