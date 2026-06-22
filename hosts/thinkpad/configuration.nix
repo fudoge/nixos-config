@@ -258,6 +258,7 @@
     kiro
     vlc
     signal-desktop
+    beeper
 
     # virtualization
     virt-viewer
