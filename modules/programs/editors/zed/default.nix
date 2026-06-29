@@ -4,6 +4,8 @@
   lib,
   ...
 }: {
+  xdg.configFile."zed/themes/Lumin.json".source = ./Lumin.json;
+
   programs.zed-editor = {
     enable = true;
     extensions = [
@@ -22,6 +24,12 @@
       "django"
     ];
     userSettings = {
+      theme = {
+        mode = "system";
+        dark = "Lumin Blur";
+        light = "Lumin Light";
+      };
+
       terminal = {
         alternate_scroll = "off";
         blinking = "off";

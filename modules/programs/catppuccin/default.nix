@@ -10,5 +10,8 @@
     flavor = "frappe";
 
     accent = "sky";
+
+    nvim.enable = false;
+    zed.enable = false;
   };
 }
