@@ -20,6 +20,7 @@
       core.editor = "vim";
       init.defaultBranch = "main";
       credential."https://gitlab.com".helper = "!${lib.getExe pkgs.glab} auth git-credential";
+      credential."https://gitlab-apclab.synology.me".helper = "!${lib.getExe pkgs.glab} auth git-credential";
     };
   };
 
