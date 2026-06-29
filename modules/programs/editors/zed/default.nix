@@ -25,7 +25,7 @@
     ];
     userSettings = {
       theme = {
-        mode = "system";
+        mode = "dark";
         dark = "Lumin Blur";
         light = "Lumin Light";
       };
