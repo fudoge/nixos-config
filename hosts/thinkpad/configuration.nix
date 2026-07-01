@@ -10,6 +10,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../modules/nixos/amdgpu.nix
+    ../../modules/nixos/desktop-responsiveness.nix
     ../../modules/nixos/greetd-regreet.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/tailscale.nix
