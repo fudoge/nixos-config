@@ -7,7 +7,6 @@
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   caelestia = "${config.programs.caelestia.cli.package}/bin/caelestia";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-  systemctl = "${pkgs.systemd}/bin/systemctl";
 in {
   services.hypridle = {
     enable = true;
@@ -15,7 +14,7 @@ in {
       general = {
         lock_cmd = "${caelestia} shell lock lock";
         before_sleep_cmd = "${caelestia} shell lock lock";
-        after_sleep_cmd = "${hyprctl} dispatch dpms on; ${hyprctl} keyword misc:allow_session_lock_restore 1; ${systemctl} --user restart caelestia.service; ${caelestia} shell lock lock; ${brightnessctl} -r";
+        after_sleep_cmd = "${hyprctl} dispatch dpms on; ${hyprctl} keyword misc:allow_session_lock_restore 1; ${caelestia} shell lock lock; ${brightnessctl} -r";
       };
 
       listener = [
