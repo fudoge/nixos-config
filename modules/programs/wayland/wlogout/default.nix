@@ -8,19 +8,41 @@
   caelestia = "${config.programs.caelestia.cli.package}/bin/caelestia";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   systemctl = "${pkgs.systemd}/bin/systemctl";
+  caelestiaLock = pkgs.writeShellScriptBin "caelestia-lock" ''
+    set -euo pipefail
+
+    runtime_dir="''${XDG_RUNTIME_DIR:-/tmp}"
+    guard="$runtime_dir/caelestia-lock.guard"
+    stamp="$runtime_dir/caelestia-lock.stamp"
+    now="$(${pkgs.coreutils}/bin/date +%s)"
+
+    exec 9>"$guard"
+    ${pkgs.util-linux}/bin/flock -n 9 || exit 0
+
+    if [ -r "$stamp" ]; then
+      last="$(${pkgs.coreutils}/bin/cat "$stamp" 2>/dev/null || ${pkgs.coreutils}/bin/echo 0)"
+      if [ "$((now - last))" -lt 5 ]; then
+        exit 0
+      fi
+    fi
+
+    ${pkgs.coreutils}/bin/printf '%s\n' "$now" > "$stamp"
+    exec ${caelestia} shell lock lock
+  '';
+  lockCmd = "${caelestiaLock}/bin/caelestia-lock";
 in {
   programs.wlogout = {
     enable = true;
     layout = [
       {
         label = "lock";
-        action = "${caelestia} shell lock lock";
+        action = lockCmd;
         text = "Lock";
         keybind = "l";
       }
       {
         label = "suspend";
-        action = "${caelestia} shell lock lock && ${systemctl} suspend";
+        action = "${lockCmd} && ${systemctl} suspend";
         text = "Suspend";
         keybind = "u";
       }
@@ -32,7 +54,7 @@ in {
       }
       {
         label = "hibernate";
-        action = "${caelestia} shell lock lock && ${systemctl} hibernate";
+        action = "${lockCmd} && ${systemctl} hibernate";
         text = "Hibernate";
         keybind = "h";
       }
