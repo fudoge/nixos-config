@@ -73,6 +73,7 @@ in {
         enable = !isLumin;
         name = "rose-pine";
         style = "moon";
+        transparent = true;
       };
 
       visuals = {
@@ -180,7 +181,7 @@ in {
           enable = true;
           format = {
             enable = true;
-            type = ["prettierd"];
+            type = ["prettier"];
           };
         };
         yaml.enable = true;
