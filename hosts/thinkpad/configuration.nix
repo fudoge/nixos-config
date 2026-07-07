@@ -239,6 +239,7 @@
     vivaldi
     obsidian
     kdePackages.dolphin
+    thunar
     catppuccin-kde
     catppuccin-gtk
     papirus-icon-theme

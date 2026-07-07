@@ -163,6 +163,7 @@ in {
     ]
     ++ lib.optionals (isLinux && cfg.withWayland) [
       dart-sass
+      cliphist
       wl-clipboard
       xclip
       grim

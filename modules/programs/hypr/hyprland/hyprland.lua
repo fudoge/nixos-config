@@ -4,6 +4,8 @@
 ---@diagnostic disable-next-line: undefined-global
 local hl = hl
 
+require("custom.rules")
+
 local terminal = "ghostty"
 local fileManager = "dolphin"
 local brightnessctl = "@brightnessctl@"
@@ -33,6 +35,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprpanel")
 	hl.exec_cmd("hyprpolkitagent")
 	hl.exec_cmd("fcitx5 -d --replace")
+	hl.exec_cmd("wl-paste --watch cliphist store")
 	hl.exec_cmd("blueman-applet")
 	hl.exec_cmd("~/.local/bin/hypr-monitor-autoset.sh")
 	hl.exec_cmd("~/.local/bin/hypr-monitor-listen.sh")
@@ -140,8 +143,8 @@ hl.bind(
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
 	{ locked = true, repeating = true }
 )
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(brightnessctl .. " -c backlight -e4 -n2 set +17"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(brightnessctl .. " -c backlight -e4 -n2 set 17-"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(brightnessctl .. " -c backlight -e4 -n2 set +4320"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(brightnessctl .. " -c backlight -e4 -n2 set 4320-"), { locked = true, repeating = true })
 
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })

@@ -1,4 +1,11 @@
 {
+    "appearance": {
+        "transparency": {
+            "base": 0.72,
+            "enabled": true,
+            "layers": 0.2
+        }
+    },
     "background": {
         "desktopClock": {
             "background": {
@@ -59,6 +66,14 @@
             "showBattery": true
         }
     },
+    "general": {
+        "apps": {
+            "terminal": [
+                "/etc/profiles/per-user/chaewoon/bin/ghostty",
+                "--gtk-single-instance=true"
+            ]
+        }
+    },
     "launcher": {
         "enableDangerousActions": false,
         "favouriteApps": [
@@ -76,7 +91,16 @@
     "notifs": {
         "openExpanded": false
     },
+    "services": {
+        "useFahrenheit": false
+    },
+    "sidebar": {
+        "enabled": true
+    },
     "utilities": {
+        "toasts": {
+            "nowPlaying": true
+        },
         "vpn": {
             "provider": [
                 {
@@ -87,8 +111,5 @@
                 }
             ]
         }
-    },
-    "services": {
-        "useFahrenheit": false
     }
 }

@@ -16,4 +16,8 @@
       ["${lib.getExe pkgs.brightnessctl}"]
       (builtins.readFile ./hyprland.lua);
   };
+
+  xdg.configFile = {
+    "hypr/custom/rules.lua".source = ./rules.lua;
+  };
 }
