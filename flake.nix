@@ -74,6 +74,7 @@
     ...
   } @ inputs: let
     username = "chaewoon";
+    uiTheme = "rose-pine";
 
     mkPkgs = system: src:
       import src {
@@ -95,6 +96,7 @@
       withRclone ? false,
       withEmail ? false,
       withSpicetify ? false,
+      theme ? uiTheme,
     }: {
       inherit
         name
@@ -110,6 +112,7 @@
         withRclone
         withEmail
         withSpicetify
+        theme
         ;
     };
 

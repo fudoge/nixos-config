@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./spaceship
+    ./starship
     ./zsh
   ];
 

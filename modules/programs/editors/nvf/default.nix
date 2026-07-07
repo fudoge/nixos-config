@@ -2,8 +2,28 @@
   inputs,
   pkgs,
   lib,
+  hostFeatures ? {},
   ...
-}: {
+}: let
+  cfg = {theme = "lumin";} // hostFeatures;
+  validThemes = ["lumin" "rose-pine"];
+  theme =
+    if lib.elem cfg.theme validThemes
+    then cfg.theme
+    else throw "Unsupported theme '${cfg.theme}'. Expected one of: ${lib.concatStringsSep ", " validThemes}";
+  isLumin = theme == "lumin";
+
+  lumin = pkgs.vimUtils.buildVimPlugin {
+    pname = "lumin";
+    version = "0-unstable-2026-07-07";
+    src = pkgs.fetchFromGitHub {
+      owner = "fudoge";
+      repo = "lumin.nvim";
+      rev = "5c8ca6184b2d141e2a0d6bd5154367a240f3f592";
+      hash = "sha256-DHDYbNWPT8MXO41RmMmsnhj678VQW4vI3wqec3JaZ08=";
+    };
+  };
+in {
   imports = [inputs.nvf.homeManagerModules.default];
 
   programs.nvf = {
@@ -50,7 +70,7 @@
       # Theme
       # =====================
       theme = {
-        enable = true;
+        enable = !isLumin;
         name = "rose-pine";
         style = "moon";
       };
@@ -226,6 +246,43 @@
         illuminate.enable = true;
         colorizer.enable = true;
         noice.enable = true;
+        noice.setupOpts = {
+          cmdline = {
+            enabled = true;
+            view = "cmdline_popup";
+          };
+
+          messages = {
+            enabled = true;
+          };
+
+          popupmenu = {
+            enabled = true;
+            backend = "nui";
+          };
+
+          lsp = {
+            hover = {
+              enabled = false;
+            };
+            signature = {
+              enabled = false;
+            };
+            override = {
+              "vim.lsp.util.convert_input_to_markdown_lines" = false;
+              "vim.lsp.util.stylize_markdown" = false;
+              "cmp.entry.get_documentation" = false;
+            };
+          };
+
+          presets = {
+            bottom_search = true;
+            command_palette = true;
+            long_message_to_split = true;
+            inc_rename = false;
+            lsp_doc_border = false;
+          };
+        };
       };
 
       # =====================
@@ -498,7 +555,24 @@
           package = pkgs.vimPlugins.dressing-nvim;
           setup = "require('dressing').setup({})";
         };
+
+        nvim-notify = {
+          package = pkgs.vimPlugins.nvim-notify;
+          setup = ''
+            local notify = require("notify")
+            notify.setup({})
+            vim.notify = notify
+          '';
+        };
       };
+
+      startPlugins =
+        [
+          pkgs.vimPlugins.nui-nvim
+        ]
+        ++ lib.optionals isLumin [
+          lumin
+        ];
 
       # =====================
       # Extra Lua Config
@@ -614,6 +688,11 @@
           highlight WinSeparator guibg=none
           highlight NonText ctermbg=none
         ]]
+
+        ${lib.optionalString isLumin ''
+          -- Lumin
+          vim.cmd.colorscheme("lumin-blur")
+        ''}
       '';
     };
   };
