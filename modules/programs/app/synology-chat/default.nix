@@ -7,8 +7,6 @@
   home.packages = [
     (pkgs.writeShellScriptBin "synology-chat-apc" ''
       exec ${pkgs.vivaldi}/bin/vivaldi \
-          --ozone-platform=wayland \
-          --enable-features=UseOzonePlatform \
           --app=https://apclab-1336-hallym.direct.quickconnect.to:5001/?launchApp=SYNO.SDS.Chat.Application
     '')
   ];

@@ -54,8 +54,6 @@ hl.env("GTK_IM_MODULE", "fcitx")
 hl.env("QT_IM_MODULE", "fcitx")
 hl.env("XMODIFIERS", "@im=fcitx")
 hl.env("SDL_IM_MODULE", "fcitx")
-hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
-hl.env("ELECTRON_ENABLE_WAYLAND", "1")
 hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
 hl.env("QS_ICON_THEME", "hicolor")
 

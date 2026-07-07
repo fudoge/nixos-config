@@ -7,8 +7,6 @@
   home.packages = [
     (pkgs.writeShellScriptBin "notion-pwa" ''
       exec ${pkgs.vivaldi}/bin/vivaldi \
-          --ozone-platform=wayland \
-          --enable-features=UseOzonePlatform \
           --app=https://www.notion.so
     '')
   ];

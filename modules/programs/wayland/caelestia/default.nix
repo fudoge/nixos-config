@@ -19,4 +19,9 @@
       };
     };
   };
+
+  systemd.user.services.caelestia.Service = {
+    CPUWeight = 200;
+    IOWeight = 200;
+  };
 }
