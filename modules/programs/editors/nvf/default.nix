@@ -153,6 +153,38 @@ in {
         filetypes = ["c" "cpp" "objc" "objcpp" "cuda"];
       };
 
+      lsp.servers.terraform-ls = {
+        capabilities = lib.generators.mkLuaInline ''
+          vim.tbl_deep_extend("force", capabilities, {
+            experimental = {
+              showReferencesCommandId = "client.showReferences",
+            },
+          })
+        '';
+        init_options = {
+          terraform = {
+            codelens.referenceCount = true;
+          };
+        };
+        on_attach = lib.generators.mkLuaInline ''
+          function(client, bufnr)
+            default_on_attach(client, bufnr)
+
+            if client.server_capabilities.codeLensProvider then
+              vim.lsp.codelens.enable(true, { bufnr = bufnr })
+              vim.lsp.codelens.refresh({ bufnr = bufnr })
+
+              vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.codelens.refresh({ bufnr = bufnr })
+                end,
+              })
+            end
+          end
+        '';
+      };
+
       # =====================
       # Languages
       # =====================
@@ -190,6 +222,7 @@ in {
         lua.enable = true;
         terraform = {
           enable = true;
+          lsp.servers = ["terraform-ls"];
           treesitter.enable = true;
         };
       };
