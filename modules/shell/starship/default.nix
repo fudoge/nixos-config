@@ -21,6 +21,7 @@ in {
         add_newline = true;
         time.disabled = false;
         time.format = "$time ($style) ";
+        kubernetes.disabled = false;
       }
       // lib.optionalAttrs isLumin {
         git_branch.style = "#EFB080";
