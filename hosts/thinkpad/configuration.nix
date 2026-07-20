@@ -169,10 +169,6 @@
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) ["corefonts"];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-39.8.10"
-  ];
-
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -262,7 +258,6 @@
     bottles
     zoom-us
     krita
-    bitwarden-desktop
     filezilla
     kiro
     vlc
