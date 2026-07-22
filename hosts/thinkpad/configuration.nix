@@ -221,6 +221,7 @@
     cdrtools
     tcpdump
     util-linux
+    sysdig
 
     termdown
     tomato-c
