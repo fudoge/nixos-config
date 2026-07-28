@@ -4,8 +4,6 @@
   lib,
   ...
 }: {
-  xdg.configFile."zed/themes/Lumin.json".source = ./Lumin.json;
-
   programs.zed-editor = {
     enable = true;
     extensions = [
@@ -22,12 +20,13 @@
       "lua"
       "make"
       "django"
+      "macos-classic"
     ];
     userSettings = {
       theme = {
         mode = "dark";
-        dark = "Lumin Blur";
-        light = "Lumin Light";
+        dark = "macOS Classic Dark";
+        light = "macOS Classic Light";
       };
 
       terminal = {
@@ -37,7 +36,7 @@
         env = {
           TERM = "ghostty";
         };
-        font_family = "JetBrains Mono Nerd Font SemiBold";
+        font_family = "JetBrainsMono Nerd Font";
         font_features = null;
         font_size = null;
         line_height = "standard";
