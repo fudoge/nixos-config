@@ -225,6 +225,11 @@ in {
           lsp.servers = ["terraform-ls"];
           treesitter.enable = true;
         };
+        docker = {
+          enable = true;
+          treesitter.enable = true;
+          format.enable = true;
+        };
       };
 
       # =====================
