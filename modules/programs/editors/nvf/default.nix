@@ -23,6 +23,17 @@
       hash = "sha256-DHDYbNWPT8MXO41RmMmsnhj678VQW4vI3wqec3JaZ08=";
     };
   };
+
+  gitConflictNvim = pkgs.vimPlugins.git-conflict-nvim.overrideAttrs (old: {
+    postPatch =
+      (old.postPatch or "")
+      + ''
+        substituteInPlace lua/git-conflict.lua \
+          --replace-fail "vim.highlight.priorities.user" "vim.hl.priorities.user"
+        substituteInPlace lua/git-conflict/colors.lua \
+          --replace-fail "vim.validate({ rgb_24bit = { rgb_24bit, 'n', true } })" "vim.validate('rgb_24bit', rgb_24bit, 'number', true)"
+      '';
+  });
 in {
   imports = [inputs.nvf.homeManagerModules.default];
 
@@ -172,12 +183,11 @@ in {
 
             if client.server_capabilities.codeLensProvider then
               vim.lsp.codelens.enable(true, { bufnr = bufnr })
-              vim.lsp.codelens.refresh({ bufnr = bufnr })
 
               vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
                 buffer = bufnr,
                 callback = function()
-                  vim.lsp.codelens.refresh({ bufnr = bufnr })
+                  vim.lsp.codelens.enable(true, { bufnr = bufnr })
                 end,
               })
             end
@@ -329,6 +339,7 @@ in {
       # =====================
       git = {
         enable = true;
+        git-conflict.enable = true;
         gitsigns = {
           enable = true;
           setupOpts.current_line_blame = true;
@@ -614,6 +625,10 @@ in {
         ++ lib.optionals isLumin [
           lumin
         ];
+
+      pluginOverrides = {
+        git-conflict-nvim = gitConflictNvim;
+      };
 
       # =====================
       # Extra Lua Config
