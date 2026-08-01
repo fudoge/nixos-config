@@ -144,6 +144,8 @@ in {
       unstable.terraform
       unstable.opentofu
       unstable.terragrunt
+      unstable.tflint
+      unstable.terraform-docs
       unstable.ansible
       unstable.kubectl
       unstable.kubernetes-helm
@@ -157,6 +159,7 @@ in {
       unstable.supabase-cli
       unstable.eksctl
       unstable.wrangler
+      unstable.trivy
     ]
     ++ lib.optionals (isLinux && cfg.withInfraTools) [
       unstable.ssm-session-manager-plugin
