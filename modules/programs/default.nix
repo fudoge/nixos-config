@@ -152,6 +152,7 @@ in {
       unstable.kubectx
       unstable.argocd
       unstable.cilium-cli
+      unstable.hubble
       unstable.istioctl
       unstable.kubeseal
       unstable.awscli2
