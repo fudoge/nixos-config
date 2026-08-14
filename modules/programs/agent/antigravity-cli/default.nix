@@ -7,7 +7,7 @@
 }: {
   programs.antigravity-cli = {
     enable = true;
-    package = unstable.gemini-cli;
+    package = unstable.antigravity-cli;
     settings = {
       general = {
         preferredEditor = "nvim";
