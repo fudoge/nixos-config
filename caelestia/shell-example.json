@@ -38,7 +38,7 @@
             "volume": true,
             "workspaces": true
         },
-        "status": {
+        "statusIcons": {
             "showAudio": true,
             "showBattery": true,
             "showBluetooth": true,
