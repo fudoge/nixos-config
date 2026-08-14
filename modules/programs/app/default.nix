@@ -26,6 +26,7 @@ in {
     ./anki
     ./notion
     ./synology-chat
+    ../clawd-on-desk
   ];
 
   home.packages = [
