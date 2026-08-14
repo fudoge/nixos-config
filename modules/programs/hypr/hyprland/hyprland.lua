@@ -163,6 +163,13 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 ----------------
 -- Window Rules
 ----------------
+-- clawd-on-desk is a transparent Electron/XWayland window; keep it out of blur effects.
+hl.window_rule({
+  match = { class = "^(clawd-on-desk)$" },
+  no_blur = true,
+  border_size = 0,
+})
+
 hl.window_rule({
   name = "suppress-maximize-events",
   match = { class = ".*" },
