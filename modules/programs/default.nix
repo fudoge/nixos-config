@@ -151,10 +151,12 @@ in {
       unstable.kubernetes-helm
       unstable.kubectx
       unstable.argocd
+      unstable.fluxcd
       unstable.cilium-cli
       unstable.hubble
       unstable.istioctl
       unstable.kubeseal
+      unstable.sops
       unstable.awscli2
       unstable.google-cloud-sdk
       unstable.supabase-cli
