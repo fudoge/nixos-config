@@ -157,6 +157,7 @@ in {
       unstable.istioctl
       unstable.kubeseal
       unstable.sops
+      unstable.age
       unstable.awscli2
       unstable.google-cloud-sdk
       unstable.supabase-cli
