@@ -9,6 +9,8 @@
   pkgs,
   ...
 }: {
+  nixpkgs.config.allowUnfree = true;
+
   # Enabling Flakes...
   nix.gc = {
     automatic = true;

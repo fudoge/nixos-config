@@ -140,6 +140,12 @@ in {
       mtr
       lsof
     ]
+    ++ lib.optionals cfg.isWsl [
+      drawio-headless
+    ]
+    ++ lib.optionals (isLinux && cfg.withDesktopApps) [
+      drawio
+    ]
     ++ lib.optionals cfg.withInfraTools [
       unstable.terraform
       unstable.opentofu
