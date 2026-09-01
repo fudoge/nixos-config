@@ -26,6 +26,7 @@ in {
     ./anki
     ./notion
     ./synology-chat
+    ./zen-browser
     ../clawd-on-desk
   ];
 
