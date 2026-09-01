@@ -3,6 +3,7 @@ repos:
     hooks:
       - id: nix-fmt
         name: nix fmt
-        entry: nix fmt --
+        entry: nix fmt
         language: system
         files: \.nix$
+        pass_filenames: false
