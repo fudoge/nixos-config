@@ -264,6 +264,7 @@
     vlc
     signal-desktop
     beeper
+    discord
 
     # virtualization
     virt-viewer
