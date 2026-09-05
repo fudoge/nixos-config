@@ -277,7 +277,7 @@ in {
       # =====================
       statusline.lualine = {
         enable = true;
-        theme = "auto";
+        setupOpts.options.theme = "auto";
       };
 
       tabline.nvimBufferline.enable = true;
