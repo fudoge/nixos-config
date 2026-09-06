@@ -243,6 +243,12 @@ in {
       defaultApplications = {
         "inode/directory" = ["org.kde.dolphin.desktop"];
 
+        "text/html" = ["zen-beta.desktop"];
+        "text/xml" = ["zen-beta.desktop"];
+        "application/xhtml+xml" = ["zen-beta.desktop"];
+        "x-scheme-handler/http" = ["zen-beta.desktop"];
+        "x-scheme-handler/https" = ["zen-beta.desktop"];
+
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = ["onlyoffice-desktopeditors.desktop"];
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = ["onlyoffice-desktopeditors.desktop"];
         "application/vnd.openxmlformats-officedocument.presentationml.presentation" = ["onlyoffice-desktopeditors.desktop"];
