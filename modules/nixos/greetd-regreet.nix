@@ -8,6 +8,24 @@
   startHyprland = lib.getExe' hyprland "start-hyprland";
   hyprctl = lib.getExe' hyprland "hyprctl";
   dbusRunSession = lib.getExe' pkgs.dbus "dbus-run-session";
+  uwsm = lib.getExe pkgs.uwsm;
+
+  hyprlandUwsmSession = pkgs.writeTextFile {
+    name = "hyprland-uwsm-session";
+    destination = "/share/wayland-sessions/hyprland-uwsm.desktop";
+    text = ''
+      [Desktop Entry]
+      Name=Hyprland (UWSM)
+      Comment=Hyprland compositor managed by UWSM
+      Exec=${uwsm} start -F -- /run/current-system/sw/bin/start-hyprland
+      Type=Application
+      DesktopNames=Hyprland
+      Keywords=tiling;wayland;compositor;
+    '';
+    derivationArgs = {
+      passthru.providedSessions = ["hyprland-uwsm"];
+    };
+  };
 
   regreetSession = pkgs.writeShellScript "regreet-session" ''
     export GDK_BACKEND=wayland
@@ -23,11 +41,9 @@ in {
     withUWSM = true;
   };
 
-  programs.uwsm.waylandCompositors.hyprland = {
-    prettyName = "Hyprland";
-    comment = "Hyprland compositor managed by UWSM";
-    binPath = "/run/current-system/sw/bin/Hyprland";
-  };
+  services.displayManager.sessionPackages = lib.mkForce [
+    hyprlandUwsmSession
+  ];
 
   services.greetd = {
     enable = true;
