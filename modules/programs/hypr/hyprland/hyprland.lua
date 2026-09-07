@@ -40,9 +40,6 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("~/.local/bin/hypr-monitor-autoset.sh")
   hl.exec_cmd("~/.local/bin/hypr-monitor-listen.sh")
   hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
-  hl.exec_cmd("hyprland.start", function()
-    hl.exec_cmd("setpriv --ambient-caps -all --quickshell -c caelestia")
-  end)
 end)
 
 ----------------
