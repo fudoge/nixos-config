@@ -5,11 +5,11 @@
 }: let
   clawd-on-desk = pkgs.appimageTools.wrapType2 rec {
     pname = "clawd-on-desk";
-    version = "0.16.0";
+    version = "1.0.0";
 
     src = pkgs.fetchurl {
       url = "https://github.com/rullerzhou-afk/clawd-on-desk/releases/download/v${version}/Clawd-on-Desk-${version}-x86_64.AppImage";
-      hash = "sha256-QUqEYW691fY5VxKpfp1RbhimAd35Y6nSLeF59WnIBgw=";
+      hash = "sha256-CfECZCcfcJXGxgIb5L3luXe6FlAxwdiXC20iGdjZOU4=";
     };
   };
 in {
