@@ -15,7 +15,7 @@
 
   xdg.desktopEntries.synology-chat-apc = {
     name = "Synology Chat - APCLab";
-    exec = "synology-chat-apc";
+    exec = "${lib.getExe pkgs.uwsm} app -- synology-chat-apc";
     icon = "synochat";
     categories = ["Office" "Utility"];
   };

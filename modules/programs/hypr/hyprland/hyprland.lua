@@ -6,8 +6,8 @@ local hl = hl
 
 require("custom.rules")
 
-local terminal = "ghostty"
-local fileManager = "dolphin"
+local terminal = "uwsm app -- ghostty"
+local fileManager = "uwsm app -- dolphin"
 local brightnessctl = "@brightnessctl@"
 local mainMod = "SUPER"
 

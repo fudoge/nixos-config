@@ -15,7 +15,7 @@
 
   xdg.desktopEntries.notion = {
     name = "Notion";
-    exec = "notion-pwa";
+    exec = "${lib.getExe pkgs.uwsm} app -- notion-pwa";
     icon = "notion";
     categories = ["Office" "Utility"];
   };
