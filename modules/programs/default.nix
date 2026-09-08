@@ -69,6 +69,7 @@ in {
       yq-go
       fzf
       skim
+      hexyl
       github-cli
       fd
       pre-commit
@@ -145,6 +146,8 @@ in {
     ]
     ++ lib.optionals (isLinux && cfg.withDesktopApps) [
       drawio
+      imhex
+      okteta
     ]
     ++ lib.optionals cfg.withInfraTools [
       unstable.terraform
