@@ -251,6 +251,9 @@ in {
         "application/xhtml+xml" = ["zen-beta.desktop"];
         "x-scheme-handler/http" = ["zen-beta.desktop"];
         "x-scheme-handler/https" = ["zen-beta.desktop"];
+        "x-scheme-handler/mailto" = ["thunderbird.desktop"];
+        "message/rfc822" = ["thunderbird.desktop"];
+        "application/mbox" = ["thunderbird.desktop"];
 
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = ["onlyoffice-desktopeditors.desktop"];
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = ["onlyoffice-desktopeditors.desktop"];
