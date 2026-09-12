@@ -34,7 +34,6 @@ hl.monitor({
 hl.on("hyprland.start", function()
   hl.exec_cmd("hyprpanel")
   hl.exec_cmd("hyprpolkitagent")
-  hl.exec_cmd("fcitx5 -d --replace")
   hl.exec_cmd("wl-paste --watch cliphist store")
   hl.exec_cmd("blueman-applet")
   hl.exec_cmd("~/.local/bin/hypr-monitor-autoset.sh")

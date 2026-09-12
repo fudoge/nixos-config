@@ -74,6 +74,20 @@
     ];
   };
 
+  # Keep the input method alive for the whole graphical session. Starting it
+  # from Hyprland alone leaves Korean input unavailable if fcitx5 exits.
+  systemd.user.services.fcitx5 = {
+    description = "Fcitx5 input method";
+    wantedBy = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    serviceConfig = {
+      ExecStart = "${config.i18n.inputMethod.package}/bin/fcitx5 --replace";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
