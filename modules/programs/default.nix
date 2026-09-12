@@ -38,6 +38,7 @@ in {
       ./catppuccin
       ./editors
       ./filemanager
+      ./monitoring
       ./agent
     ]
     ++ lib.optionals cfg.withInfraTools [./infra-tools]
@@ -101,10 +102,6 @@ in {
       # productivity
       unstable.hugo
       glow
-
-      # monitoring
-      btop
-      bottom
 
       # shell configurations
       zsh-fast-syntax-highlighting

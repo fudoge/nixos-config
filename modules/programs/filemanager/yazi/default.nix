@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: {
@@ -8,6 +9,10 @@
   ############################
   programs.yazi = {
     enable = true;
+
+    flavors.rose-pine = inputs.rose-pine-yazi + "/flavors/rose-pine.yazi";
+
+    theme.flavor.dark = "rose-pine";
 
     settings = {
       manager = {

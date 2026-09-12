@@ -666,8 +666,25 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvf": "nvf",
+        "rose-pine-yazi": "rose-pine-yazi",
         "spicetify-nix": "spicetify-nix",
         "zen-browser": "zen-browser"
+      }
+    },
+    "rose-pine-yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771874935,
+        "narHash": "sha256-9e3dXViWl1rK9BPrGAFfs9ZL/tsG6Njz6ksuU6AIrFY=",
+        "owner": "rose-pine",
+        "repo": "yazi",
+        "rev": "c89d745573d4fcfe0550fe6646f9f9ab1c0e51db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rose-pine",
+        "repo": "yazi",
+        "type": "github"
       }
     },
     "rust-analyzer-src": {

@@ -32,6 +32,10 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rose-pine-yazi = {
+      url = "github:rose-pine/yazi";
+      flake = false;
+    };
     nvf = {
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
