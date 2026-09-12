@@ -2,8 +2,17 @@
   config,
   pkgs,
   lib,
+  hostFeatures ? {},
   ...
-}: {
+}: let
+  cfg = {theme = "lumin";} // hostFeatures;
+  validThemes = ["lumin" "rose-pine"];
+  theme =
+    if lib.elem cfg.theme validThemes
+    then cfg.theme
+    else throw "Unsupported theme '${cfg.theme}'. Expected one of: ${lib.concatStringsSep ", " validThemes}";
+  isLumin = theme == "lumin";
+in {
   programs.zed-editor = {
     enable = true;
     extensions = [
@@ -20,13 +29,19 @@
       "lua"
       "make"
       "django"
-      "macos-classic"
+      "rose-pine-theme"
     ];
     userSettings = {
       theme = {
         mode = "dark";
-        dark = "macOS Classic Dark";
-        light = "macOS Classic Light";
+        dark =
+          if isLumin
+          then "macOS Classic Dark"
+          else "Rosé Pine Moon";
+        light =
+          if isLumin
+          then "macOS Classic Light"
+          else "Rosé Pine Dawn";
       };
 
       terminal = {
