@@ -8,9 +8,7 @@
   programs.vscode = {
     enable = true;
     profiles.default.extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      catppuccin.catppuccin-vsc
-      jdinhlife.gruvbox
+      mvllow.rose-pine
 
       mhutchie.git-graph
       vscodevim.vim
@@ -32,5 +30,8 @@
       jnoortheen.nix-ide
       bbenoist.nix
     ];
+    profiles.default.userSettings = {
+      "workbench.colorTheme" = "Rosé Pine";
+    };
   };
 }

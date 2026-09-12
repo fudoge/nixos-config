@@ -257,13 +257,11 @@
     obsidian
     kdePackages.dolphin
     thunar
-    catppuccin-kde
-    catppuccin-gtk
+    rose-pine-gtk-theme
     papirus-icon-theme
     xdg-utils
     kdePackages.qtstyleplugin-kvantum
-    catppuccin-kvantum
-    catppuccin-kde
+    rose-pine-kvantum
     onlyoffice-desktopeditors
     obs-studio
     antigravity

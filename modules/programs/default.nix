@@ -212,8 +212,8 @@ in {
   gtk = lib.mkIf (isLinux && cfg.withGui) {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Standard";
-      package = pkgs.catppuccin-gtk;
+      name = "rose-pine";
+      package = pkgs.rose-pine-gtk-theme;
     };
     cursorTheme = {
       name = "Bibata-Modern-Classic";

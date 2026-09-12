@@ -12,10 +12,7 @@ in {
     enable = true;
     package = unstable.kiro;
     profiles.default.extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      catppuccin.catppuccin-vsc
       mvllow.rose-pine
-      jdinhlife.gruvbox
 
       mhutchie.git-graph
       vscodevim.vim
@@ -37,5 +34,8 @@ in {
       jnoortheen.nix-ide
       bbenoist.nix
     ];
+    profiles.default.userSettings = {
+      "workbench.colorTheme" = "Rosé Pine";
+    };
   };
 }

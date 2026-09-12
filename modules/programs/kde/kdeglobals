@@ -1,5 +1,8 @@
 [General]
-ColorScheme=CatppuccinFrappe
+ColorScheme=RosePine
 
 [Icons]
 Theme=Papirus-Dark
+
+[KDE]
+widgetStyle=kvantum-dark

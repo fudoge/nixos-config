@@ -13,5 +13,7 @@
 
     nvim.enable = false;
     zed.enable = false;
+    vscode.profiles.default.enable = false;
+    kiro.profiles.default.enable = false;
   };
 }

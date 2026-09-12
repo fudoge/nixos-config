@@ -73,7 +73,7 @@ in {
 
     [GTK]
     application_prefer_dark_theme = true
-    theme_name = "catppuccin-frappe-blue-standard"
+    theme_name = "rose-pine"
     icon_theme_name = "Papirus-Dark"
 
     [commands]
