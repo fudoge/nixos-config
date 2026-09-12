@@ -38,16 +38,36 @@
             "volume": true,
             "workspaces": true
         },
-        "statusIcons": {
-            "showAudio": true,
-            "showBattery": true,
-            "showBluetooth": true,
-            "showKbLayout": false,
-            "showLockStatus": true,
-            "showMicrophone": true,
-            "showNetwork": true,
-            "showWifi": true
-        },
+        "statusIcons": [
+            {
+                "enabled": true,
+                "id": "audio"
+            },
+            {
+                "enabled": true,
+                "id": "microphone"
+            },
+            {
+                "enabled": false,
+                "id": "kbLayout"
+            },
+            {
+                "enabled": true,
+                "id": "network"
+            },
+            {
+                "enabled": true,
+                "id": "bluetooth"
+            },
+            {
+                "enabled": true,
+                "id": "battery"
+            },
+            {
+                "enabled": true,
+                "id": "lockStatus"
+            }
+        ],
         "tray": {
             "background": false,
             "compact": true,
@@ -56,7 +76,6 @@
         "workspaces": {
             "activeIndicator": true,
             "occupiedBg": true,
-            "perMonitorWorkspaces": true,
             "showWindows": true,
             "shown": 5
         }
@@ -92,7 +111,7 @@
         "openExpanded": false
     },
     "services": {
-        "useFahrenheit": false
+        "weatherUnits": "Celsius"
     },
     "sidebar": {
         "enabled": true
@@ -100,16 +119,6 @@
     "utilities": {
         "toasts": {
             "nowPlaying": true
-        },
-        "vpn": {
-            "provider": [
-                {
-                    "displayName": "Tailscale",
-                    "enabled": true,
-                    "interface": "tailscale0",
-                    "name": "tailscale"
-                }
-            ]
         }
     }
 }

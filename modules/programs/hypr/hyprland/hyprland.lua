@@ -52,7 +52,7 @@ hl.env("QT_IM_MODULE", "fcitx")
 hl.env("XMODIFIERS", "@im=fcitx")
 hl.env("SDL_IM_MODULE", "fcitx")
 hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
-hl.env("QS_ICON_THEME", "hicolor")
+hl.env("QS_ICON_THEME", "Adwaita")
 
 ----------------
 -- Config
