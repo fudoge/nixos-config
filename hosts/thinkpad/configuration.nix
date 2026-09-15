@@ -277,6 +277,7 @@
     signal-desktop
     beeper
     discord
+    xournalpp
 
     # virtualization
     virt-viewer
