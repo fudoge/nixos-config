@@ -154,6 +154,7 @@ in {
       unstable.terraform-docs
       unstable.ansible
       unstable.kubectl
+      unstable.kubecolor
       unstable.kubernetes-helm
       unstable.kubectx
       unstable.argocd

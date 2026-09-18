@@ -13,6 +13,7 @@
     shellAliases = {
       ls = "eza --icons";
       k = "kubectl";
+      kubectl = "kubecolor";
       tf = "terraform";
       cl = "clear";
       cd = "z";
