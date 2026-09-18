@@ -34,6 +34,10 @@
     };
 
     initContent = ''
+      # kubecolor 0.7.1 does not register completion for its own command name.
+      # Use kubectl's completion for both aliases as well as the real command.
+      compdef _kubectl kubectl kubecolor k
+
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
       export PATH=$PATH:~/.local/bin
     '';
