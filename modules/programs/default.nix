@@ -153,6 +153,7 @@ in {
       unstable.tflint
       unstable.terraform-docs
       unstable.ansible
+      unstable.kind
       unstable.kubectl
       unstable.kubecolor
       unstable.kubernetes-helm
