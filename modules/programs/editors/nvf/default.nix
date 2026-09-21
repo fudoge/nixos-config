@@ -25,6 +25,8 @@
   };
 
   gitConflictNvim = pkgs.vimPlugins.git-conflict-nvim.overrideAttrs (old: {
+    pname = "git-conflict-nvim";
+
     postPatch =
       (old.postPatch or "")
       + ''
