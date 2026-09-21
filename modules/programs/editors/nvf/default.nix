@@ -242,6 +242,7 @@ in {
           treesitter.enable = true;
           format.enable = true;
         };
+        helm.enable = true;
       };
 
       # =====================
@@ -332,6 +333,7 @@ in {
             long_message_to_split = true;
             inc_rename = false;
             lsp_doc_border = false;
+            helm-ls.enable = true;
           };
         };
       };
