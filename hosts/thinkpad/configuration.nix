@@ -278,6 +278,7 @@
     beeper
     discord
     xournalpp
+    audacity
 
     # virtualization
     virt-viewer
