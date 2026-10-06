@@ -32,6 +32,7 @@
     ];
     profiles.default.userSettings = {
       "workbench.colorTheme" = "Rosé Pine";
+      "terminal.integrated.enableMultiLinePasteWarning" = "never";
     };
   };
 }
