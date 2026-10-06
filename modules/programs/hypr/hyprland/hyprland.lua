@@ -99,6 +99,8 @@ hl.bind(mainMod .. " + A", hl.dsp.window.center())
 -- Screenshot
 hl.bind("Print", hl.dsp.exec_cmd("~/.local/bin/screenshot-area.sh"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("~/.local/bin/screenshot-screen.sh"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("~/.local/bin/screenshot-area.sh"))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("~/.local/bin/screenshot-screen.sh"))
 
 -- Switch workspace
 for i = 1, 10 do
