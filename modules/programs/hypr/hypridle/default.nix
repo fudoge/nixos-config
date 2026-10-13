@@ -7,6 +7,9 @@
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   caelestia = "${config.programs.caelestia.cli.package}/bin/caelestia";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+  dpmsOn = "${hyprctl} dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
+  dpmsOff = "${hyprctl} dispatch 'hl.dsp.dpms({ action = \"disable\" })'";
+  restartFcitx = "${pkgs.systemd}/bin/systemctl --user restart fcitx5.service";
   caelestiaLock = pkgs.writeShellScriptBin "caelestia-lock" ''
     set -euo pipefail
 
@@ -35,8 +38,8 @@ in {
     settings = {
       general = {
         lock_cmd = lockCmd;
-        before_sleep_cmd = "${hyprctl} keyword misc:allow_session_lock_restore 1; ${lockCmd}";
-        after_sleep_cmd = "${hyprctl} dispatch dpms on; ${brightnessctl} -r";
+        before_sleep_cmd = "${hyprctl} eval 'hl.config({ misc = { allow_session_lock_restore = true } })'; ${lockCmd}";
+        after_sleep_cmd = "${dpmsOn}; ${brightnessctl} -r; ${restartFcitx}";
       };
 
       listener = [
@@ -56,8 +59,8 @@ in {
         }
         {
           timeout = 330;
-          on-timeout = "${hyprctl} dispatch dpms off";
-          on-resume = "${hyprctl} dispatch dpms on && ${brightnessctl} -r";
+          on-timeout = dpmsOff;
+          on-resume = "${dpmsOn} && ${brightnessctl} -r";
         }
         {
           timeout = 1800;
