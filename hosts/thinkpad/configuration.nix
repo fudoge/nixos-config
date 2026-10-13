@@ -279,6 +279,7 @@
     discord
     xournalpp
     audacity
+    gimp
 
     # virtualization
     virt-viewer
