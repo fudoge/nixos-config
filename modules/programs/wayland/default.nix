@@ -13,25 +13,6 @@ in {
   ];
 
   xdg.desktopEntries = {
-    zen-beta = {
-      name = "Zen Browser (Beta)";
-      genericName = "Web Browser";
-      exec = app "zen-beta --name zen-beta %U";
-      icon = "zen-browser";
-      terminal = false;
-      startupNotify = true;
-      categories = ["Network" "WebBrowser"];
-      mimeType = [
-        "text/html"
-        "text/xml"
-        "application/xhtml+xml"
-        "application/vnd.mozilla.xul+xml"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-      ];
-      settings.StartupWMClass = "zen-beta";
-    };
-
     thunderbird = {
       name = "Thunderbird";
       genericName = "Email Client";
