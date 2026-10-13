@@ -1,4 +1,4 @@
-{...}: {
+{unstable, ...}: {
   imports = [
     ./spotify-player
     ./vesktop
@@ -10,4 +10,6 @@
     ./minecraft
     ../clawd-on-desk
   ];
+
+  home.packages = [unstable.chatgpt];
 }
