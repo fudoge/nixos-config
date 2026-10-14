@@ -6,6 +6,8 @@
   username,
   ...
 }: {
+  imports = [../../modules/programs/agent/codex/system.nix];
+
   nixpkgs.config.allowUnfree = true;
 
   # Use Determinate Nix
