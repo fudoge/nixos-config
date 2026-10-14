@@ -21,6 +21,12 @@
       hashicorp.hcl
       hashicorp.terraform
       docker.docker
+      (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+        publisher = "AmazonWebServices";
+        name = "aws-toolkit-vscode";
+        version = "4.17.0";
+        sha256 = "02rb6z0la7lqlnbywbalbyyfbzljhpy0cn32q77h2774lxi45zpv";
+      })
       redhat.ansible
       ms-python.python
       ms-pyright.pyright
