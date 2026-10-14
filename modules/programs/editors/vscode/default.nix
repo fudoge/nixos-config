@@ -7,6 +7,15 @@
   # vscode
   programs.vscode = {
     enable = true;
+    package = pkgs.symlinkJoin {
+      name = "vscode-with-aws-libs";
+      paths = [pkgs.vscode];
+      nativeBuildInputs = [pkgs.makeWrapper];
+      meta.mainProgram = "code";
+      postBuild = ''
+        wrapProgram $out/bin/code --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [pkgs.stdenv.cc.cc.lib]}
+      '';
+    };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       mvllow.rose-pine
 
