@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  unstable,
   lib,
   hostFeatures ? {},
   ...
@@ -36,8 +37,22 @@
           --replace-fail "vim.validate({ rgb_24bit = { rgb_24bit, 'n', true } })" "vim.validate('rgb_24bit', rgb_24bit, 'number', true)"
       '';
   });
+  kubeschema = pkgs.buildGoModule {
+    pname = "kubeschema";
+    version = "unstable";
+    src = inputs.kubeschema;
+    vendorHash = "sha256-sBNNE6SgFx1NAz2B/hsNiUxYAyjFB4UvfKRnl9AxKpY=";
+  };
+  kubeschemaNvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "kubeschema.nvim";
+    version = "unstable";
+    src = inputs.kubeschema-nvim;
+    dependencies = [pkgs.vimPlugins.plenary-nvim];
+  };
 in {
   imports = [inputs.nvf.homeManagerModules.default];
+
+  home.packages = [kubeschema];
 
   programs.nvf = {
     enable = true;
@@ -166,7 +181,33 @@ in {
         filetypes = ["c" "cpp" "objc" "objcpp" "cuda"];
       };
 
+      lsp.servers."yaml-language-server" = {
+        capabilities = lib.generators.mkLuaInline ''
+          vim.tbl_deep_extend("force", capabilities, {
+            workspace = {
+              didChangeConfiguration = {
+                dynamicRegistration = true,
+              },
+            },
+          })
+        '';
+        on_attach = lib.generators.mkLuaInline ''
+          function(client, bufnr)
+            default_on_attach(client, bufnr)
+            require("kubeschema").on_attach(client, bufnr)
+          end
+        '';
+      };
+
       lsp.servers.terraform-ls = {
+        root_dir = lib.generators.mkLuaInline ''
+          function(bufnr, on_dir)
+            local path = vim.api.nvim_buf_get_name(bufnr)
+            if path ~= "" then
+              on_dir(vim.fs.dirname(path))
+            end
+          end
+        '';
         capabilities = lib.generators.mkLuaInline ''
           vim.tbl_deep_extend("force", capabilities, {
             experimental = {
@@ -176,8 +217,10 @@ in {
         '';
         init_options = {
           terraform = {
+            path = "${unstable.terraform}/bin/terraform";
             codelens.referenceCount = true;
           };
+          experimentalFeatures.prefillRequiredFields = true;
         };
         on_attach = lib.generators.mkLuaInline ''
           function(client, bufnr)
@@ -256,8 +299,8 @@ in {
           scrollDocsUp = "<C-b>";
           scrollDocsDown = "<C-f>";
           close = "<C-e>";
-          next = "<C-n>";
-          previous = "<C-p>";
+          next = "<Down>";
+          previous = "<Up>";
         };
 
         setupOpts = {
@@ -545,6 +588,11 @@ in {
       # Extra Plugins
       # =====================
       extraPlugins = {
+        kubeschema = {
+          package = kubeschemaNvim;
+          setup = ''require("kubeschema").setup({})'';
+        };
+
         alpha = {
           package = pkgs.vimPlugins.alpha-nvim;
           setup = ''

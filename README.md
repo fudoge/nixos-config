@@ -273,8 +273,8 @@ Leader key: `<Space>`
 | i    | `<C-b>`     | Scroll docs up   |
 | i    | `<C-f>`     | Scroll docs down |
 | i    | `<C-e>`     | Close            |
-| i    | `<C-n>`     | Next item        |
-| i    | `<C-p>`     | Prev item        |
+| i    | `<Down>`    | Next item        |
+| i    | `<Up>`      | Prev item        |
 
 ---
 

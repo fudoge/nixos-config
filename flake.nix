@@ -40,6 +40,14 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kubeschema = {
+      url = "github:imroc/kubeschema";
+      flake = false;
+    };
+    kubeschema-nvim = {
+      url = "github:imroc/kubeschema.nvim";
+      flake = false;
+    };
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";

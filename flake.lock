@@ -433,6 +433,38 @@
         "type": "github"
       }
     },
+    "kubeschema": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736740893,
+        "narHash": "sha256-YK9pRuwCEvHzTNn+I/kA7REr3BJJRxU6n4NL7Mq177k=",
+        "owner": "imroc",
+        "repo": "kubeschema",
+        "rev": "26fd3e32cf1ab1209425bc2adcb8f9f0c4d89d78",
+        "type": "github"
+      },
+      "original": {
+        "owner": "imroc",
+        "repo": "kubeschema",
+        "type": "github"
+      }
+    },
+    "kubeschema-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780476791,
+        "narHash": "sha256-atyWBbPd/YuZe5v97NgPpGIu8JD+vOS+nqlsjidOcnA=",
+        "owner": "imroc",
+        "repo": "kubeschema.nvim",
+        "rev": "c3957788c33ff93d7e24def0fd4a6c7850e34fe7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "imroc",
+        "repo": "kubeschema.nvim",
+        "type": "github"
+      }
+    },
     "m3shapes": {
       "inputs": {
         "nixpkgs": [
@@ -679,6 +711,8 @@
         "gws-cli": "gws-cli",
         "home-manager": "home-manager",
         "hyprqt6engine": "hyprqt6engine",
+        "kubeschema": "kubeschema",
+        "kubeschema-nvim": "kubeschema-nvim",
         "nix-darwin": "nix-darwin",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_3",
