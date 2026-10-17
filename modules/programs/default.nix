@@ -47,9 +47,9 @@ in {
     ]
     ++ lib.optionals cfg.withGui [
       ./terminals
-      ./kde
       ./other-tools
     ]
+    ++ lib.optionals (isLinuxTarget && cfg.withGui) [./kde]
     ++ lib.optionals (isLinuxTarget && cfg.withWayland) [./wayland]
     ++ lib.optionals (isLinuxTarget && cfg.withHyprland) [./hypr]
     ++ lib.optionals (isLinuxTarget && cfg.withRclone) [./rclone]
@@ -137,6 +137,21 @@ in {
     ++ lib.optionals isDarwin [
       mtr
       lsof
+      # Prefer Nix for standalone macOS CLI tools previously installed via Brew.
+      ast-grep
+      cpufetch
+      ggshield
+      gopls
+      htop
+      k6
+      lazygit
+      pngpaste
+      pstree
+      rclone
+      spicetify-cli
+      tektoncd-cli
+      tmux
+      wget
     ]
     ++ lib.optionals cfg.isWsl [
       drawio-headless
@@ -147,7 +162,6 @@ in {
       okteta
     ]
     ++ lib.optionals cfg.withInfraTools [
-      unstable.terraform
       unstable.opentofu
       unstable.terragrunt
       unstable.tflint
@@ -174,6 +188,7 @@ in {
       unstable.trivy
     ]
     ++ lib.optionals (isLinux && cfg.withInfraTools) [
+      unstable.terraform
       unstable.ssm-session-manager-plugin
     ]
     ++ lib.optionals (isLinux && cfg.withWayland) [

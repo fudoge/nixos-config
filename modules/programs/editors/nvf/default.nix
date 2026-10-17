@@ -217,7 +217,10 @@ in {
         '';
         init_options = {
           terraform = {
-            path = "${unstable.terraform}/bin/terraform";
+            path =
+              if pkgs.stdenv.hostPlatform.isDarwin
+              then "/opt/homebrew/bin/terraform"
+              else "${unstable.terraform}/bin/terraform";
             codelens.referenceCount = true;
           };
           experimentalFeatures.prefillRequiredFields = true;
