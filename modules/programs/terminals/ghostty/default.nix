@@ -33,6 +33,24 @@
   toGhosttyConfig = lib.generators.toKeyValue {
     mkKeyValue = name: value: "${name} = ${toString value}";
   };
+  darwinConfig = ''
+    font-family = "MesloLGS NF"
+    font-family = "JetBrainsMono Nerd Font Mono"
+    background-blur = 50
+    custom-shader-animation = always
+    keybind = cmd+s>r=reload_config
+    keybind = cmd+s>x=close_surface
+    keybind = cmd+s>n=new_window
+    keybind = cmd+s>c=new_tab
+    keybind = cmd+s>shift+l=next_tab
+    keybind = cmd+s>shift+h=previous_tab
+    keybind = cmd+s>comma=move_tab:-1
+    keybind = cmd+s>period=move_tab:1
+    keybind = cmd+s>1=goto_tab:1
+    keybind = cmd+s>2=goto_tab:2
+    keybind = cmd+s>3=goto_tab:3
+    keybind = cmd+s>4=goto_tab:4
+  '';
 in {
   # Ghostty is not available from nixpkgs on Darwin. Manage only its config
   # there and install the app outside Nix, while Linux keeps the HM package.
@@ -49,7 +67,7 @@ in {
     }
     // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
       "ghostty/config" = {
-        text = toGhosttyConfig settings;
+        text = toGhosttyConfig settings + "\n" + darwinConfig;
       };
     };
 }
