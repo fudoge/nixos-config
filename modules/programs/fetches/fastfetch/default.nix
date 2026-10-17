@@ -7,6 +7,7 @@
   ...
 }: let
   cfg = {inherit withGui;} // hostFeatures;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
   # Fastfetch layout adapted from borko17/fastfetch-config:
   # https://github.com/borko17/fastfetch-config
   esc = builtins.fromJSON ''"\u001b"'';
@@ -17,7 +18,13 @@ in {
     enable = true;
     settings = {
       logo =
-        if cfg.withGui
+        if isDarwin
+        then {
+          type = "builtin";
+          source = "macos";
+          padding.left = 2;
+        }
+        else if cfg.withGui
         then {
           type = "kitty";
           source = "${logoImage}";
@@ -64,12 +71,18 @@ in {
           color = {
             keys = "";
           };
-          key = "{$4}                󱐋󱐋 Fastfetch ";
+          key =
+            if isDarwin
+            then "{$4}Fastfetch "
+            else "{$4}                󱐋󱐋 Fastfetch ";
           format = "{$6}{2}";
         }
         {
           type = "custom";
-          format = "{$1}{$11}{$2}{$12}{$3}{$12}{$4}{$12}{$5}{$12}{$6}{$12}{$7}{$12}{$8}{$12}{$9}{$12}{$10}{$13} Hardware ";
+          format =
+            if isDarwin
+            then "{$1}Hardware"
+            else "{$1}{$11}{$2}{$12}{$3}{$12}{$4}{$12}{$5}{$12}{$6}{$12}{$7}{$12}{$8}{$12}{$9}{$12}{$10}{$13} Hardware ";
         }
         {
           type = "host";
@@ -118,16 +131,27 @@ in {
             yellow = 70;
           };
         }
-        {
+        ({
           type = "disk";
-          key = "{$9}├   NixOS     ";
-          folders = ["/"];
+          key =
+            if isDarwin
+            then "{$9}└   Disk      "
+            else "{$9}├   NixOS     ";
+          folders =
+            if isDarwin
+            then ["/System/Volumes/Data"]
+            else ["/"];
           percent = {
             type = 3;
             green = 30;
             yellow = 70;
           };
         }
+        // lib.optionalAttrs isDarwin {
+          format = "{size-percentage-bar} {size-used} / {size-total} ({size-percentage})";
+        })
+      ]
+      ++ lib.optionals (!isDarwin) [
         {
           type = "disk";
           key = "{$10}└   Home      ";
@@ -138,15 +162,23 @@ in {
             yellow = 70;
           };
         }
+      ]
+      ++ [
         {
           type = "custom";
-          format = "{$10}{$11}{$9}{$12}{$8}{$12}{$7}{$12}{$6}{$12}{$5}{$12}{$4}{$12}{$3}{$12}{$2}{$12}{$1}{$13} Software ";
+          format =
+            if isDarwin
+            then "{$10}Software"
+            else "{$10}{$11}{$9}{$12}{$8}{$12}{$7}{$12}{$6}{$12}{$5}{$12}{$4}{$12}{$3}{$12}{$2}{$12}{$1}{$13} Software ";
         }
-        {
+        ({
           type = "os";
-          key = "{$10}├   Distro    ";
-          format = "{name} {build-id} ({codename}) {arch}";
+          key =
+            if isDarwin
+            then "{$10}├   OS        "
+            else "{$10}├   Distro    ";
         }
+        // lib.optionalAttrs (!isDarwin) {format = "{name} {build-id} ({codename}) {arch}";})
         {
           type = "kernel";
           key = "{$10}├   Kernel    ";
@@ -197,15 +229,25 @@ in {
         }
         {
           type = "opengl";
-          key = "{$1}├ 󰆧  OpenGL    ";
+          key =
+            if isDarwin
+            then "{$1}└ 󰆧  OpenGL    "
+            else "{$1}├ 󰆧  OpenGL    ";
         }
+      ]
+      ++ lib.optionals (!isDarwin) [
         {
           type = "vulkan";
           key = "{$1}└ 󰈸  Vulkan    ";
         }
+      ]
+      ++ [
         {
           type = "custom";
-          format = "{$1}{$11}{$2}{$12}{$3}{$12}{$4}{$12}{$5}{$12}{$6}{$12}{$7}{$12}{$8}{$12}{$9}{$12}{$10}{$13} Connectivity";
+          format =
+            if isDarwin
+            then "{$1}Connectivity"
+            else "{$1}{$11}{$2}{$12}{$3}{$12}{$4}{$12}{$5}{$12}{$6}{$12}{$7}{$12}{$8}{$12}{$9}{$12}{$10}{$13} Connectivity";
         }
         {
           type = "bluetooth";
@@ -240,7 +282,10 @@ in {
         }
         {
           type = "custom";
-          format = "{$10}{$11}{$9}{$12}{$8}{$12}{$7}{$12}{$6}{$12}{$5}{$12}{$4}{$12}{$3}{$12}{$2}{$12}{$1}{$13} Time ";
+          format =
+            if isDarwin
+            then "{$10}Time"
+            else "{$10}{$11}{$9}{$12}{$8}{$12}{$7}{$12}{$6}{$12}{$5}{$12}{$4}{$12}{$3}{$12}{$2}{$12}{$1}{$13} Time ";
         }
         {
           type = "DateTime";
@@ -258,7 +303,10 @@ in {
         }
         {
           type = "custom";
-          format = "                {$10}󱄅 {$9}󱄅 {$8}󱄅 {$7}󱄅 {$6}󱄅 {$5}󱄅 {$4}󱄅 {$3}󱄅 {$2}󱄅 {$1}󱄅";
+          format =
+            if isDarwin
+            then "{$10} {$9} {$8} {$7} {$6} {$5} {$4} {$3} {$2} {$1}"
+            else "                {$10}󱄅 {$9}󱄅 {$8}󱄅 {$7}󱄅 {$6}󱄅 {$5}󱄅 {$4}󱄅 {$3}󱄅 {$2}󱄅 {$1}󱄅";
         }
       ];
     };
