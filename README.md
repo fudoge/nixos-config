@@ -1,4 +1,4 @@
-# NixOS-Confing
+# NixOS-Config
 
 My NixOS dots.
 
@@ -6,8 +6,14 @@ My NixOS dots.
 
 ## 🚀 Bootstrapping
 
+The script resolves the flake relative to itself, so an absolute path to
+`bootstrap.sh` also works outside this directory.
+It does not modify `/etc/nixos`, stage Git files, or delete existing configs.
+On Linux, it also installs missing helper scripts and the default wallpaper
+without overwriting files already in your home directory.
+
 ```bash
-./bootstrap.sh thinkpad # nix profile
+./bootstrap.sh thinkpad
 ```
 
 ---
@@ -25,11 +31,16 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
   sh -s -- install --determinate
 ```
 
-### Apply
+### Apply / rebuild
 
 ```bash
-sudo -H nix run nix-darwin/nix-darwin-26.05#darwin-rebuild -- switch --flake .#macbook
+./bootstrap.sh macbook
 ```
+
+On macOS, `./bootstrap.sh` defaults to `macbook`. It uses the installed
+`darwin-rebuild` when available and falls back to `nix run` for the first
+activation. It also raises sudo's soft file-descriptor limit to avoid the
+`Too many open files` error during Nix evaluation.
 
 ---
 

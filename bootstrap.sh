@@ -1,62 +1,83 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-TARGET_HOST=${1:-$(hostname)}
-BIN_DIR="$HOME/.local/bin"
+repo_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 
-echo "🐣 Bootstrapping..."
-if [ -d /etc/nixos ]; then
-    echo "/etc/nixos already exists."
-    while true; do
-        read -rp "choose action: [o]verwrite, [b]ackup, [s]skip(Do not use this option in first use). (lowercase only) " ans
-        case "$ans" in
-        o | overwrite)
-            sudo rm -rf /etc/nixos
-            sudo ln -s $PWD /etc/nixos
-            break
-            ;;
-        b | backup)
-            TIME="$(date +"%T")"
-            sudo mv /etc/nixos /etc/nixos.bak-${TIME}
-            sudo ln -s $PWD /etc/nixos
-            break
-            ;;
-        s | skip)
-            sudo rm -rf /etc/nixos
-            sudo ln -s $PWD /etc/nixos
-            break
-            ;;
-        *)
-            echo "invalid input"
-            ;;
-        esac
-    done
+usage() {
+  cat <<'EOF'
+Usage: ./bootstrap.sh [thinkpad|wsl|macbook]
+
+Rebuild the selected host from this repository. On macOS, the host defaults to
+macbook; on Linux, it defaults to the current hostname.
+EOF
+}
+
+if [[ ${1:-} == -h || ${1:-} == --help ]]; then
+  usage
+  exit 0
 fi
 
-echo "📃 Setting up scripts..."
-mkdir -p $BIN_DIR
-cp -r ./scripts/* ~/.local/bin/
-chmod +x $BIN_DIR/*
-
-echo "🖼️ Setting default wallpaper..."
-mkdir -p "$HOME/Pictures/Wallpapers"
-if [[ ! -f "$HOME/Pictures/Wallpapers/nix-black-4k.png" ]]; then
-    cp "assets/wallpapers/nix-black-4k.png" "$HOME/Pictures/Wallpapers/nix-black-4k.png"
+if (( $# > 1 )); then
+  usage >&2
+  exit 2
 fi
 
-echo "🪝 Adding Untracked files..."
-git add . 2>/dev/null || true
+case $(uname -s) in
+  Darwin)
+    host=${1:-macbook}
+    if [[ $host != macbook ]]; then
+      printf 'Host %s is not a macOS configuration.\n' "$host" >&2
+      exit 2
+    fi
+    ;;
+  Linux)
+    host=${1:-$(hostname)}
+    if [[ $host != thinkpad && $host != wsl ]]; then
+      printf 'Unknown Linux host: %s (choose thinkpad or wsl).\n' "$host" >&2
+      exit 2
+    fi
+    ;;
+  *)
+    printf 'Unsupported operating system.\n' >&2
+    exit 2
+    ;;
+esac
 
-# Delete dirty cava config (caelestia vs nix cava config collision)
-if [[ -f "$HOME/.config/cava/config.backup" ]]; then
-    rm "$HOME/.config/cava/config.backup"
+flake_ref="$repo_dir#$host"
+
+if [[ $(uname -s) == Darwin ]]; then
+  # The default sudo soft limit can be 256, which is too low for Nix evaluation.
+  if [[ -x /run/current-system/sw/bin/darwin-rebuild ]]; then
+    sudo -H /bin/zsh -lc \
+      'ulimit -Sn 16384 && exec /run/current-system/sw/bin/darwin-rebuild switch --flake "$1"' \
+      _ "$flake_ref"
+  else
+    # First activation, before darwin-rebuild is installed in the system profile.
+    sudo -H /bin/zsh -lc \
+      'ulimit -Sn 16384 && exec nix run nix-darwin/nix-darwin-26.05#darwin-rebuild -- switch --flake "$1"' \
+      _ "$flake_ref"
+  fi
+  exit
 fi
 
-echo "❄️ Rebuilding with flake: $TARGET_HOST"
-if sudo nixos-rebuild switch --flake "/etc/nixos#$TARGET_HOST"; then
-    echo "Build Success! 😊"
-else
-    echo "Build Failed.. 😿"
-    exit 1
+# Keep the one-time Linux helpers, but never overwrite existing user files.
+bin_dir="$HOME/.local/bin"
+mkdir -p -- "$bin_dir" "$HOME/Pictures/Wallpapers"
+for script in "$repo_dir"/scripts/*; do
+  target="$bin_dir/${script##*/}"
+  if [[ -e $target || -L $target ]]; then
+    if ! cmp -s -- "$script" "$target"; then
+      printf 'Keeping existing %s (differs from repository copy).\n' "$target" >&2
+    fi
+  else
+    install -m 0755 -- "$script" "$target"
+  fi
+done
+
+wallpaper="$HOME/Pictures/Wallpapers/nix-black-4k.png"
+if [[ ! -e $wallpaper && ! -L $wallpaper ]]; then
+  cp -- "$repo_dir/assets/wallpapers/nix-black-4k.png" "$wallpaper"
 fi
 
-echo "To update onlyoffice font, execute sync-onlyoffice-fonts"
+sudo nixos-rebuild switch --flake "$flake_ref"
+printf 'To update OnlyOffice fonts, run sync-onlyoffice-fonts.\n'
