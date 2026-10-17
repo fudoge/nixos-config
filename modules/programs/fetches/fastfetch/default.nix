@@ -64,251 +64,252 @@ in {
           };
         };
       };
-      modules = [
-        "break"
-        {
-          type = "version";
-          color = {
-            keys = "";
-          };
-          key =
-            if isDarwin
-            then "{$4}Fastfetch "
-            else "{$4}                󱐋󱐋 Fastfetch ";
-          format = "{$6}{2}";
-        }
-        {
-          type = "custom";
-          format =
-            if isDarwin
-            then "{$1}Hardware"
-            else "{$1}{$11}{$2}{$12}{$3}{$12}{$4}{$12}{$5}{$12}{$6}{$12}{$7}{$12}{$8}{$12}{$9}{$12}{$10}{$13} Hardware ";
-        }
-        {
-          type = "host";
-          key = "{$1}├   PC        ";
-        }
-        {
-          type = "board";
-          key = "{$2}├ 󱔼  Board     ";
-        }
-        {
-          type = "cpu";
-          key = "{$3}├   CPU       ";
-        }
-        {
-          type = "gpu";
-          key = "{$4}├ 󰾲  GPU       ";
-        }
-        {
-          type = "display";
-          key = "{$5}├ 󰍹  Display   ";
-        }
-        {
-          type = "sound";
-          key = "{$6}├   Sound     ";
-        }
-        {
-          type = "battery";
-          key = "{$6}├ 󰢟  Battery   ";
-          format = "{manufacturer} {model-name} ({capacity})";
-        }
-        {
-          type = "memory";
-          key = "{$7}├   Memory    ";
-          percent = {
-            type = 3;
-            green = 30;
-            yellow = 70;
-          };
-        }
-        {
-          type = "swap";
-          key = "{$8}├ 󰯍  Swap      ";
-          percent = {
-            type = 3;
-            green = 30;
-            yellow = 70;
-          };
-        }
-        ({
-          type = "disk";
-          key =
-            if isDarwin
-            then "{$9}└   Disk      "
-            else "{$9}├   NixOS     ";
-          folders =
-            if isDarwin
-            then ["/System/Volumes/Data"]
-            else ["/"];
-          percent = {
-            type = 3;
-            green = 30;
-            yellow = 70;
-          };
-        }
-        // lib.optionalAttrs isDarwin {
-          format = "{size-percentage-bar} {size-used} / {size-total} ({size-percentage})";
-        })
-      ]
-      ++ lib.optionals (!isDarwin) [
-        {
-          type = "disk";
-          key = "{$10}└   Home      ";
-          folders = ["/home"];
-          percent = {
-            type = 3;
-            green = 30;
-            yellow = 70;
-          };
-        }
-      ]
-      ++ [
-        {
-          type = "custom";
-          format =
-            if isDarwin
-            then "{$10}Software"
-            else "{$10}{$11}{$9}{$12}{$8}{$12}{$7}{$12}{$6}{$12}{$5}{$12}{$4}{$12}{$3}{$12}{$2}{$12}{$1}{$13} Software ";
-        }
-        ({
-          type = "os";
-          key =
-            if isDarwin
-            then "{$10}├   OS        "
-            else "{$10}├   Distro    ";
-        }
-        // lib.optionalAttrs (!isDarwin) {format = "{name} {build-id} ({codename}) {arch}";})
-        {
-          type = "kernel";
-          key = "{$10}├   Kernel    ";
-        }
-        {
-          type = "bios";
-          key = "{$9}├ 󰚗  BIOS      ";
-        }
-        {
-          type = "packages";
-          key = "{$9}├ 󰏖  Packages  ";
-        }
-        {
-          type = "Processes";
-          key = "{$9}├ 󰑮  Processes ";
-        }
-        {
-          type = "shell";
-          key = "{$8}├   Shell     ";
-        }
-        {
-          type = "terminal";
-          key = "{$7}├   Terminal  ";
-        }
-        {
-          type = "terminalfont";
-          key = "{$6}├ 󰛖  Term Font ";
-        }
-        {
-          type = "de";
-          key = "{$5}├   DE        ";
-        }
-        {
-          type = "lm";
-          key = "{$4}├ 󰧨  Login     ";
-        }
-        {
-          type = "wm";
-          key = "{$3}├   Window    ";
-        }
-        {
-          type = "wmtheme";
-          key = "{$2}├ 󰉼  Theme     ";
-        }
-        {
-          type = "font";
-          key = "{$2}├ 󰛖  Font      ";
-        }
-        {
-          type = "opengl";
-          key =
-            if isDarwin
-            then "{$1}└ 󰆧  OpenGL    "
-            else "{$1}├ 󰆧  OpenGL    ";
-        }
-      ]
-      ++ lib.optionals (!isDarwin) [
-        {
-          type = "vulkan";
-          key = "{$1}└ 󰈸  Vulkan    ";
-        }
-      ]
-      ++ [
-        {
-          type = "custom";
-          format =
-            if isDarwin
-            then "{$1}Connectivity"
-            else "{$1}{$11}{$2}{$12}{$3}{$12}{$4}{$12}{$5}{$12}{$6}{$12}{$7}{$12}{$8}{$12}{$9}{$12}{$10}{$13} Connectivity";
-        }
-        {
-          type = "bluetooth";
-          key = "{$1}├ 󰂱  Bluetooth ";
-          format = "{1} - {4}";
-        }
-        {
-          type = "bluetoothradio";
-          key = "{$1}├ 󰂯  BT Radio  ";
-          format = "{5}";
-        }
-        {
-          type = "wifi";
-          key = "{$2}├   WiFi      ";
-          format = "{4} - {7} - {13} GHz - {10}";
-          showErrors = "never";
-        }
-        {
-          type = "dns";
-          key = "{$4}├ 󱦂  DNS       ";
-        }
-        {
-          type = "localip";
-          key = "{$6}├ 󰩟  Local IP  ";
-          format = "{1} - {3}";
-          showMac = true;
-        }
-        {
-          type = "publicip";
-          key = "{$8}└ 󰩠  Public IP ";
-          format = "{1} - {2}";
-        }
-        {
-          type = "custom";
-          format =
-            if isDarwin
-            then "{$10}Time"
-            else "{$10}{$11}{$9}{$12}{$8}{$12}{$7}{$12}{$6}{$12}{$5}{$12}{$4}{$12}{$3}{$12}{$2}{$12}{$1}{$13} Time ";
-        }
-        {
-          type = "DateTime";
-          key = "{$10}├ 󰥔  Date/Time ";
-        }
-        {
-          key = "{$8}├   OS Age    ";
-          type = "disk";
-          folders = "/";
-          format = "{create-time:10} ({days} days)";
-        }
-        {
-          type = "uptime";
-          key = "{$6}└   Uptime    ";
-        }
-        {
-          type = "custom";
-          format =
-            if isDarwin
-            then "{$10} {$9} {$8} {$7} {$6} {$5} {$4} {$3} {$2} {$1}"
-            else "                {$10}󱄅 {$9}󱄅 {$8}󱄅 {$7}󱄅 {$6}󱄅 {$5}󱄅 {$4}󱄅 {$3}󱄅 {$2}󱄅 {$1}󱄅";
-        }
-      ];
+      modules =
+        [
+          "break"
+          {
+            type = "version";
+            color = {
+              keys = "";
+            };
+            key =
+              if isDarwin
+              then "{$4}Fastfetch "
+              else "{$4}                󱐋󱐋 Fastfetch ";
+            format = "{$6}{2}";
+          }
+          {
+            type = "custom";
+            format =
+              if isDarwin
+              then "{$1}Hardware"
+              else "{$1}{$11}{$2}{$12}{$3}{$12}{$4}{$12}{$5}{$12}{$6}{$12}{$7}{$12}{$8}{$12}{$9}{$12}{$10}{$13} Hardware ";
+          }
+          {
+            type = "host";
+            key = "{$1}├   PC        ";
+          }
+          {
+            type = "board";
+            key = "{$2}├ 󱔼  Board     ";
+          }
+          {
+            type = "cpu";
+            key = "{$3}├   CPU       ";
+          }
+          {
+            type = "gpu";
+            key = "{$4}├ 󰾲  GPU       ";
+          }
+          {
+            type = "display";
+            key = "{$5}├ 󰍹  Display   ";
+          }
+          {
+            type = "sound";
+            key = "{$6}├   Sound     ";
+          }
+          {
+            type = "battery";
+            key = "{$6}├ 󰢟  Battery   ";
+            format = "{manufacturer} {model-name} ({capacity})";
+          }
+          {
+            type = "memory";
+            key = "{$7}├   Memory    ";
+            percent = {
+              type = 3;
+              green = 30;
+              yellow = 70;
+            };
+          }
+          {
+            type = "swap";
+            key = "{$8}├ 󰯍  Swap      ";
+            percent = {
+              type = 3;
+              green = 30;
+              yellow = 70;
+            };
+          }
+          ({
+              type = "disk";
+              key =
+                if isDarwin
+                then "{$9}└   Disk      "
+                else "{$9}├   NixOS     ";
+              folders =
+                if isDarwin
+                then ["/System/Volumes/Data"]
+                else ["/"];
+              percent = {
+                type = 3;
+                green = 30;
+                yellow = 70;
+              };
+            }
+            // lib.optionalAttrs isDarwin {
+              format = "{size-percentage-bar} {size-used} / {size-total} ({size-percentage})";
+            })
+        ]
+        ++ lib.optionals (!isDarwin) [
+          {
+            type = "disk";
+            key = "{$10}└   Home      ";
+            folders = ["/home"];
+            percent = {
+              type = 3;
+              green = 30;
+              yellow = 70;
+            };
+          }
+        ]
+        ++ [
+          {
+            type = "custom";
+            format =
+              if isDarwin
+              then "{$10}Software"
+              else "{$10}{$11}{$9}{$12}{$8}{$12}{$7}{$12}{$6}{$12}{$5}{$12}{$4}{$12}{$3}{$12}{$2}{$12}{$1}{$13} Software ";
+          }
+          ({
+              type = "os";
+              key =
+                if isDarwin
+                then "{$10}├   OS        "
+                else "{$10}├   Distro    ";
+            }
+            // lib.optionalAttrs (!isDarwin) {format = "{name} {build-id} ({codename}) {arch}";})
+          {
+            type = "kernel";
+            key = "{$10}├   Kernel    ";
+          }
+          {
+            type = "bios";
+            key = "{$9}├ 󰚗  BIOS      ";
+          }
+          {
+            type = "packages";
+            key = "{$9}├ 󰏖  Packages  ";
+          }
+          {
+            type = "Processes";
+            key = "{$9}├ 󰑮  Processes ";
+          }
+          {
+            type = "shell";
+            key = "{$8}├   Shell     ";
+          }
+          {
+            type = "terminal";
+            key = "{$7}├   Terminal  ";
+          }
+          {
+            type = "terminalfont";
+            key = "{$6}├ 󰛖  Term Font ";
+          }
+          {
+            type = "de";
+            key = "{$5}├   DE        ";
+          }
+          {
+            type = "lm";
+            key = "{$4}├ 󰧨  Login     ";
+          }
+          {
+            type = "wm";
+            key = "{$3}├   Window    ";
+          }
+          {
+            type = "wmtheme";
+            key = "{$2}├ 󰉼  Theme     ";
+          }
+          {
+            type = "font";
+            key = "{$2}├ 󰛖  Font      ";
+          }
+          {
+            type = "opengl";
+            key =
+              if isDarwin
+              then "{$1}└ 󰆧  OpenGL    "
+              else "{$1}├ 󰆧  OpenGL    ";
+          }
+        ]
+        ++ lib.optionals (!isDarwin) [
+          {
+            type = "vulkan";
+            key = "{$1}└ 󰈸  Vulkan    ";
+          }
+        ]
+        ++ [
+          {
+            type = "custom";
+            format =
+              if isDarwin
+              then "{$1}Connectivity"
+              else "{$1}{$11}{$2}{$12}{$3}{$12}{$4}{$12}{$5}{$12}{$6}{$12}{$7}{$12}{$8}{$12}{$9}{$12}{$10}{$13} Connectivity";
+          }
+          {
+            type = "bluetooth";
+            key = "{$1}├ 󰂱  Bluetooth ";
+            format = "{1} - {4}";
+          }
+          {
+            type = "bluetoothradio";
+            key = "{$1}├ 󰂯  BT Radio  ";
+            format = "{5}";
+          }
+          {
+            type = "wifi";
+            key = "{$2}├   WiFi      ";
+            format = "{4} - {7} - {13} GHz - {10}";
+            showErrors = "never";
+          }
+          {
+            type = "dns";
+            key = "{$4}├ 󱦂  DNS       ";
+          }
+          {
+            type = "localip";
+            key = "{$6}├ 󰩟  Local IP  ";
+            format = "{1} - {3}";
+            showMac = true;
+          }
+          {
+            type = "publicip";
+            key = "{$8}└ 󰩠  Public IP ";
+            format = "{1} - {2}";
+          }
+          {
+            type = "custom";
+            format =
+              if isDarwin
+              then "{$10}Time"
+              else "{$10}{$11}{$9}{$12}{$8}{$12}{$7}{$12}{$6}{$12}{$5}{$12}{$4}{$12}{$3}{$12}{$2}{$12}{$1}{$13} Time ";
+          }
+          {
+            type = "DateTime";
+            key = "{$10}├ 󰥔  Date/Time ";
+          }
+          {
+            key = "{$8}├   OS Age    ";
+            type = "disk";
+            folders = "/";
+            format = "{create-time:10} ({days} days)";
+          }
+          {
+            type = "uptime";
+            key = "{$6}└   Uptime    ";
+          }
+          {
+            type = "custom";
+            format =
+              if isDarwin
+              then "{$10} {$9} {$8} {$7} {$6} {$5} {$4} {$3} {$2} {$1}"
+              else "                {$10}󱄅 {$9}󱄅 {$8}󱄅 {$7}󱄅 {$6}󱄅 {$5}󱄅 {$4}󱄅 {$3}󱄅 {$2}󱄅 {$1}󱄅";
+          }
+        ];
     };
   };
 }

@@ -146,7 +146,11 @@
 
   services.udev.packages = [
     pkgs.brightnessctl
+    pkgs.yubikey-personalization
   ];
+
+  # Allow YubiKey smart-card features (such as PIV and OATH) to use PC/SC.
+  services.pcscd.enable = true;
 
   # dbus
   services.dbus.enable = true;
@@ -281,6 +285,10 @@
     xournalpp
     audacity
     gimp
+
+    # YubiKey management (GUI and ykman CLI)
+    yubioath-flutter
+    yubikey-manager
 
     # virtualization
     virt-viewer

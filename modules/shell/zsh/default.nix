@@ -10,21 +10,22 @@
     enableCompletion = true;
     autosuggestion.enable = true;
 
-    shellAliases = {
-      ls = "eza --icons";
-      k = "kubectl";
-      kubectl = "kubecolor";
-      tf = "terraform";
-      cl = "clear";
-      cd = "z";
-      cat = "bat";
-      sk = "sk --preview='bat {} --color=always'";
-    }
-    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
-      pokefetch = "pokeget random --hide-name | fastfetch --file-raw -";
-      tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
-      activate_conda = "source /opt/anaconda3/etc/profile.d/conda.sh && conda activate";
-    };
+    shellAliases =
+      {
+        ls = "eza --icons";
+        k = "kubectl";
+        kubectl = "kubecolor";
+        tf = "terraform";
+        cl = "clear";
+        cd = "z";
+        cat = "bat";
+        sk = "sk --preview='bat {} --color=always'";
+      }
+      // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
+        pokefetch = "pokeget random --hide-name | fastfetch --file-raw -";
+        tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
+        activate_conda = "source /opt/anaconda3/etc/profile.d/conda.sh && conda activate";
+      };
 
     history.size = 10000;
     history.path = "$HOME/.zsh_history";
