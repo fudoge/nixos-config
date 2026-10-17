@@ -79,6 +79,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  fonts.packages = [pkgs.pretendard];
+
   # Use Determinate Nix
   nix.enable = false;
 

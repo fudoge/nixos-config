@@ -36,6 +36,7 @@
   darwinConfig = ''
     font-family = "MesloLGS NF"
     font-family = "JetBrainsMono Nerd Font Mono"
+    font-family = "Pretendard"
     background-blur = 50
     custom-shader-animation = always
     keybind = cmd+s>r=reload_config
