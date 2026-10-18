@@ -32,6 +32,12 @@
     exec ${caelestia} shell lock lock
   '';
   lockCmd = "${caelestiaLock}/bin/caelestia-lock";
+  suspendUnlessSpotifyPlaying = pkgs.writeShellScript "suspend-unless-spotify-playing" ''
+    statuses="$(${pkgs.playerctl}/bin/playerctl --all-players --player=spotify,spotify_player --no-messages status 2>/dev/null || true)"
+    if ${pkgs.coreutils}/bin/printf '%s\n' "$statuses" | ${pkgs.gnugrep}/bin/grep -qx Playing; then
+      exit 1
+    fi
+  '';
 in {
   services.hypridle = {
     enable = true;
@@ -64,6 +70,8 @@ in {
         }
         {
           timeout = 1800;
+          condition_cmd = "${suspendUnlessSpotifyPlaying}";
+          condition_retry = 30;
           on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
