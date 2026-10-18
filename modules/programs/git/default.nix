@@ -15,7 +15,7 @@
     settings = {
       user = {
         name = "Chaewoon Kang";
-        email = "kchawoon@naver.com";
+        email = "77766067+fudoge@users.noreply.github.com";
       };
       core.editor = "vim";
       init.defaultBranch = "main";
