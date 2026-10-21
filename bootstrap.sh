@@ -79,5 +79,20 @@ if [[ ! -e $wallpaper && ! -L $wallpaper ]]; then
   cp -- "$repo_dir/assets/wallpapers/nix-black-4k.png" "$wallpaper"
 fi
 
+# Caelestia can replace Home Manager's cava config. Keep the previous backup
+# before Home Manager tries to back up the replacement to the same path.
+cava_config="$HOME/.config/cava/config"
+cava_backup="$cava_config.backup"
+if [[ -e $cava_config && ! -L $cava_config && ( -e $cava_backup || -L $cava_backup ) ]]; then
+  cava_archive="$cava_backup.old-$(date +%Y%m%d%H%M%S)"
+  suffix=1
+  while [[ -e $cava_archive || -L $cava_archive ]]; do
+    cava_archive="$cava_backup.old-$(date +%Y%m%d%H%M%S)-$suffix"
+    (( suffix += 1 ))
+  done
+  mv -- "$cava_backup" "$cava_archive"
+  printf 'Preserved existing cava backup as %s.\n' "$cava_archive"
+fi
+
 sudo nixos-rebuild switch --flake "$flake_ref"
 printf 'To update OnlyOffice fonts, run sync-onlyoffice-fonts.\n'
