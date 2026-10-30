@@ -1,6 +1,7 @@
 {username, ...}: {
   imports = [
     ../../modules/programs
+    ../../modules/programs/app/opendisplay
     ../../modules/shell
   ];
 
