@@ -285,6 +285,7 @@
     xournalpp
     audacity
     gimp
+    jetbrains.idea
 
     # YubiKey management (GUI and ykman CLI)
     yubioath-flutter
