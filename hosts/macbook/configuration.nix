@@ -92,6 +92,22 @@
     };
   };
 
+  # nix.gc.automatic requires nix.enable, so schedule GC through launchd
+  # while Determinate Nix manages the daemon.
+  launchd.daemons.nix-gc = {
+    command = "/nix/var/nix/profiles/default/bin/nix-collect-garbage --delete-older-than 7d";
+    serviceConfig = {
+      RunAtLoad = false;
+      StartCalendarInterval = [
+        {
+          Weekday = 7;
+          Hour = 3;
+          Minute = 15;
+        }
+      ];
+    };
+  };
+
   system.stateVersion = 5;
 
   users.users.${username} = {
