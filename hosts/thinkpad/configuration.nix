@@ -259,7 +259,8 @@
     # gui apps
     spotify
     vivaldi
-    obsidian
+    # Electron 43.8.3 leaves the Obsidian renderer blank.
+    (obsidian.override {electron = electron_44;})
     kdePackages.dolphin
     thunar
     rose-pine-gtk-theme
