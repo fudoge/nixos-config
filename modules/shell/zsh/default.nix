@@ -18,6 +18,7 @@
         tf = "terraform";
         cl = "clear";
         cd = "z";
+        cdr = "z $(git rev-parse --show-toplevel)";
         cat = "bat";
         sk = "sk --preview='bat {} --color=always'";
       }
