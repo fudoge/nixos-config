@@ -50,7 +50,7 @@
     dependencies = [pkgs.vimPlugins.plenary-nvim];
   };
 in {
-  imports = [inputs.nvf.homeManagerModules.default];
+  imports = [inputs.nvf.homeModules.default];
 
   home.packages = [kubeschema];
 
