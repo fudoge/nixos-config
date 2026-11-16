@@ -113,7 +113,10 @@ in {
       # dev
       go
       python3
-      rustup
+      cargo
+      rustc
+      rustfmt
+      clippy
       nodejs
       unstable.devenv
       unstable.uv
