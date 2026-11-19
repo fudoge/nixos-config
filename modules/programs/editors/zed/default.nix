@@ -18,7 +18,6 @@ in {
     extensions = [
       "nix"
       "toml"
-      "rust"
       "go"
       "python"
       "c"
@@ -65,6 +64,10 @@ in {
         working_directory = "current_project_directory";
       };
       lsp = {
+        # Rust support is built in; use the Nix-packaged language server.
+        rust-analyzer = {
+          binary.path = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+        };
         nix = {
           binary = {
             path_lookup = true;

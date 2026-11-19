@@ -27,6 +27,8 @@
       redhat.vscode-yaml
 
       golang.go
+      rust-lang.rust-analyzer
+      vadimcn.vscode-lldb
       hashicorp.hcl
       hashicorp.terraform
       docker.docker
